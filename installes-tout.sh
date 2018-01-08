@@ -1,6 +1,6 @@
 # installation openssh
-sudo apt-get remove -y openssh-server
-sudo apt-get install -y openssh-server
+# sudo apt-get remove -y openssh-server
+# sudo apt-get install -y openssh-server
 clear
 echo "ne cherches pas à comprendre, appuies 4 fois (comptes bien 4) sur Entrée pour continuer"
 read
