@@ -73,3 +73,12 @@ sudo usermod -aG docker $USER
 
 sudo systemctl enable docker
 sudo systemctl start docker
+
+# construction d'un conteneur tomcat 
+clear
+echo "Quand tu appuieras sur Entrée, attends quelque secondes, et ton serveur tomcat sera accessible à:"
+echo "		http://adressIP-detaVM:8888/"
+echo "Quand tu veux."
+read
+sudo docker run -it --rm -p 8888:8080 tomcat:8.0
+# http://adressIP:8888/
