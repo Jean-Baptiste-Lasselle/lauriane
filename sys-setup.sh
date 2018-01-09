@@ -137,7 +137,7 @@ fi
 echo "Vous confirmez vouloir re-configurer l'interface réseau linux : [$NOM_INTERFACE_RESEAU_A_RECONFIGURER] ?"
 echo "Répondez par Oui ou Non (o/n). Répondre Non annulera toute configuration réseau."
 read VOUSCONFIRMEZ
-case $VOUSCONFIRMEZ in
+case "$VOUSCONFIRMEZ" in
 	[oO] | [oO][uU][iI]) echo "L'interface réseau [$NOM_INTERFACE_RESEAU_A_RECONFIGURER] sera re-configurée" ;;
 	[nN] | [nN][oO][nN]) echo "Aucune reconfiguration réseau ne sera faite.";return ;;
 esac
@@ -192,7 +192,7 @@ sudo systemctl restart networking.service
 clear
 echo "Souhaitez-vous configurer une adresse IP statique pour cette machine? (oui/non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
-case $DOIS_JE_CONFIG_IPSTATIQUE in
+case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 	[oO] | [oO][uU][iI]) configurer_ip_statique () ;;
 	[nN] | [nN][oO][nN]) echo "L'utilisateur $USER a répondu non: Aucune reconfiguration réseau ne sera donc faite.";;
 	*) echo "L'utilisateur [$USER] a saisi une réponse incompréhensible: Aucune reconfiguration réseau ne sera donc faite.";;
