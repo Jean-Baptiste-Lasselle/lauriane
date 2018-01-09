@@ -193,7 +193,7 @@ clear
 echo "Souhaitez-vous configurer une adresse IP statique pour cette machine? (oui/non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
 case "$DOIS_JE_CONFIG_IPSTATIQUE" in
-	[oO] | [oO][uU][iI]) configurer_ip_statique () ;;
+	[oO] | [oO][uU][iI]) configurer_ip_statique ;;
 	[nN] | [nN][oO][nN]) echo "L'utilisateur $USER a répondu non: Aucune reconfiguration réseau ne sera donc faite.";;
 	*) echo "L'utilisateur [$USER] a saisi une réponse incompréhensible: Aucune reconfiguration réseau ne sera donc faite.";;
 esac
