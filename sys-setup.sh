@@ -62,10 +62,7 @@
 # ---------------------------------------------------------
 # Cette fonction permet d'afficher un premier message explicatif.
 afficher_message_presentation_initiale () {
-	echo "Ce script a pour objet de configurer la machine sur";
-	echo "laquelle vous allez expérimenter, de";
-	echo "manière à rendre le déroulement de vos opérations le plus confortable possible.";
-	echo "Vos expérimentations vont se faire dans une Machine Virtuelle Virtual Box.";
+	echo "Il se peut";
 	echo "";
 }
 
@@ -190,7 +187,26 @@ sudo systemctl restart networking.service
 
 # Possibilité de configuration réseau IP statique
 clear
-echo "Souhaitez-vous configurer une adresse IP statique pour cette machine? (oui/non)"
+echo "Cet utilitaire automatise la construction d'une infrastructure, dans laquelle il vous"
+echo "est possible de déployer une application Web Java Jee faisant usage d'une base de données SQL."
+echo "Cette infrastructure comprend donc au moins:"
+echo " "
+echo "	¤ un serveur Jee "
+echo "	¤ un serveur de gestion de base de données relationelles (SGBDR)"
+echo " "
+echo "La totalité de cette infrastructure va être construite dans cette machine virtuelle."
+echo " - "
+echo "Imaginons que vous développiez une application Web Java Jee, Cet utilitaire vous permet donc d'automatiser"
+echo "la construction d'une cible de déploiement, à des fins de tests."
+echo " - "
+echo "À chaque fois que vous utiliserez cet utilitaire, vous pourrez changer: "
+echo "	¤ l'adresses IP utilisée par les deux serveurs (Jee et le SGBDR) "
+echo "	¤ le réseau IP dans lequel les deux serveurs (Jee et le SGBDR) opère"
+echo " "
+echo "Si bien qu'à chaque fois que vous construirez une nouvelle cible de déploiement pour votre application,"
+echo "avec cet utilitaire, vous pourrez donc changer le réseau IP dans lequel opère l'application Web Java Jee."
+echo " - "
+echo "Souhaitez-vous configurer une adresse IP statique pour cette machine ? (oui/non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
 case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 	[oO] | [oO][uU][iI]) configurer_ip_statique ;;
