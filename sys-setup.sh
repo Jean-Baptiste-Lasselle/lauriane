@@ -119,7 +119,7 @@ NOM_INTERFACE_RESEAU_A_RECONFIGURER=$NOM_INTERFACE_RESEAU_A_RECONFIGURER_PAR_DEF
 # ----------------------------------------
 
 NBARGS=$#
-
+clear
 if [ $NBARGS -eq 0 ]
 then
 	echo "Quel est le nom de l'interface réseau linux que vous souhaitez reconfigurer?"
@@ -130,7 +130,7 @@ else
 fi
 
 # confirmation nom interface réseau linux à reconfigurer 
-
+clear
 echo "Vous confirmez vouloir re-configurer l'interface réseau linux : [$NOM_INTERFACE_RESEAU_A_RECONFIGURER] ?"
 echo "Répondez par Oui ou Non (o/n). Répondre Non annulera toute configuration réseau."
 read VOUSCONFIRMEZ
@@ -206,6 +206,11 @@ echo " "
 echo "Si bien qu'à chaque fois que vous construirez une nouvelle cible de déploiement pour votre application,"
 echo "avec cet utilitaire, vous pourrez donc changer le réseau IP dans lequel opère l'application Web Java Jee."
 echo " - "
+
+echo " Presses la touche entrée pour commencer. "
+read
+clear
+
 echo "Souhaitez-vous configurer une adresse IP statique pour cette machine ? (oui/non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
 case "$DOIS_JE_CONFIG_IPSTATIQUE" in
