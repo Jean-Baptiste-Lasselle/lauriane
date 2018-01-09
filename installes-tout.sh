@@ -1,11 +1,55 @@
-# installation openssh
-# sudo apt-get remove -y openssh-server
-# sudo apt-get install -y openssh-server
-# clear
-# echo "ne cherches pas à comprendre, appuies 4 fois (comptes bien 4) sur Entrée pour continuer"
-# read
+############################################################
+############################################################
+# 					Compatibilité système		 		   #
+############################################################
+############################################################
 
-# ssh-keygen -t rsa -b 4096
+# ----------------------------------------------------------
+# [Pour Comparer votre version d'OS à
+#  celles mentionnées ci-dessous]
+# 
+# ¤ distributions Ubuntu:
+#		lsb_release -a
+#
+# ¤ distributions CentOS:
+# 		cat /etc/redhat-release
+# 
+# 
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# testé pour:
+# 
+# 
+# 
+# 
+# ----------------------------------------------------------
+# (Ubuntu)
+# ----------------------------------------------------------
+# 
+# ¤ [TEST-OK]
+#
+# 	[Distribution ID: 	Ubuntu]
+# 	[Description: 		Ubuntu 16.04 LTS]
+# 	[Release: 			16.04]
+# 	[codename:			xenial]
+# 
+# 
+# 
+# 
+# 
+# 
+# ----------------------------------------------------------
+# (CentOS)
+# ----------------------------------------------------------
+# 
+# 
+# 
+# ...
+# ----------------------------------------------------------
+
+
+
 # installation docker
 sudo apt-get remove -y apt-transport-https ca-certificates curl software-properties-common
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
