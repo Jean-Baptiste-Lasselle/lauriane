@@ -117,7 +117,7 @@ clear
 echo " PAUSE DEBUG AVANT"
 read debug1
 
-sudo sh sys-setup.sh && sudo sh intalles-tout.sh
+sudo sh lauriane/sys-setup.sh && sudo sh lauriane/intalles-tout.sh
 # clear
 echo " PAUSE DEBUG APRES"
 read debug2
