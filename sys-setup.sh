@@ -150,6 +150,7 @@ read FUTURE_ADRESSE_IP
 echo "Quel masque de sous-réseau voulez-vous pour cette machine?"
 read FUTUR_MASQUE_SOUS_RESEAU
 echo "Quelle est l'adresse IP du routeur?"
+echo "(Votre routeur est peut-être la \"box\" de votre FAI internet à la maison...)"
 read ADRESSE_IP_DU_ROUTEUR
 
 sudo rm -f ./nvl-config-reseau
@@ -165,11 +166,7 @@ echo "         dns-nameservers 8.8.8.8, 8.8.4.4" >> ./nvl-config-reseau
 
 sudo rm -f /etc/network/interfaces
 sudo cp ./nvl-config-reseau /etc/network/interfaces
-
-# clear
-# echo "Quand tu appuieras sur la touche entrée, la VM va redémarrer, attends qu'elle redémarre, puis continues avec la suite des instructions."
-# read FIN
-# sudo reboot -h now
+# re-spawning de l'interface réseau linux...
 sudo ip addr flush enp0s3
 sudo systemctl restart networking.service
 
@@ -230,7 +227,7 @@ sudo apt-get update -y
 sudo apt-get remove -y openssh-server
 sudo apt-get install -y openssh-server
 clear
-echo "ne cherches pas à comprendre, presses la touche entrée pour réponse à totes les questions (3 fois en tout)"
+echo "ne cherches pas à comprendre, presses la touche entrée pour réponse à toutes les questions (3 fois en tout)"
 read
 
 # Config accès SSH 

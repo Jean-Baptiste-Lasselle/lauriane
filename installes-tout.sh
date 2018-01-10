@@ -78,7 +78,11 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
 
+##########################################################
+##### MONTEE INFRASTRUCTURE CIBLE DE DEPLOIEMENT #########
+##########################################################
 # construction d'un conteneur tomcat 
+#
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 NUMERO_PORT_SRV_JEE=8888
 clear
