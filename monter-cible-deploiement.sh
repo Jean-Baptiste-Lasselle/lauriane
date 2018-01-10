@@ -115,12 +115,12 @@ export NUMERO_PORT_SGBDR=3308
 
 clear
 echo " PAUSE DEBUG AVANT"
-read 
+read debug1
 
 sudo sh sys-setup.sh && sudo sh intalles-tout.sh
 # clear
 echo " PAUSE DEBUG APRES"
-read 
+read debug2
 clear
 
 
