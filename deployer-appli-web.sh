@@ -175,7 +175,7 @@ read
 # sudo docker run -it --name ciblededeploiement --rm -p 8888:8080 tomcat:8.0
 # http://adressIP:8888/
 
-
+# OK, je sais: il faut générer dynamiquement le script de déploiement, suite au choix ADRESSE IP et autres paramètres
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION=appli-a-deployer-pour-test
 FICHIER_WAR_A_DEPLOYER=./$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION.war
