@@ -105,6 +105,7 @@ traiter_args () {
 
 
 export NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
+export NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 
 export ADRESSE_IP_SRV_JEE=192.168.1.63
 export NUMERO_PORT_SRV_JEE=8888
