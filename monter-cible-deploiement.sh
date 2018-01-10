@@ -113,14 +113,14 @@ export NUMERO_PORT_SRV_JEE=8888
 export ADRESSE_IP_SGBDR=192.168.1.63
 export NUMERO_PORT_SGBDR=3308
 
-clear
-echo " PAUSE DEBUG AVANT"
-read debug1
-
-sudo sh lauriane/sys-setup.sh && sudo sh lauriane/intalles-tout.sh
 # clear
-echo " PAUSE DEBUG APRES"
-read debug2
-clear
+# echo " PAUSE DEBUG AVANT"
+# read debug1
+
+sudo sh lauriane/sys-setup.sh && sudo sh lauriane/installes-tout.sh
+# clear
+# echo " PAUSE DEBUG APRES"
+# read debug2
+# clear
 
 
