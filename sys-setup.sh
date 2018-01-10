@@ -125,6 +125,7 @@ then
 	echo "Quel est le nom de l'interface réseau linux que vous souhaitez reconfigurer?"
 	echo "(l'interface utilisée par défaut sera : [$NOM_INTERFACE_RESEAU_A_RECONFIGURER]"
 	read SAISIE_UTILISATEUR
+	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
 else
 	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$1
 fi

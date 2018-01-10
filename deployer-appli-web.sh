@@ -124,9 +124,9 @@ clear
 if [ $NBARGS -eq 0 ]
 then
 	echo "Quel est le nom de fichier de l'artefact war à déployer?"
-	echo "(Par défaut l'interface utilisée par défaut sera : [$FICHIER_WAR_A_DEPLOYER]"
+	echo "(Par défaut l'artefact [$FICHIER_WAR_A_DEPLOYER] sera déployé"
 	read SAISIE_UTILISATEUR_NOMWAR
-	FICHIER_WAR_A_DEPLOYER=SAISIE_UTILISATEUR_NOMWAR
+	FICHIER_WAR_A_DEPLOYER=$SAISIE_UTILISATEUR_NOMWAR
 else
 	FICHIER_WAR_A_DEPLOYER=$1
 fi
@@ -173,7 +173,7 @@ sudo docker run -it --name ciblededeploiement --rm -p 8888:8080 tomcat:8.0
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 FICHIER_WAR_A_DEPLOYER=./appli-a-deployer-pour-test.war
 
-demander_infos_deploiement
+demander_infos_deploiement $1
 
 sudo docker cp $FICHIER_WAR_A_DEPLOYER $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/webapps
 sudo docker restart $NOM_CONTENEUR_TOMCAT
