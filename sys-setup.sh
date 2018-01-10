@@ -147,6 +147,8 @@ esac
 clear
 echo "Quelle adresse IP voulez-vous pour cette machine?"
 read FUTURE_ADRESSE_IP
+# pas sûr que ça impacte dans les scripts suivants 
+ADRESSE_IP_SRV_JEE=FUTURE_ADRESSE_IP
 echo "Quel masque de sous-réseau voulez-vous pour cette machine?"
 read FUTUR_MASQUE_SOUS_RESEAU
 echo "Quelle est l'adresse IP du routeur?"
