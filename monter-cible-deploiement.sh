@@ -114,6 +114,8 @@ export ADRESSE_IP_SGBDR=192.168.1.63
 export NUMERO_PORT_SGBDR=3308
 
 sudo sh sys-setup.sh && sudo intalles-tout.sh
+echo " PAIUSE DEBUG"
+read
 clear
 
 
