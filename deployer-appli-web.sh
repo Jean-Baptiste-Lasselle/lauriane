@@ -171,9 +171,24 @@ read
 
 
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
-FICHIER_WAR_A_DEPLOYER=./appli-a-deployer-pour-test.war
+NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION=appli-a-deployer-pour-test
+FICHIER_WAR_A_DEPLOYER=./$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION.war
+
 
 demander_infos_deploiement $1
-
+clear
+echo " --  "
+echo " --  DEBUT DEPLOIEMENT --- "
+echo " --  "
 sudo docker cp $FICHIER_WAR_A_DEPLOYER $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/webapps
 sudo docker restart $NOM_CONTENEUR_TOMCAT
+echo " --  "
+echo " --  DEPLOIEMENT TERMINE --- "
+echo " --  "
+echo " 						"
+echo " Votre application est disponible à l'URL: "
+echo " 						http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
+echo " --  "
+echo " Exécutez les commandes: "
+echo "   firefox http://localhost:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
+echo "   firefox http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
