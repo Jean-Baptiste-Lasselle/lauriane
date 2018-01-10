@@ -130,9 +130,9 @@ else
 	FICHIER_WAR_A_DEPLOYER=$1
 fi
 
-if [ "x$SAISIE_UTILISATEUR_NOMWAR" = "x$SAISIE_UTILISATEUR_NOMWAR"  ]
+if [ "x$SAISIE_UTILISATEUR_NOMWAR" = "x"  ]
 then
-	# on laisse la valeur par défaut
+	echo "on laisse la valeur par défaut"
 else
 	FICHIER_WAR_A_DEPLOYER=$SAISIE_UTILISATEUR_NOMWAR
 fi

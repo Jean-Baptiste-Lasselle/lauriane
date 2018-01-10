@@ -129,12 +129,12 @@ else
 	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$1
 fi
 
-# if [ "x$SAISIE_UTILISATEUR" = "x" ]
-# then
-	on laisse la valeur par défaut
-# else
-	# NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
-# fi
+if [ "x$SAISIE_UTILISATEUR" = "x" ]
+then
+	echo "on laisse la valeur par défaut"
+else
+	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
+fi
 
 # confirmation nom interface réseau linux à reconfigurer 
 clear
