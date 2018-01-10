@@ -126,14 +126,15 @@ then
 	echo "Quel est le nom de fichier de l'artefact war à déployer?"
 	echo "(Par défaut l'artefact [$FICHIER_WAR_A_DEPLOYER] sera déployé"
 	read SAISIE_UTILISATEUR_NOMWAR
-	if [ "$SAISIE_UTILISATEUR_NOMWAR" = "x$SAISIE_UTILISATEUR_NOMWAR"  ]
-	then
-		# on laisse la valeur par défaut
-	else
-		FICHIER_WAR_A_DEPLOYER=$SAISIE_UTILISATEUR_NOMWAR
-	fi
 else
 	FICHIER_WAR_A_DEPLOYER=$1
+fi
+
+if [ "x$SAISIE_UTILISATEUR_NOMWAR" = "x$SAISIE_UTILISATEUR_NOMWAR"  ]
+then
+	# on laisse la valeur par défaut
+else
+	FICHIER_WAR_A_DEPLOYER=$SAISIE_UTILISATEUR_NOMWAR
 fi
 
 # confirmation nom interface réseau linux à reconfigurer 

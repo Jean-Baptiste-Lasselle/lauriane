@@ -129,7 +129,7 @@ else
 	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$1
 fi
 
-if [ "$SAISIE_UTILISATEUR" = "x$SAISIE_UTILISATEUR" ]
+if [ "x$SAISIE_UTILISATEUR" = "x" ]
 then
 	# on laisse la valeur par défaut
 else
