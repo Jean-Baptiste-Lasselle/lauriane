@@ -113,8 +113,13 @@ export NUMERO_PORT_SRV_JEE=8888
 export ADRESSE_IP_SGBDR=192.168.1.63
 export NUMERO_PORT_SGBDR=3308
 
-sudo sh sys-setup.sh && sudo intalles-tout.sh
-echo " PAIUSE DEBUG"
+clear
+echo " PAUSE DEBUG AVANT"
+read
+
+sudo sh sys-setup.sh && sudo sh intalles-tout.sh
+# clear
+echo " PAUSE DEBUG APRES"
 read
 clear
 
