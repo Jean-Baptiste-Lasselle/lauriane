@@ -110,7 +110,7 @@ demander_infos_deploiement () {
 # VAR.
 # ----
 
-FICHIER_WAR_A_DEPLOYER_PAR_DEFAUT=./appli-a-deployer-pour-test.war
+FICHIER_WAR_A_DEPLOYER_PAR_DEFAUT=$HOME/lauriane/appli-a-deployer-pour-test.war
 FICHIER_WAR_A_DEPLOYER=$FICHIER_WAR_A_DEPLOYER_PAR_DEFAUT
 
 

@@ -112,7 +112,7 @@ configurer_ip_statique () {
 # VAR.
 # ----
 
-NOM_INTERFACE_RESEAU_A_RECONFIGURER_PAR_DEFAUT=enp0s3
+NOM_INTERFACE_RESEAU_A_RECONFIGURER_PAR_DEFAUT=enp0s3 # celle-là, il faut qu'elle passe au niveau opérations
 NOM_INTERFACE_RESEAU_A_RECONFIGURER=$NOM_INTERFACE_RESEAU_A_RECONFIGURER_PAR_DEFAUT
 
 # Gestion des valeurs passées en paramètre
@@ -230,7 +230,7 @@ sudo apt-get update -y
 sudo apt-get remove -y openssh-server
 sudo apt-get install -y openssh-server
 clear
-echo "ne cherches pas à comprendre, appuies 4 fois (comptes bien 4) sur Entrée pour continuer"
+echo "ne cherches pas à comprendre, presses la touche entrée pour réponse à totes les questions (3 fois en tout)"
 read
 
 # Config accès SSH 
