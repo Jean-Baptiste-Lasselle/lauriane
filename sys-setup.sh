@@ -125,15 +125,15 @@ then
 	echo "Quel est le nom de l'interface réseau linux que vous souhaitez reconfigurer?"
 	echo "(l'interface utilisée par défaut sera : [$NOM_INTERFACE_RESEAU_A_RECONFIGURER]"
 	read SAISIE_UTILISATEUR
-	if [ "$SAISIE_UTILISATEUR" = "x$SAISIE_UTILISATEUR"  ]
-	then
-		# on laisse la valeur par défaut
-	else
-		NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
-	fi
-	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
 else
 	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$1
+fi
+
+if [ "$SAISIE_UTILISATEUR" = "x$SAISIE_UTILISATEUR" ]
+then
+	# on laisse la valeur par défaut
+else
+	NOM_INTERFACE_RESEAU_A_RECONFIGURER=$SAISIE_UTILISATEUR
 fi
 
 # confirmation nom interface réseau linux à reconfigurer 
