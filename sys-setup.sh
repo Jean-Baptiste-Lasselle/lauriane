@@ -155,9 +155,13 @@ clear
 echo "Quelle adresse IP voulez-vous pour cette machine?"
 read FUTURE_ADRESSE_IP
 echo "Quel masque de sous-réseau voulez-vous pour cette machine?"
+echo "Le masque de sous-réseau actuel est probablement:"
+ifconfig enp0s3|grep "Mask:"
 read FUTUR_MASQUE_SOUS_RESEAU
 echo "Quelle est l'adresse IP du routeur?"
 echo "(Votre routeur est peut-être la \"box\" de votre FAI internet à la maison...)"
+CANDIDATE=`netstat -nr | awk '$1 == "0.0.0.0"{print$2}'`
+echo " L'adresseIP de votre routeur est probablement: $CANDIDATE"
 read ADRESSE_IP_DU_ROUTEUR
 
 # 
@@ -226,7 +230,15 @@ echo " Pressez la touche entrée pour commencer. "
 read
 clear
 
+echo "Avant tout, cette machine DOIT avoir accès à internet."
+echo "Et vous avez besoin de connaître une adresse IP de votre VM."
+echo " Pressez la touche entrée pour commencer. "
+read
+clear
 echo "Souhaitez-vous configurer une adresse IP statique pour cette machine ? (oui/non)"
+# car ma procédure de reconfiguration réseau s'applique sur les
+# interfaces réseau linux classiques, mais pas sur les interfaces réseau linux wifi
+echo "(Si vous êtes connecté à internet via wifi, répondez non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
 case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 	[oO] | [oO][uU][iI]) configurer_ip_statique ;;
@@ -243,8 +255,7 @@ apt-get update -y
 apt-get remove -y openssh-server
 apt-get install -y openssh-server
 clear
-echo "ne cherches pas à comprendre, presses la touche entrée pour réponse à toutes les questions (3 fois en tout)"
-read
+echo "Ne cherches pas à comprendre, presses la touche entrée pour réponse à toutes les questions (3 fois en tout)"
 
 # Config accès SSH 
 # Création d'un clé publique pour l'utilisateur $USER.

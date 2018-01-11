@@ -96,6 +96,28 @@
 
 # }
 
+determiner_addr_ip_initiale_machine () {
+
+	echo "Quelle est l'adresse IP de cette machine?"
+	echo "Voici qui peut vous aider à trouver cette adresse:"
+	echo " "
+	ip addr|grep "inet"|grep -v "inet6"|grep "enp\|wlan"
+	echo " "
+	read ADRESSE_IP_DE_CETTE_MACHINE
+	
+}
+
+demander_choix_no_ports () {
+
+	echo "Quel nuéméro de port souhaitez-vous que le serveur jee utilise?"
+	read NUMERO_PORT_SRV_JEE
+	
+	echo "Quel nuéméro de port souhaitez-vous que le SGBDR utilise?"
+	read NUMERO_PORT_SRV_JEE
+	
+	
+	
+}
 
 
 ############################################################
@@ -113,6 +135,8 @@ export NUMERO_PORT_SRV_JEE=8888
 
 export ADRESSE_IP_SGBDR=192.168.1.63
 export NUMERO_PORT_SGBDR=3308
+
+demander_choix_no_ports
 
 sudo chmod +x lauriane/*.sh
 
