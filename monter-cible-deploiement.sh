@@ -49,7 +49,20 @@
 # ...
 # ----------------------------------------------------------
 
+############################################################
+############################################################
+#			Variables d'environnement globales		 	   #
+############################################################
+############################################################
 
+NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
+NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
+
+ADRESSE_IP_SRV_JEE=192.168.1.63
+NUMERO_PORT_SRV_JEE=8888
+
+ADRESSE_IP_SGBDR=192.168.1.63
+NUMERO_PORT_SGBDR=3308
 
 
 ############################################################
@@ -104,7 +117,7 @@ determiner_addr_ip_initiale_machine () {
 	ip addr|grep "inet"|grep -v "inet6"|grep "enp\|wlan"
 	echo " "
 	read ADRESSE_IP_DE_CETTE_MACHINE
-	
+	ADRESSE_IP_SRV_JEE=$ADRESSE_IP_DE_CETTE_MACHINE
 }
 
 demander_choix_no_ports () {
@@ -113,7 +126,7 @@ demander_choix_no_ports () {
 	read NUMERO_PORT_SRV_JEE
 	
 	echo "Quel nuéméro de port souhaitez-vous que le SGBDR utilise?"
-	read NUMERO_PORT_SRV_JEE
+	read NUMERO_PORT_SGBDR
 	
 	
 	
@@ -127,16 +140,20 @@ demander_choix_no_ports () {
 ############################################################
 
 
-export NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
-export NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 
-export ADRESSE_IP_SRV_JEE=192.168.1.63
-export NUMERO_PORT_SRV_JEE=8888
 
-export ADRESSE_IP_SGBDR=192.168.1.63
-export NUMERO_PORT_SGBDR=3308
-
+determiner_addr_ip_initiale_machine
 demander_choix_no_ports
+
+export NOM_CONTENEUR_TOMCAT
+export NOM_CONTENEUR_SGBDR
+
+export ADRESSE_IP_SRV_JEE
+export NUMERO_PORT_SRV_JEE
+
+export ADRESSE_IP_SGBDR
+export NUMERO_PORT_SGBDR
+
 
 sudo chmod +x lauriane/*.sh
 
