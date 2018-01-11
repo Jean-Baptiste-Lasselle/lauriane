@@ -191,12 +191,12 @@ NUMERO_PORT_SGBDR=VALEUR_NUMERO_PORT_SGBDR
 determiner_war_a_deployer $1
 
 
-clear
-echo POIN DEBUG FIN
-echo "verif valeur [ADRESSE_IP_SRV_JEE=$ADRESSE_IP_SRV_JEE]"
-echo "verif valeur [NUMERO_PORT_SRV_JEE=$NUMERO_PORT_SRV_JEE]"
-echo "verif valeur [NUMERO_PORT_SGBDR=$NUMERO_PORT_SGBDR]"
-read
+# clear
+# echo POIN DEBUG FIN
+# echo "verif valeur [ADRESSE_IP_SRV_JEE=$ADRESSE_IP_SRV_JEE]"
+# echo "verif valeur [NUMERO_PORT_SRV_JEE=$NUMERO_PORT_SRV_JEE]"
+# echo "verif valeur [NUMERO_PORT_SGBDR=$NUMERO_PORT_SGBDR]"
+# read
 
 clear
 echo " --  "
@@ -215,7 +215,7 @@ echo " --  "
 echo " Votre application est disponible à l'URL: "
 echo " 						http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
 echo " --  "
-echo " Exécutez les commandes: "
-echo "   firefox http://localhost:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
-echo "   firefox http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
+# echo " Exécutez les commandes: "
+# echo "   firefox http://localhost:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
+# echo "   firefox http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
 
