@@ -162,28 +162,41 @@ echo "   sudo docker exec -it ccc /bin/bash"
 read
 
 
-# générer les 2 fichiers SQL
+# ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
+# ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
+# ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
+
+# > script sql pour créer la bdd
 rm -f ./creer-bdd-apppli.sql
 echo "CREATE $NOM_BDD_APPLI; " >> ./creer-bdd-apppli.sql
-# > créer la BDD de l'application et créer l'utilisateur applicatif
-docker exec -it $NOM_CONTENEUR_SGBDR < ./creer-bdd-apppli.sql
-# > créer l'utilisateur applicatif
-rm -f ./creer-utilisateur-applicatif.sql
-echo "use mysql; " >> ./creer-utilisateur-applicatif.sql
-# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> ./creer-utilisateur-applicatif.sql
-echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> ./creer-utilisateur-applicatif.sql
-echo "GRANT ALL PRIVILEGES ON bddappli.* TO 'techonthenet'@'%' WITH GRANT OPTION;" >> ./creer-utilisateur-applicatif.sql
-# > script shell pour sql créer l'utilisateur applicatif
+# > script shell pour créer la bdd
 rm -f ./creer-bdd-apppli.sh
 echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-apppli.sql" > ./creer-bdd-apppli.sh
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 docker cp ./creer-bdd-apppli.sql $NOM_CONTENEUR_SGBDR:. 
 docker cp ./creer-bdd-apppli.sh $NOM_CONTENEUR_SGBDR:. 
 docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-apppli.sh
 # ou alors:
 # docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-apppli.sh
-# TODO: finir avec creer-utilisateur-applicatif
+
+
+# > script sql pour créer l'utilisateur applicatif
+rm -f ./creer-utilisateur-applicatif.sql
+echo "use mysql; " >> ./creer-utilisateur-applicatif.sql
+# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> ./creer-utilisateur-applicatif.sql
+echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> ./creer-utilisateur-applicatif.sql
+echo "GRANT ALL PRIVILEGES ON bddappli.* TO 'techonthenet'@'%' WITH GRANT OPTION;" >> ./creer-utilisateur-applicatif.sql
+
+# > script shell pour créer l'utilisateur applicatif
 rm -f ./creer-utilisateur-applicatif.sh
 echo "use mysql; " >> ./creer-utilisateur-applicatif.sh
+
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+
 docker cp ./creer-utilisateur-applicatif.sql $NOM_CONTENEUR_SGBDR:. 
 docker cp ./creer-utilisateur-applicatif.sh $NOM_CONTENEUR_SGBDR:. 
 docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-utilisateur-applicatif.sh
