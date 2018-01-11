@@ -54,6 +54,7 @@
 #			Variables d'environnement globales		 	   #
 ############################################################
 ############################################################
+MAISON=`pwd`
 
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
@@ -64,6 +65,11 @@ NUMERO_PORT_SRV_JEE=8888
 ADRESSE_IP_SGBDR=192.168.1.63
 NUMERO_PORT_SGBDR=3308
 
+DB_MGMT_USER_NAME=lauriane
+DB_MGMT_USER_PWD=lauriane
+
+DB_APP_USER_NAME=appli-de-lauriane
+DB_APP_USER_PWD=mdp@ppli-l@urian3
 
 ############################################################
 ############################################################
@@ -319,6 +325,12 @@ case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 esac
 demander_choix_no_ports
 
+############################################################
+############################################################
+#	  Export des Variables d'environnement globales	 	   #
+############################################################
+############################################################
+export MAISON
 export NOM_CONTENEUR_TOMCAT
 export NOM_CONTENEUR_SGBDR
 
@@ -330,6 +342,12 @@ ADRESSE_IP_SGBDR=$ADRESSE_IP_SRV_JEE
 export ADRESSE_IP_SGBDR
 NUMERO_PORT_SGBDR=$SAISIE_NUMERO_PORT_SGBDR
 export NUMERO_PORT_SGBDR
+
+export DB_MGMT_USER_NAME
+export DB_MGMT_USER_PWD
+
+export DB_APP_USER_NAME
+export DB_APP_USER_PWD
 
 # clear
 # echo POIN DEBUG DEBUT
