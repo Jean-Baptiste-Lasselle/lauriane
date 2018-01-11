@@ -115,7 +115,11 @@
 
 clear
 echo "debug generer-op-std-deploiement.sh"
-read debug1
+echo " verif VAR. ENV. [ADRESSE_IP_SRV_JEE=$ADRESSE_IP_SRV_JEE]"
+echo " verif VAR. ENV. [NUMERO_PORT_SRV_JEE=$NUMERO_PORT_SRV_JEE]"
+echo " verif VAR. ENV. [ADRESSE_IP_SGBDR=$ADRESSE_IP_SGBDR]"
+echo " verif VAR. ENV. [NUMERO_PORT_SGBDR=$NUMERO_PORT_SGBDR]"
+read unpauseici
 
 
 # Injection des valeurs dans les opérations standards
