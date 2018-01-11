@@ -1,3 +1,4 @@
+#!/bin/bash
 ############################################################
 ############################################################
 # 					Compatibilité système		 		   #
@@ -172,7 +173,7 @@ echo "Quand tu appuieras sur Entrée, attends quelque secondes, et ton serveur t
 echo "		http://adressIP-detaVM:8888/"
 echo "Quand tu veux."
 read
-# sudo docker run -it --name ciblededeploiement --rm -p 8888:8080 tomcat:8.0
+# docker run -it --name ciblededeploiement --rm -p 8888:8080 tomcat:8.0
 # http://adressIP:8888/
 
 # OK, je sais: il faut générer dynamiquement le script de déploiement, suite au choix ADRESSE IP et autres paramètres
@@ -193,8 +194,8 @@ clear
 echo " --  "
 echo " --  DEBUT DEPLOIEMENT --- "
 echo " --  "
-sudo docker cp $FICHIER_WAR_A_DEPLOYER $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/webapps
-sudo docker restart $NOM_CONTENEUR_TOMCAT
+docker cp $FICHIER_WAR_A_DEPLOYER $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/webapps
+docker restart $NOM_CONTENEUR_TOMCAT
 echo " --  "
 echo " --  DEPLOIEMENT TERMINE --- "
 echo " --  "

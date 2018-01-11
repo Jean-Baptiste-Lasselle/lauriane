@@ -1,3 +1,4 @@
+#!/bin/bash
 ############################################################
 ############################################################
 # 					Compatibilité système		 		   #
@@ -113,6 +114,6 @@ export NUMERO_PORT_SRV_JEE=8888
 export ADRESSE_IP_SGBDR=192.168.1.63
 export NUMERO_PORT_SGBDR=3308
 
-sudo sh lauriane/generer-op-std-deploiement.sh
+sudo chmod +x lauriane/*.sh
 
-# sudo sh lauriane/sys-setup.sh &&  sudo sh lauriane/generer-op-std-deploiement.sh && sudo sh lauriane/installes-tout.sh
+lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh
