@@ -123,10 +123,10 @@ determiner_addr_ip_initiale_machine () {
 demander_choix_no_ports () {
 
 	echo "Quel nuéméro de port souhaitez-vous que le serveur jee utilise?"
-	read NUMERO_PORT_SRV_JEE
+	read SAISIE_NUMERO_PORT_SRV_JEE
 	
 	echo "Quel nuéméro de port souhaitez-vous que le SGBDR utilise?"
-	read NUMERO_PORT_SGBDR
+	read SAISIE_NUMERO_PORT_SGBDR
 	
 	
 	
@@ -149,9 +149,11 @@ export NOM_CONTENEUR_TOMCAT
 export NOM_CONTENEUR_SGBDR
 
 export ADRESSE_IP_SRV_JEE
+NUMERO_PORT_SRV_JEE=$SAISIE_NUMERO_PORT_SRV_JEE
 export NUMERO_PORT_SRV_JEE
 
 export ADRESSE_IP_SGBDR
+NUMERO_PORT_SGBDR=$SAISIE_NUMERO_PORT_SGBDR
 export NUMERO_PORT_SGBDR
 
 
