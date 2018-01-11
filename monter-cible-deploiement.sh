@@ -156,6 +156,13 @@ export ADRESSE_IP_SGBDR
 NUMERO_PORT_SGBDR=$SAISIE_NUMERO_PORT_SGBDR
 export NUMERO_PORT_SGBDR
 
+clear
+echo POIN DEBUG FIN
+echo "verif valeur [ADRESSE_IP_SRV_JEE=$ADRESSE_IP_SRV_JEE]"
+echo "verif valeur [NUMERO_PORT_SRV_JEE=$NUMERO_PORT_SRV_JEE]"
+echo "verif valeur [NUMERO_PORT_SGBDR=$NUMERO_PORT_SGBDR]"
+read
+
 
 sudo chmod +x lauriane/*.sh
 

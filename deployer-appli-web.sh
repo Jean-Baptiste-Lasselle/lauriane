@@ -190,6 +190,14 @@ NUMERO_PORT_SGBDR=VALEUR_NUMERO_PORT_SGBDR
 
 determiner_war_a_deployer $1
 
+
+clear
+echo POIN DEBUG FIN
+echo "verif valeur [ADRESSE_IP_SRV_JEE=$ADRESSE_IP_SRV_JEE]"
+echo "verif valeur [NUMERO_PORT_SRV_JEE=$NUMERO_PORT_SRV_JEE]"
+echo "verif valeur [NUMERO_PORT_SGBDR=$NUMERO_PORT_SGBDR]"
+read
+
 clear
 echo " --  "
 echo " --  DEBUT DEPLOIEMENT --- "
