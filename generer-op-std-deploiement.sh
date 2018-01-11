@@ -103,25 +103,23 @@
 ############################################################
 ############################################################
 
+# VAR. ENV. HERITEES
+# export NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
+# export NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 
-export NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
-export NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
+# export ADRESSE_IP_SRV_JEE=192.168.1.63
+# export NUMERO_PORT_SRV_JEE=8888
 
-export ADRESSE_IP_SRV_JEE=192.168.1.63
-export NUMERO_PORT_SRV_JEE=8888
+# export ADRESSE_IP_SGBDR=192.168.1.63
+# export NUMERO_PORT_SGBDR=3308
 
-export ADRESSE_IP_SGBDR=192.168.1.63
-export NUMERO_PORT_SGBDR=3308
+# Injection des valeurs dans les opérations standards
+sed -i 's/VALEUR_ADRESSE_IP_SRV_JEE/$ADRESSE_IP_SRV_JEE/g' deployer-appli-web.sh
+sed -i 's/VALEUR_NUMERO_PORT_SRV_JEE/$NUMERO_PORT_SRV_JEE/g' deployer-appli-web.sh
 
-# clear
-# echo " PAUSE DEBUG AVANT"
-# read debug1
+sed -i 's/VALEUR_ADRESSE_IP_SGBDR/$ADRESSE_IP_SGBDR/g' deployer-appli-web.sh
+sed -i 's/VALEUR_NUMERO_PORT_SGBDR/$NUMERO_PORT_SGBDR/g' deployer-appli-web.sh
 
-sudo sh lauriane/sys-setup.sh && sudo sh lauriane/installes-tout.sh &&  sudo sh lauriane/generer-op-std-deploiement.sh
 
-# clear
-# echo " PAUSE DEBUG APRES"
-# read debug2
-# clear
 
 

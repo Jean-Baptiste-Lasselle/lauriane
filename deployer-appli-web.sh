@@ -105,7 +105,7 @@ afficher_message_prerequis () {
 # ---------------------------------------------------------
 
 
-demander_infos_deploiement () {
+determiner_war_a_deployer () {
 
 # VAR.
 # ----
@@ -180,8 +180,15 @@ NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION=appli-a-deployer-pour-test
 FICHIER_WAR_A_DEPLOYER=./$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION.war
 
+# valeurs injectées automatiquement...
+ADRESSE_IP_SRV_JEE=VALEUR_ADRESSE_IP_SRV_JEE
+NUMERO_PORT_SRV_JEE=VALEUR_NUMERO_PORT_SRV_JEE
 
-demander_infos_deploiement $1
+ADRESSE_IP_SGBDR=VALEUR_ADRESSE_IP_SGBDR
+NUMERO_PORT_SGBDR=VALEUR_NUMERO_PORT_SGBDR
+
+determiner_war_a_deployer $1
+
 clear
 echo " --  "
 echo " --  DEBUT DEPLOIEMENT --- "
@@ -192,9 +199,14 @@ echo " --  "
 echo " --  DEPLOIEMENT TERMINE --- "
 echo " --  "
 echo " 						"
+echo " Votre SGBDR est accessible par votre client SQL : "
+echo " 						=> à l'adresse			[$ADRESSE_IP_SGBDR]"
+echo " 						=> au nméro de port		[$NUMERO_PORT_SGBDR]"
+echo " --  "
 echo " Votre application est disponible à l'URL: "
 echo " 						http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
 echo " --  "
 echo " Exécutez les commandes: "
 echo "   firefox http://localhost:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
 echo "   firefox http://$ADRESSE_IP_SRV_JEE:$NUMERO_PORT_SRV_JEE/$NOM_FICHIER_WAR_A_DEPLOYER_SANS_EXTENSION"
+
