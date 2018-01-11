@@ -86,9 +86,5 @@ sudo systemctl start docker
 NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 NUMERO_PORT_SRV_JEE=8888
 clear
-echo "Quand tu appuieras sur Entrée, attends quelque secondes, et ton serveur tomcat sera accessible à:"
-echo "		http://adressIP-detaVM:8888/"
-echo "Quand tu veux."
-read
 sudo docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
 # http://adressIP:8888/
