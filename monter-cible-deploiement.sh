@@ -117,7 +117,7 @@ export NUMERO_PORT_SGBDR=3308
 # echo " PAUSE DEBUG AVANT"
 # read debug1
 
-sudo sh lauriane/sys-setup.sh && sudo sh lauriane/installes-tout.sh &&  sudo sh lauriane/generer-op-std-deploiement.sh
+sudo sh lauriane/sys-setup.sh &&  sudo sh lauriane/generer-op-std-deploiement.sh && sudo sh lauriane/installes-tout.sh
 
 # clear
 # echo " PAUSE DEBUG APRES"
