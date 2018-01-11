@@ -113,12 +113,17 @@
 # export ADRESSE_IP_SGBDR=192.168.1.63
 # export NUMERO_PORT_SGBDR=3308
 
-# Injection des valeurs dans les opérations standards
-sed -i 's/VALEUR_ADRESSE_IP_SRV_JEE/$ADRESSE_IP_SRV_JEE/g' deployer-appli-web.sh
-sed -i 's/VALEUR_NUMERO_PORT_SRV_JEE/$NUMERO_PORT_SRV_JEE/g' deployer-appli-web.sh
+clear
+echo "debug generer-op-std-deploiement.sh"
+read debug1
 
-sed -i 's/VALEUR_ADRESSE_IP_SGBDR/$ADRESSE_IP_SGBDR/g' deployer-appli-web.sh
-sed -i 's/VALEUR_NUMERO_PORT_SGBDR/$NUMERO_PORT_SGBDR/g' deployer-appli-web.sh
+
+# Injection des valeurs dans les opérations standards
+sed -i 's/VALEUR_ADRESSE_IP_SRV_JEE/$ADRESSE_IP_SRV_JEE/g' lauriane/deployer-appli-web.sh
+sed -i 's/VALEUR_NUMERO_PORT_SRV_JEE/$NUMERO_PORT_SRV_JEE/g' lauriane/deployer-appli-web.sh
+
+sed -i 's/VALEUR_ADRESSE_IP_SGBDR/$ADRESSE_IP_SGBDR/g' lauriane/deployer-appli-web.sh
+sed -i 's/VALEUR_NUMERO_PORT_SGBDR/$NUMERO_PORT_SGBDR/g' lauriane/deployer-appli-web.sh
 
 
 
