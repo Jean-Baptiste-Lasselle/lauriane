@@ -238,7 +238,8 @@ clear
 echo "Souhaitez-vous configurer une adresse IP statique pour cette machine ? (oui/non)"
 # car ma procédure de reconfiguration réseau s'applique sur les
 # interfaces réseau linux classiques, mais pas sur les interfaces réseau linux wifi
-echo "(Si vous êtes connecté à internet via wifi, répondez non)"
+echo "<!!!> (À n'utliser que lorsque vous maîtriser bien le réseau dans lequel opère cette machine)"
+echo "<!!!> (Si vous êtes connecté à internet via wifi, répondez non)"
 read DOIS_JE_CONFIG_IPSTATIQUE
 case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 	[oO] | [oO][uU][iI]) configurer_ip_statique ;;
