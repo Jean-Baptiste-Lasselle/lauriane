@@ -214,7 +214,7 @@ read
 # 		# ## ON TAGGUE
 # 		¤ on détruit le tag ETAT_INITIAL_CIBLE_DEPLOIEMENT : [git tag -d vETAT_INITIAL_CIBLE_DEPLOIEMENT] (san détruire le commit associé au tag détruit)
 # 		¤ on git taggue le commit  [git tag -a vETAT_INITIAL_CIBLE_DEPLOIEMENT -m "ETAT_INITIAL_CIBLE_DEPLOIEMENT: nouveau numéro de port etc..."] e nouvelle version du fichier 
-# 		¤ on fait un git cdocker-compose up
+# 		¤ on fait un git clone du repo versionnant docker-compose.yml et dockerfiles le  docker-compose.yml fait toujours référence aux images :latest comme ça on fait docker build et on refait docker-compose-up
 # 		¤ on fait docker-compose up
 # 		# ## IL MANQUE LA PARTIE DOKER BUILDS AVEC DOCKER COMMIT POUR VERSIONNER IMAGES MONTEES ..?
 # 
