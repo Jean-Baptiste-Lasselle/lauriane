@@ -228,7 +228,13 @@ read
 #" ce qui donne un workflow:
 #		¤  # edition de mon [docker-compose.yml] : 
 #		¤  git add docker-compose.yml
-#		¤  git commit - m "ajout de la création de l'utilisateur applicatif"
+#		¤  # edition d'un des dockerfile d'un des composants [composant-sgbdr.dockerfile] : on ajoute des directives ADD et des RUN
+#		
+#		¤  # pour chaque composant, il y a autant de docker file une "tour" de dockerfile qui se référencent les uns les autres avec FROM // par exemple un des docker file (et seulement ce dockerfile dans la tour) contient l'action d'appliquer un fichier custom {ADD ./fichier.custom.conf cp ./fichier.custom.conf /etc/mysql/my.cnf}
+#		¤  # Donc pour chaque composant, il y a une tour de dockerfile dont la hauteur est exactement le nombre de paramètres pour la construction de la cible de déploiement. autant de docker file une "tour" de dockerfile qui se référencent les uns les autres avec FROM // par exemple un des docker file (et seulement ce dockerfile dans la tour) contient l'action d'appliquer un fichier custom {ADD ./fichier.custom.conf cp ./fichier.custom.conf /etc/mysql/my.cnf}
+#		¤  # pour chaque composant, il y a une tour de dockerfile dont la hauteur est exactement le nombre de paramètres pour la construction de la cible de déploiement // par exemple un des docker file (et seulement ce dockerfile dans la tour) contient l'action d'appliquer un fichier custom {ADD ./fichier.custom.conf cp ./fichier.custom.conf /etc/mysql/my.cnf}
+#		¤  git add docker-compose.yml
+#		¤  git add composant-sgbdr.dockerfile
 #		¤  git commit - m "ajout de la création de l'utilisateur applicatif"
 #		¤  git push
 #		¤  git push --tags
