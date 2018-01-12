@@ -166,6 +166,63 @@ read
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
 
+# ==>> donc 2 versionning:
+#
+#			¤¤ [VERSIONNING DE LA RECETTE] un pour le code de la recette de construction de la cible de déploiement
+#			¤¤ [VERSIONNING DE LA DEPENDANCE] un repo git versionnant:
+#													 + fichier docker-ompose.yml,
+#													 + les fichiers dockerfiles et fichiers permettant de construire (avec un docker build par exemple) l'image customisée de chaque composant de l'infrastructure:
+#													 		- [COMPOSANT SGBDR] (construire l'image mariadb avec un fichier de conf custom, permettant de changer le numéro de port):
+# 																						  le fichier dockerfile: "dockerfile.lauriane={FROM mariaDB ADD ./mon.fichier.de.conf.custom RUN cp ./mon.fichier.de.conf.custom /etc/mysql/my.cnf}"
+# 																						  le fichier de conf custom mariadb: "./mon.fichier.de.conf.custom"
+#													 		- [COMPOSANT TOMCAT] (construire l'image mariadb avec un fichier de conf custom, permettant de changer le numéro de port)  dockerfile.lauriane={FROM mariaDB ADD ./mon.fichier.de.conf.custom RUN cp ./mon.fichier.de.conf.custom /etc/mysql/my.cnf}
+
+ 
+#		et en fait, le code de la recette de déploiement effectue un checkout d'une version bien donnée du fichier docker-compose.yml
+#		(et c'est là qu'est le lien entre le numéro de version de  la recette, et le numéro de version de la dépendance que constitue le fichier [docker-compose.yml])
+#
+# ==>> donc, en réalité, 1 repo git de versionning de la recette , et N repo git de chaque dépendance (de degré 1) de la recette.
+# 
+# -------------------------------------------
+# le lien aux principes "the devops program":
+# -------------------------------------------
+#	¤¤ une dépendance de degré zéro, cest: moi-même.
+#	¤¤ une dépendance de degré zéro de la recette, cest le code source de la recette elle-même.
+#
+#	¤¤ une dépendance de degré zéro d'une appli java, c'est le code source de l'appli java elle-même.
+#	¤¤ une autre dépendance de degré zéro d'une appli java, c'est le code source/config du build de l'appli java.
+#
+# ------------------------------------------------------------------------------------------------------------------------------------------
+#  !!!!!!!!!!!!!!!! et des roues imbriquées, petite roue dans grande roue, il y a une dimension supplémentaire avec les multiples repos GIT:
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Donc, dans l'arbre des dépendances, pour une dépendance de degré N: 
+#  - le versionning du code source de la dépendance de degré N, mentionne le lien aux versions des dépendances de degré N+1
+#  - le versionning du code source de la dépendance de degré N, permet de changer le numéro de version d'une dépendance de degré N+1 
+# !!!!!!!! par exemple, pour changer le numéro de port de mariadb de la cible de déploiement
+# !!!!!!!! (par config de mariadb et / ou changement de mapping docker numéro de port du conteneur docker ) :
+# 		¤ on fait docker-compose up
+# 		¤ on fait une nouvelle version du fichier "docker-compose.yml" en changeant dans ce fichier le mapping du numéro de port dans le   et/ou le numéro de version dockerfile pour construire l'image {FROM mariaDB ADD ./mon.fichier.de.conf.custom RUN cp ./mon.fichier.de.conf.custom /etc/mysql/my.cnf} 
+# 		¤ on édite le fichier "./docker-compose.yml", pour changer le mapping docker du numéro de port d'écoute de mariaDB avec un numéro de port exposé par le conteneur du composant SGBDR
+# 		¤ on édite le fichier de conf custom mariadb "./mon.fichier.de.conf.custom", pour changer le numéro de port d'écoute de mariaDB ) "à l'intérieur du conteneur"
+# 		¤ on fait un git cdocker-compose up
+# 		¤ on fait docker-compose up
+# 
+# 
+
+# donc: versionner les docker compose file, faire des tags :
+#		¤  CHANGER ADRESSE IP
+#		¤  CHANGER (chaque paramètre de la cible de déploiement) ...
+# en corrélation avec des :
+# 		docker compose up
+# 		docker compose up
+#" ce qui donne un workflow:
+#		¤  # edition de mon [docker-compose.yml] : 
+#		¤  git add docker-compose.yml
+#		¤  git commit - m "ajout de la création de l'utilisateur applicatif"
+#		¤  git commit - m "ajout de la création de l'utilisateur applicatif"
+#		¤  git push
+#		¤  git push --tags
+
 # > script sql pour créer la bdd
 rm -f ./creer-bdd-apppli.sql
 echo "CREATE $NOM_BDD_APPLI; " >> ./creer-bdd-apppli.sql
