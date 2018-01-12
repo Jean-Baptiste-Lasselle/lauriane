@@ -200,13 +200,23 @@ read
 #  - le versionning du code source de la dépendance de degré N, permet de changer le numéro de version d'une dépendance de degré N+1 
 # !!!!!!!! par exemple, pour changer le numéro de port de mariadb de la cible de déploiement
 # !!!!!!!! (par config de mariadb et / ou changement de mapping docker numéro de port du conteneur docker ) :
-# 		¤ on fait docker-compose up
-# 		¤ on fait une nouvelle version du fichier "docker-compose.yml" en changeant dans ce fichier le mapping du numéro de port dans le   et/ou le numéro de version dockerfile pour construire l'image {FROM mariaDB ADD ./mon.fichier.de.conf.custom RUN cp ./mon.fichier.de.conf.custom /etc/mysql/my.cnf} 
-# 		¤ on édite le fichier "./docker-compose.yml", pour changer le mapping docker du numéro de port d'écoute de mariaDB avec un numéro de port exposé par le conteneur du composant SGBDR
-# 		¤ on édite le fichier de conf custom mariadb "./mon.fichier.de.conf.custom", pour changer le numéro de port d'écoute de mariaDB ) "à l'intérieur du conteneur"
+# 		# ## ON DETRUIT LA CIBLE DE DEPLOIEMENT
+# 		¤ on fait docker-compose down
+# 		# ## ON EDITE DU CODE SOURCE
+# 		¤ on fait une nouvelle version du fichier "docker-compose.yml" en changeant dans ce fichier le mapping du numéro de port dans le   et/ou le numéro de version checkouté pour le checkout du repo versionnant le dockerfile pour construire l'image {FROM mariaDB ADD ./mon.fichier.de.conf.custom RUN cp ./mon.fichier.de.conf.custom /etc/mysql/my.cnf} 
+# 		¤ on édite sed le fichier "./docker-compose.yml", pour changer le mapping docker du numéro de port d'écoute de mariaDB avec un numéro de port exposé par le conteneur du composant SGBDR
+# 		¤ on édite sed le fichier de conf custom mariadb "./mon.fichier.de.conf.custom", pour changer le numéro de port d'écoute de mariaDB ) "à l'intérieur du conteneur"
+# 		# ## ON COMMIT l'un ou l'autre, ou les deux...
+# 		¤ [git add "./docker-compose.yml"]
+# 		¤ [git commit -m "nouveau mapping docker numéro de port mariaDB -p noportexterne=noportinterne"]
+# 		¤ [git add "./mon.fichier.de.conf.custom"]
+# 		¤ [git commit -m "nouveau numéro de port mariaDB noportinterne="]
+# 		# ## ON TAGGUE
+# 		¤ on détruit le tag ETAT_INITIAL_CIBLE_DEPLOIEMENT : [git tag -d vETAT_INITIAL_CIBLE_DEPLOIEMENT] (san détruire le commit associé au tag détruit)
+# 		¤ on git taggue le commit  [git tag -a vETAT_INITIAL_CIBLE_DEPLOIEMENT -m "ETAT_INITIAL_CIBLE_DEPLOIEMENT: nouveau numéro de port etc..."] e nouvelle version du fichier 
 # 		¤ on fait un git cdocker-compose up
 # 		¤ on fait docker-compose up
-# 
+# 		# ## IL MANQUE LA PARTIE DOKER BUILDS AVEC DOCKER COMMIT POUR VERSIONNER IMAGES MONTEES ..?
 # 
 
 # donc: versionner les docker compose file, faire des tags :
