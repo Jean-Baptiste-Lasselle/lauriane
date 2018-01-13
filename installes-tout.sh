@@ -95,7 +95,7 @@ clear
 #
 # NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 
-VERSION_TOMCAT=10.1
+VERSION_TOMCAT=8.0
 
 # docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
 docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
