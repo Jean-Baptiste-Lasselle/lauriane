@@ -93,15 +93,20 @@ clear
 # >    -------------------------------     <
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 #
-# NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
-
+NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
+NUMERO_PORT_SRV_JEE=8785
 VERSION_TOMCAT=8.0
 
 # docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
-docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
+# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
+docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
 # http://adressIP:8888/
 
-
+clear
+echo POINT DEBUG
+echo CONTENEUR TOCAT CREE CONF DS CONTENEUR
+echo "   sudo docker exec -it ccc /bin/bash"
+read
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # >    construction du conteneur SGBDR     <
@@ -143,11 +148,11 @@ NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
 REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
 # >>>>>>>>>>>> [$CONF_MARIADB_A_APPLIQUER] >>> DOIT EXISTER
 CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
-
+# clear
 # > créer le conteneur avec usr, et root_user
 # La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
 # La "--character-set-server" permet de définir l'encodage et le jeu de caractères utilisé
-docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d mariadb:$VERSION_MARIADB  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d mariadb:$VERSION_MARIADB  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 # test: sudo docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash
 # > APPPLIQUER config voulue
 docker cp $CONF_MARIADB_A_APPLIQUER $NOM_CONTENEUR_MARIADB:./etc/mysql/mycnf
