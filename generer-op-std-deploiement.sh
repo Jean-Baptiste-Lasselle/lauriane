@@ -130,6 +130,7 @@ sed -i "s/VALEUR_NUMERO_PORT_SRV_JEE/$NUMERO_PORT_SRV_JEE/g" lauriane/deployer-a
 sed -i "s/VALEUR_ADRESSE_IP_SGBDR/$ADRESSE_IP_SGBDR/g" lauriane/deployer-appli-web.sh
 sed -i "s/VALEUR_NUMERO_PORT_SGBDR/$NUMERO_PORT_SGBDR/g" lauriane/deployer-appli-web.sh
 
-
+# générer le ficheir my.cnf avec la variable VALEUR_ADRESSE_IP_SRV_JEE et sed
+sed -i "s/VALEUR_ADRESSE_IP_SRV_JEE/$ADRESSE_IP_SRV_JEE/g" lauriane/my.cnf
 
 

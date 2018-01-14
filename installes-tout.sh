@@ -116,9 +116,10 @@ read
 # >    -------------------------------     <
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 #
-
-# NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
+MAISON=/home/lauriane
+NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 # NUMERO_PORT_SGBDR=3308
+NUMERO_PORT_SGBDR=3355
 NOM_BDD_APPLI=bdd_appli_lauriane
 
 MARIADB_MDP_ROOT_PASSWORD=peuimporte
@@ -144,6 +145,14 @@ MARIADB_DB_APP_USER_PWD=DB_APP_USER_PWD
 # 		¤ ccc
 # 		¤ ccc
 VERSION_MARIADB=10.1
+CONTEXTE_DU_BUILD_DOCKER=$MAISON/lauriane
+export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v1
+cd $CONTEXTE_DU_BUILD_DOCKER
+sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
+clear
+echo POINT DEBUG 0 / creation image docker pour mariadb
+echo "VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR]"
+read
 NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
 NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
 REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
@@ -154,7 +163,7 @@ CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
 # > créer le conteneur avec usr, et root_user
 # La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
 # La "--character-set-server" permet de définir l'encodage et le jeu de caractères utilisé
-sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d mariadb:$VERSION_MARIADB  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 #│ 
 #│ 
 clear
@@ -173,7 +182,7 @@ docker restart $NOM_CONTENEUR_TOMCAT
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
 # https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
 clear
-echo POINT DEBUG2
+echo POINT DEBUG 2
 echo VERIF CONF DS CONTENEUR
 echo "   sudo docker exec -it ccc /bin/bash"
 read
