@@ -243,9 +243,13 @@ read
 #
 # exécution de la création bdd et utilisateur applicatif 
 clear
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+
 # docker restart $NOM_CONTENEUR_TOMCAT
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
 # https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
