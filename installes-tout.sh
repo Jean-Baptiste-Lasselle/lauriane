@@ -259,14 +259,17 @@ echo " "
 echo " "
 echo POINT DEBUG 2
 echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
-echo "   les actions ont été réalisées "
+echo "   "
+echo "   les actions suivantes ont été réalisées:"
+echo "   "
+echo "	=> /creer-bdd-application.sh"
+echo "	=> /creer-utilisateur-applicatif.sh"
+echo "	=> /configurer-utilisateur-mgmt.sh"
 echo "   ----------------- "
 echo "    "
-echo "   ----------------- "
-
+echo "    "
 echo "   utilisateur mgmt "
 echo "   ----------------- "
-
 echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
 echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
 echo "   "
@@ -276,8 +279,9 @@ echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
 echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
 read
 sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
+# ==>> En général, je désactive l'accès remote pour l'utlisateur root, et j'ai testé: les deux autres utilisateurs MYSQL créés, n'ont de droits administrateurs que sur la BDD appli
 clear
-echo POINT DEBUG 3
+echo POINT DEBUG 3 /  FIN DE SCRIPT
 echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
 echo "   "
 echo "   ----------------------------------- "
