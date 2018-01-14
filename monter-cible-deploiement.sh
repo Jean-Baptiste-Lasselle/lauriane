@@ -357,6 +357,6 @@ export DB_APP_USER_PWD
 # read
 
 
-sudo chmod +x lauriane/*.sh
+sudo chmod +x $MAISON/lauriane/*.sh
 
 lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh
