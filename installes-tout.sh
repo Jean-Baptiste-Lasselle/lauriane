@@ -214,6 +214,7 @@ clear
 pwd
 generer_fichiers
 sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
+cd $MAISON
 # clear
 # echo POINT DEBUG 0 / creation image docker pour mariadb
 # echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
@@ -385,11 +386,3 @@ sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
 # ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 # ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 
-# docker cp ./creer-utilisateur-applicatif.sql $NOM_CONTENEUR_SGBDR:. 
-# docker cp ./creer-utilisateur-applicatif.sh $NOM_CONTENEUR_SGBDR:. 
-# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-utilisateur-applicatif.sh
-# ou alors:
-# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash | ./creer-utilisateur-applicatif.sh
-# trop faigué
-
-# > mysql_secure_installation
