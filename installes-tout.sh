@@ -141,7 +141,7 @@ CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
 generer_fichiers () {
 	# > script sql pour créer la bdd
 	rm -f ./creer-bdd-application.sql
-	echo "CREATE $NOM_BDD_APPLI; " >> ./creer-bdd-application.sql
+	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> ./creer-bdd-application.sql
 	# > script shell pour créer la bdd
 	rm -f ./creer-bdd-application.sh
 	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > ./creer-bdd-application.sh
