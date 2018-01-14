@@ -50,6 +50,7 @@
 # ----------------------------------------------------------
 
 
+
 ############################################################
 ############################################################
 #					exécution des opérations			   #
@@ -85,37 +86,13 @@ clear
 ##### MONTEE INFRASTRUCTURE CIBLE DE DEPLOIEMENT #########
 ##########################################################
 
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# > construction du conteneur SERVEUR JEE  <
-# >    -------------------------------     <
-# >    ce conteneur est une dépendance     <
-# >    -------------------------------     <
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-#
+
+# 
+# 
+# >>>> ENV. SETUP.
 # NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 # NUMERO_PORT_SRV_JEE=8785
 VERSION_TOMCAT=8.0
-
-# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
-# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
-# docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
-docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 -d tomcat:$VERSION_TOMCAT
-# http://adressIP:8888/
-
-clear
-echo POINT DEBUG
-echo CONTENEUR TOMCAT CREE CONF DS CONTENEUR
-echo "   sudo docker exec -it ccc /bin/bash"
-read
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >    construction du conteneur SGBDR     <
-# >    -------------------------------     <
-# >    ce conteneur est une dépendance     <
-# >    -------------------------------     <
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-#
 # MAISON=/home/lauriane
 # NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 # NUMERO_PORT_SGBDR=3308
@@ -140,18 +117,102 @@ MARIADB_DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD
 MARIADB_DB_APP_USER_NAME=$DB_APP_USER_NAME
 MARIADB_DB_APP_USER_PWD=$DB_APP_USER_PWD
 
-# enorrrmeee ideeee : FAIRE UN CONTENEUR DOCKER DANS LEQUEL J'EXECUTE CES SCRIPTS COMMIT AVEC POUR NOM D 'image snapshtot:
-# 		¤ CHANGER_ADRESSE_IP
-# 		¤ ccc
-# 		¤ ccc
-# 		¤ ccc
+# 		¤ 
 VERSION_MARIADB=10.1
 CONTEXTE_DU_BUILD_DOCKER=$MAISON/lauriane
 export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v1
+NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
+NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
+REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
+rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+# >>>>>>>>>>>> [$CONF_MARIADB_A_APPLIQUER] >>> DOIT EXISTER
+# CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
+CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
+
+############################################################
+############################################################
+#					déclarations fonctions				   #
+############################################################
+############################################################
+# ----------------------------------------------------------
+# ces fichiers générés sont des dépendaces du
+# build de l'image mariadb.
+generer_fichiers () {
+	# > script sql pour créer la bdd
+	rm -f ./creer-bdd-application.sql
+	echo "CREATE $NOM_BDD_APPLI; " >> ./creer-bdd-application.sql
+	# > script shell pour créer la bdd
+	rm -f ./creer-bdd-application.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > ./creer-bdd-application.sh
+	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
+	# docker cp ./creer-bdd-application.sql $NOM_CONTENEUR_SGBDR:. 
+	# docker cp ./creer-bdd-application.sh $NOM_CONTENEUR_SGBDR:. 
+	# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-application.sh
+	# ou alors:
+	# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-application.sh
+
+
+	# > scripts sql/sh pour créer l'utilisateur applicatif
+	rm -f ./creer-utilisateur-applicatif.sql
+	echo "use mysql; " >> ./creer-utilisateur-applicatif.sql
+	# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> ./creer-utilisateur-applicatif.sql
+	echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> ./creer-utilisateur-applicatif.sql
+	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_APP_USER_NAME'@'%' WITH GRANT OPTION;" >> ./creer-utilisateur-applicatif.sql
+	
+	
+		# > script shell pour créer l'utilisateur applicatif
+	rm -f ./creer-utilisateur-applicatif.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-utilisateur-applicatif.sql" >> ./creer-utilisateur-applicatif.sh
+	
+	rm -f ./configurer-utilisateur-mgmt.sql
+	echo "use mysql; " >> ./configurer-utilisateur-mgmt.sql
+	# plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer. donc idem pour $MARIADB_DB_MGMT_USER_NAME
+	echo "-- # Plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer." >> ./configurer-utilisateur-mgmt.sql
+	echo "-- # Donc idem pour $MARIADB_DB_MGMT_USER_NAME" >> ./configurer-utilisateur-mgmt.sql
+	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_MGMT_USER_NAME'@'%' WITH GRANT OPTION;" >> ./configurer-utilisateur-mgmt.sql
+
+	# > script shell pour configurer l'utilisateur utilisé par le dveloppeur pour gérer la BDD applicative.
+	rm -f ./configurer-utilisateur-mgmt.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./configurer-utilisateur-mgmt.sql" >> ./configurer-utilisateur-mgmt.sh
+}
+
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+# > construction du conteneur SERVEUR JEE  <
+# >    -------------------------------     <
+# >    ce conteneur est une dépendance     <
+# >    -------------------------------     <
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
+# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
+# docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
+docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 -d tomcat:$VERSION_TOMCAT
+# http://adressIP:8888/
+
+clear
+echo POINT DEBUG
+echo CONTENEUR TOMCAT CREE CONF DS CONTENEUR
+echo "   sudo docker exec -it ccc /bin/bash"
+read
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+# >    construction du conteneur SGBDR     <
+# >    -------------------------------     <
+# >    ce conteneur est une dépendance     <
+# >    -------------------------------     <
+# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
+#
+
+
+
 # export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v3
 cd $CONTEXTE_DU_BUILD_DOCKER
 clear
 pwd
+generer_fichiers
 sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
 # clear
 echo POINT DEBUG 0 / creation image docker pour mariadb
@@ -162,14 +223,8 @@ echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
 echo " --------------------------------------------------------  "
 echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
 read
-NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
-NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
-REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
-rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
-mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
-# >>>>>>>>>>>> [$CONF_MARIADB_A_APPLIQUER] >>> DOIT EXISTER
-# CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
-CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
+
+
 # clear
 # > créer le conteneur avec usr, et root_user
 # La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
@@ -183,20 +238,49 @@ echo POINT DEBUG 1
 echo VERIF [REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$REPERTOIRE_HOTE_BCKUP_CONF_MARIADB]
 echo "VERIF /etc/mysql/my.cnf"
 echo "   sudo docker exec -it ccc /bin/bash"
+echo " ==>>> Maintenant, on va créer BDD et Utilisateur Applicatif."
 read
 #
-#
-# test: sudo docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash
-# > APPPLIQUER config voulue
-# docker cp $CONF_MARIADB_A_APPLIQUER $NOM_CONTENEUR_MARIADB:/etc/mysql/mycnf
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash| :./etc/mysql/mycnf
+# exécution de la création bdd et utilisateur applicatif 
+sudo docker exec $NOM_CONTENEUR_MARIADB creer-bdd-application.sh
+sudo docker exec $NOM_CONTENEUR_MARIADB creer-utilisateur-applicatif.sh
+sudo docker exec $NOM_CONTENEUR_MARIADB configurer-utilisateur-mgmt.sh
 # docker restart $NOM_CONTENEUR_TOMCAT
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
 # https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
 clear
 echo POINT DEBUG 2
-echo VERIF CONF DS CONTENEUR
-echo "   sudo docker exec -it ccc /bin/bash"
+echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
+echo "   utilisateur mgmt "
+echo "   ----------------- "
+echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
+echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
+echo "   "
+echo "   utilisateur applicatif "
+echo "   ---------------------- "
+echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
+echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
+read
+sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
+clear
+echo POINT DEBUG 3
+echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
+echo "   "
+echo "   ----------------------------------- "
+echo "   ----------------------------------- "
+echo "   mysql secure installation terminée. "
+echo "   ----------------------------------- "
+echo "   ----------------------------------- "
+echo "   "
+echo "   utilisateur mgmt "
+echo "   ----------------- "
+echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
+echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
+echo "   "
+echo "   utilisateur applicatif "
+echo "   ---------------------- "
+echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
+echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
 read
 
 
@@ -277,40 +361,15 @@ read
 #		¤  git push
 #		¤  git push --tags
 
-# > script sql pour créer la bdd
-rm -f ./creer-bdd-apppli.sql
-echo "CREATE $NOM_BDD_APPLI; " >> ./creer-bdd-apppli.sql
-# > script shell pour créer la bdd
-rm -f ./creer-bdd-apppli.sh
-echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-apppli.sql" > ./creer-bdd-apppli.sh
-# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-docker cp ./creer-bdd-apppli.sql $NOM_CONTENEUR_SGBDR:. 
-docker cp ./creer-bdd-apppli.sh $NOM_CONTENEUR_SGBDR:. 
-docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-apppli.sh
-# ou alors:
-# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-apppli.sh
 
-
-# > script sql pour créer l'utilisateur applicatif
-rm -f ./creer-utilisateur-applicatif.sql
-echo "use mysql; " >> ./creer-utilisateur-applicatif.sql
-# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> ./creer-utilisateur-applicatif.sql
-echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> ./creer-utilisateur-applicatif.sql
-echo "GRANT ALL PRIVILEGES ON bddappli.* TO 'techonthenet'@'%' WITH GRANT OPTION;" >> ./creer-utilisateur-applicatif.sql
-
-# > script shell pour créer l'utilisateur applicatif
-rm -f ./creer-utilisateur-applicatif.sh
-echo "use mysql; " >> ./creer-utilisateur-applicatif.sh
 
 # ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 # ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 # ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 
-docker cp ./creer-utilisateur-applicatif.sql $NOM_CONTENEUR_SGBDR:. 
-docker cp ./creer-utilisateur-applicatif.sh $NOM_CONTENEUR_SGBDR:. 
-docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-utilisateur-applicatif.sh
+# docker cp ./creer-utilisateur-applicatif.sql $NOM_CONTENEUR_SGBDR:. 
+# docker cp ./creer-utilisateur-applicatif.sh $NOM_CONTENEUR_SGBDR:. 
+# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-utilisateur-applicatif.sh
 # ou alors:
 # docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash | ./creer-utilisateur-applicatif.sh
 # trop faigué
