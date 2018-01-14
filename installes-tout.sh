@@ -192,11 +192,11 @@ generer_fichiers () {
 docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 -d tomcat:$VERSION_TOMCAT
 # http://adressIP:8888/
 
-clear
-echo POINT DEBUG
-echo CONTENEUR TOMCAT CREE CONF DS CONTENEUR
-echo "   sudo docker exec -it ccc /bin/bash"
-read
+# clear
+# echo POINT DEBUG
+# echo CONTENEUR TOMCAT CREE CONF DS CONTENEUR
+# echo "   sudo docker exec -it ccc /bin/bash"
+# read
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # >    construction du conteneur SGBDR     <
@@ -215,14 +215,14 @@ pwd
 generer_fichiers
 sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
 # clear
-echo POINT DEBUG 0 / creation image docker pour mariadb
-echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
-echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
-echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
-echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
-echo " --------------------------------------------------------  "
-echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
-read
+# echo POINT DEBUG 0 / creation image docker pour mariadb
+# echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
+# echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
+# echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
+# echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
+# echo " --------------------------------------------------------  "
+# echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
+# read
 
 
 # clear
@@ -233,13 +233,13 @@ sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MD
 # sudo docker run --name sonnom -e MYSQL_ROOT_PASSWORD=peuimporte -e MYSQL_USER=jibl -e MYSQL_PASSWORD=jibl -p $3309:3306 -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 #
 #
-clear
-echo POINT DEBUG 1
-echo VERIF [REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$REPERTOIRE_HOTE_BCKUP_CONF_MARIADB]
-echo "VERIF /etc/mysql/my.cnf"
-echo "   sudo docker exec -it ccc /bin/bash"
-echo " ==>>> Maintenant, on va créer BDD et Utilisateur Applicatif."
-read
+# clear
+# echo POINT DEBUG 1
+# echo VERIF [REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$REPERTOIRE_HOTE_BCKUP_CONF_MARIADB]
+# echo "VERIF /etc/mysql/my.cnf"
+# echo "   sudo docker exec -it ccc /bin/bash"
+# echo " ==>>> Maintenant, on va créer BDD et Utilisateur Applicatif."
+# read
 #
 # exécution de la création bdd et utilisateur applicatif 
 clear
@@ -254,52 +254,52 @@ docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
 # https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
 # clear
-echo " "
-echo " "
-echo " "
-echo POINT DEBUG 2
-echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
-echo "   "
-echo "   les actions suivantes ont été réalisées:"
-echo "   "
-echo "	=> /creer-bdd-application.sh"
-echo "	=> /creer-utilisateur-applicatif.sh"
-echo "	=> /configurer-utilisateur-mgmt.sh"
-echo "   ----------------- "
-echo "    "
-echo "    "
-echo "   utilisateur mgmt "
-echo "   ----------------- "
-echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
-echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
-echo "   "
-echo "   utilisateur applicatif "
-echo "   ---------------------- "
-echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
-echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
-read
+# echo " "
+# echo " "
+# echo " "
+# echo POINT DEBUG 2
+# echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
+# echo "   "
+# echo "   les actions suivantes ont été réalisées:"
+# echo "   "
+# echo "	=> /creer-bdd-application.sh"
+# echo "	=> /creer-utilisateur-applicatif.sh"
+# echo "	=> /configurer-utilisateur-mgmt.sh"
+# echo "   ----------------- "
+# echo "    "
+# echo "    "
+# echo "   utilisateur mgmt "
+# echo "   ----------------- "
+# echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
+# echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
+# echo "   "
+# echo "   utilisateur applicatif "
+# echo "   ---------------------- "
+# echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
+# echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
+# read
 sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
 # ==>> En général, je désactive l'accès remote pour l'utlisateur root, et j'ai testé: les deux autres utilisateurs MYSQL créés, n'ont de droits administrateurs que sur la BDD appli
-clear
-echo POINT DEBUG 3 /  FIN DE SCRIPT
-echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
-echo "   "
-echo "   ----------------------------------- "
-echo "   ----------------------------------- "
-echo "   mysql secure installation terminée. "
-echo "   ----------------------------------- "
-echo "   ----------------------------------- "
-echo "   "
-echo "   utilisateur mgmt "
-echo "   ----------------- "
-echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
-echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
-echo "   "
-echo "   utilisateur applicatif "
-echo "   ---------------------- "
-echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
-echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
-read
+# clear
+# echo POINT DEBUG 3 /  FIN DE SCRIPT
+# echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
+# echo "   "
+# echo "   ----------------------------------- "
+# echo "   ----------------------------------- "
+# echo "   mysql secure installation terminée. "
+# echo "   ----------------------------------- "
+# echo "   ----------------------------------- "
+# echo "   "
+# echo "   utilisateur mgmt "
+# echo "   ----------------- "
+# echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
+# echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
+# echo "   "
+# echo "   utilisateur applicatif "
+# echo "   ---------------------- "
+# echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
+# echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
+# read
 
 
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
