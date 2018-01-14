@@ -282,7 +282,7 @@ docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh
 # echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
 # echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
 # read
-sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
+# sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
 # ==>> En général, je désactive l'accès remote pour l'utlisateur root, et j'ai testé: les deux autres utilisateurs MYSQL créés, n'ont de droits administrateurs que sur la BDD appli
 # clear
 # echo POINT DEBUG 3 /  FIN DE SCRIPT
