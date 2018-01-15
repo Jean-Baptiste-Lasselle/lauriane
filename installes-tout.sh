@@ -306,7 +306,9 @@ echo "  	[DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
 echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
 
-# sudo ./configurer-user-et-bdd-sql.sh
+sudo ./configurer-user-et-bdd-sql.sh
+sleep 5s
+sudo ./configurer-user-et-bdd-sql.sh
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
