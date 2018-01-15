@@ -305,10 +305,13 @@ echo "  	[DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
 echo "  	[DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
 echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
+# 
+# Non, c'est définitif, [sudo ./configurer-user-et-bdd-sql.sh] doit se faire hors de ce script
+# 
+# sudo ./configurer-user-et-bdd-sql.sh
+# sleep 5s
+# sudo ./configurer-user-et-bdd-sql.sh
 
-sudo ./configurer-user-et-bdd-sql.sh
-sleep 5s
-sudo ./configurer-user-et-bdd-sql.sh
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
