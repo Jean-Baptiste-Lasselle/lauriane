@@ -359,4 +359,6 @@ export DB_APP_USER_PWD
 
 sudo chmod +x $MAISON/lauriane/*.sh
 
-lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh && sudo ./configurer-user-et-bdd-sql.sh
+#• Non: même au niveau du fichier [monter-cible-deploiement.sh], le script [configurer-user-et-bdd-sql.sh] ne peut être exécuté
+# lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh && sudo ./configurer-user-et-bdd-sql.sh
+lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh
