@@ -256,7 +256,7 @@ sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MD
 # docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "systemctl restart mysqld"
 
 # pour laisser le serveur mariadb démarrer...
-sleep 7s
+# sleep 7s
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 
@@ -284,12 +284,26 @@ echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-uti
 echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\"" >> ./configurer-user-et-bdd-sql.sh
 echo " " 
 sudo chmod +x ./configurer-user-et-bdd-sql.sh
-echo "			" 
-echo "			sudo ./configurer-user-et-bdd-sql.sh" 
-echo "			" 
+
 echo "			" 
 # echo "			sudo ./configurer-user-et-bdd-sql.sh" 
 echo " " 
+echo " --------------------------------------------------------  "
+echo "   Pour créer BDD et utilisateurs SQL:" 
+echo "			" 
+echo "			sudo ./configurer-user-et-bdd-sql.sh" 
+echo "			" 
+echo " --------------------------------------------------------  "
+echo " -- Seront crées:									   ----  "
+echo " --------------------------------------------------------  "
+echo "   - une bdd \"$NOM_BDD_APPLI\""
+echo "   - un utilisateur SQL utilisé par l'application:"
+echo "  	[MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
+echo "  	[DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
+echo "   - un utilisateur SQL utilisé par le développeur avec HeidiSQL:"
+echo "  	[MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
+echo "  	[DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
+echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
 
 # sudo ./configurer-user-et-bdd-sql.sh
