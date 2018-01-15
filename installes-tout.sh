@@ -215,15 +215,19 @@ pwd
 generer_fichiers
 sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
 cd $MAISON
-# clear
-# echo POINT DEBUG 0 / creation image docker pour mariadb
-# echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
-# echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
-# echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
-# echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
-# echo " --------------------------------------------------------  "
-# echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
-# read
+clear
+echo POINT DEBUG 0 / creation image docker pour mariadb
+echo " ----------------------------------------------------"
+echo " VERIF [NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_MARIADB]"
+echo " ----------------------------------------------------"
+echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
+echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
+echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
+echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
+echo " --------------------------------------------------------  "
+echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
+echo " --------------------------------------------------------  "
+read
 
 
 # clear
