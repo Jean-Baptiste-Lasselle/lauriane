@@ -257,28 +257,32 @@ sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MD
 
 # pour laisser le serveur mariadb démarrer...
 sleep 7s
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
 
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
-sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
+# sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
 echo ""
 echo " ---------------------------------------------------------------------------------------------------- "
 echo " ------------------------- "
 echo " Les commandes à exécuter: "
 echo " ------------------------- "
 echo ""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\""
+rm -f ./config-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\"" >> ./config-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\"" >> ./config-sql.sh
 echo ""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-utilisateur-applicatif.sh\""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-applicatif.sh\""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-utilisateur-applicatif.sh\"" >> ./config-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-applicatif.sh\"" >> ./config-sql.sh
 echo ""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\"" >> ./config-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\"" >> ./config-sql.sh
+echo " ---------------------------------------------------------------------------------------------------- "
+sudo chmod +x ./config-sql.sh
+sudo ./config-sql.sh
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
