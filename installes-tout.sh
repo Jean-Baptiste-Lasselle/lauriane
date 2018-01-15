@@ -230,7 +230,8 @@ cd $MAISON
 # > créer le conteneur avec usr, et root_user
 # La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
 # La "--character-set-server" permet de définir l'encodage et le jeu de caractères utilisé
-sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+# sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 # sudo docker run --name sonnom -e MYSQL_ROOT_PASSWORD=peuimporte -e MYSQL_USER=jibl -e MYSQL_PASSWORD=jibl -p $3309:3306 -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 #
 #
@@ -250,16 +251,19 @@ clear
 # il faudrait re-démarrer mysqld
 # docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "systemctl restart mysqld"
 
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
 
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
-# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
+docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
 echo ""
+echo " ---------------------------------------------------------------------------------------------------- "
+echo " ------------------------- "
 echo " Les commandes à exécuter: "
+echo " ------------------------- "
 echo ""
 echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\""
 echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\""
@@ -269,6 +273,7 @@ echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-appli
 echo ""
 echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\""
 echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\""
+echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
