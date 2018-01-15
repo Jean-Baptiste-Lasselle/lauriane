@@ -247,13 +247,29 @@ clear
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
-docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+# il faudrait re-démarrer mysqld
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "systemctl restart mysqld"
 
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
+
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-utilisateur-applicatif.sh"
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
+
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /configurer-utilisateur-mgmt.sh"
+# docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
+echo ""
+echo " Les commandes à exécuter: "
+echo ""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\""
+echo ""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-utilisateur-applicatif.sh\""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-applicatif.sh\""
+echo ""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\""
+read
 # docker restart $NOM_CONTENEUR_TOMCAT
 # > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
 # https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
