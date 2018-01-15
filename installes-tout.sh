@@ -256,7 +256,7 @@ sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MD
 # docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "systemctl restart mysqld"
 
 # pour laisser le serveur mariadb démarrer...
-sleep 3s
+sleep 7s
 sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "chmod +x /creer-bdd-application.sh"
 sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 
