@@ -215,22 +215,10 @@ pwd
 generer_fichiers
 sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
 cd $MAISON
+
+
+
 clear
-echo POINT DEBUG 0 / creation image docker pour mariadb
-echo " ----------------------------------------------------"
-echo " VERIF [NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_MARIADB]"
-echo " ----------------------------------------------------"
-echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
-echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
-echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
-echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
-echo " --------------------------------------------------------  "
-echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
-echo " --------------------------------------------------------  "
-read
-
-
-# clear
 # > créer le conteneur avec usr, et root_user
 # La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
 # La "--character-set-server" permet de définir l'encodage et le jeu de caractères utilisé
@@ -248,7 +236,19 @@ sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MD
 # read
 #
 # exécution de la création bdd et utilisateur applicatif 
-clear
+# clear
+echo POINT DEBUG 0 / creation image docker pour mariadb
+echo " ----------------------------------------------------"
+echo " VERIF [NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_MARIADB]"
+echo " ----------------------------------------------------"
+echo " VERIF [MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
+echo " VERIF [DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
+echo " VERIF [MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
+echo " VERIF [DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
+echo " --------------------------------------------------------  "
+echo " VERIF [docker images chercher => $NOM_IMAGE_DOCKER_SGBDR] "
+echo " --------------------------------------------------------  "
+read
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-bdd-application.sh"
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/creer-utilisateur-applicatif.sh"
 # sudo docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c "/configurer-utilisateur-mgmt.sh"
