@@ -359,4 +359,4 @@ export DB_APP_USER_PWD
 
 sudo chmod +x $MAISON/lauriane/*.sh
 
-lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh
+lauriane/sys-setup.sh && lauriane/generer-op-std-deploiement.sh && lauriane/installes-tout.sh && sudo ./configurer-user-et-bdd-sql.sh
