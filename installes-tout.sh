@@ -268,21 +268,31 @@ sleep 7s
 echo ""
 echo " ---------------------------------------------------------------------------------------------------- "
 echo " ------------------------- "
-echo " Les commandes à exécuter: "
+echo " Exécuter: "
 echo " ------------------------- "
 echo ""
-rm -f ./config-sql.sh
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\"" >> ./config-sql.sh
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\"" >> ./config-sql.sh
 echo ""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-utilisateur-applicatif.sh\"" >> ./config-sql.sh
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-applicatif.sh\"" >> ./config-sql.sh
 echo ""
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\"" >> ./config-sql.sh
-echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\"" >> ./config-sql.sh
+rm -f ./configurer-user-et-bdd-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-bdd-application.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-bdd-application.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo ""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /creer-utilisateur-applicatif.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/creer-utilisateur-applicatif.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo ""
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"chmod +x /configurer-utilisateur-mgmt.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo "docker exec $NOM_CONTENEUR_MARIADB /bin/bash -c \"/configurer-utilisateur-mgmt.sh\"" >> ./configurer-user-et-bdd-sql.sh
+echo " " 
+sudo chmod +x ./configurer-user-et-bdd-sql.sh
+echo "			" 
+echo "			sudo ./configurer-user-et-bdd-sql.sh" 
+echo "			" 
+echo "			" 
+# echo "			sudo ./configurer-user-et-bdd-sql.sh" 
+echo " " 
 echo " ---------------------------------------------------------------------------------------------------- "
-sudo chmod +x ./config-sql.sh
-sudo ./config-sql.sh
+
+# sudo ./configurer-user-et-bdd-sql.sh
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
