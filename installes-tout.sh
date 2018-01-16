@@ -318,8 +318,8 @@ echo " -------------------------------------------------------------------------
 # 
 # avec 20 secondes d'attente, c'est bon, en général, l'exécution passe, le serveur est démarré
 #
-# sleep 20s
-sleep 15s
+sleep 20s
+# sleep 15s => testé, ce n'est pas assez.
 sudo ./configurer-user-et-bdd-sql.sh
 # sleep 5s
 # sudo ./configurer-user-et-bdd-sql.sh
