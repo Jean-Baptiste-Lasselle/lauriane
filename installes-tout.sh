@@ -316,9 +316,10 @@ echo "     droits pour y créer / détruire une table."
 echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
 # 
-# Non, c'est définitif, [sudo ./configurer-user-et-bdd-sql.sh] doit se faire hors de ce script
-# 
-sleep 20s
+# avec 20 secondes d'attente, c'est bon, en général, l'exécution passe, le serveur est démarré
+#
+# sleep 20s
+sleep 15s
 sudo ./configurer-user-et-bdd-sql.sh
 # sleep 5s
 # sudo ./configurer-user-et-bdd-sql.sh
