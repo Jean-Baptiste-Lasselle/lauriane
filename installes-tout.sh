@@ -288,31 +288,47 @@ sudo chmod +x ./configurer-user-et-bdd-sql.sh
 echo "			" 
 # echo "			sudo ./configurer-user-et-bdd-sql.sh" 
 echo " " 
+# echo " --------------------------------------------------------  "
+# echo "   Pour créer BDD et utilisateurs SQL, exécutez:" 
+# echo "			" 
+# echo "			sudo ./configurer-user-et-bdd-sql.sh" 
+# echo "			" 
 echo " --------------------------------------------------------  "
-echo "   Pour créer BDD et utilisateurs SQL, exécutez:" 
-echo "			" 
-echo "			sudo ./configurer-user-et-bdd-sql.sh" 
-echo "			" 
+echo " -- Installez \"HeidiSQL\" sur votre poste           ----  "
+echo " -- travail 	:									   ----  "
+echo " -- https://www.heidisql.com/						   ----  "
+echo " -- 												   ----  "
+echo " -- Avec \"HeidiSQL\", vous allez vérifier que vous  ----  "
+echo " -- pouvez vous conencter à l'adressse IP $CCC sur   ----  "
+echo " -- le numéro de port $PPP, avec les				   ----  "
+echo " -- 2 utilisateurs suivants:						   ----  "
+echo " -- 												   ----  "
 echo " --------------------------------------------------------  "
-echo " -- Seront créés:									   ----  "
-echo " --------------------------------------------------------  "
-echo "   - une bdd \"$NOM_BDD_APPLI\""
-echo "   - un utilisateur SQL utilisé par l'application:"
-echo "  	[MARIADB_DB_MGMT_USER_NAME=$MARIADB_DB_MGMT_USER_NAME]"
-echo "  	[MARIADB_DB_MGMT_USER_PWD=$MARIADB_DB_MGMT_USER_PWD] "
-echo "   - un utilisateur SQL utilisé par le développeur avec HeidiSQL:"
-echo "  	[DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME] "
-echo "  	[DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD] "
+echo "   - Un utilisateur SQL utilisé par l'application:"
+echo "  	[nom d'utilisateur = $MARIADB_DB_MGMT_USER_NAME]"
+echo "  	[mot de passe = $MARIADB_DB_MGMT_USER_PWD] "
+echo "   - Un utilisateur SQL utilisé par le développeur avec HeidiSQL:"
+echo "  	[nom d'utilisateur = $DB_MGMT_USER_NAME] "
+echo "  	[mot de passe = $DB_MGMT_USER_PWD] "
+echo "   - Vous constaterez de plus que tous les deux ont accès  "
+echo "     à une bdd nommée \"$NOM_BDD_APPLI\", et ont les "
+echo "     droits pour y créer / détruire une table."
 echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
 # 
 # Non, c'est définitif, [sudo ./configurer-user-et-bdd-sql.sh] doit se faire hors de ce script
 # 
-sleep 20s
+sleep 10s
 sudo ./configurer-user-et-bdd-sql.sh
 # sleep 5s
 # sudo ./configurer-user-et-bdd-sql.sh
-
+echo " --------------------------------------------------------  "
+echo " --- Si la connexion pour l'un des ces  "
+echo " --- utilisateurs devait échouer, ouvrez un nouveau        "
+echo " --- terminal, exécutez la commande:  "
+echo "			" 
+echo "			sudo ./configurer-user-et-bdd-sql.sh" 
+echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # docker restart $NOM_CONTENEUR_TOMCAT
