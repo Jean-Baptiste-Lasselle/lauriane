@@ -308,7 +308,7 @@ echo " -------------------------------------------------------------------------
 # 
 # Non, c'est définitif, [sudo ./configurer-user-et-bdd-sql.sh] doit se faire hors de ce script
 # 
-sleep 50s
+sleep 30s
 sudo ./configurer-user-et-bdd-sql.sh
 # sleep 5s
 # sudo ./configurer-user-et-bdd-sql.sh
