@@ -71,6 +71,10 @@ DB_MGMT_USER_PWD=lauriane
 DB_APP_USER_NAME=appli-de-lauriane
 DB_APP_USER_PWD=mdp@ppli-l@urian3
 
+
+NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
+URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
+
 ############################################################
 ############################################################
 #				déclarations des fonctions				   #
@@ -348,6 +352,9 @@ export DB_MGMT_USER_PWD
 
 export DB_APP_USER_NAME
 export DB_APP_USER_PWD
+
+export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN
+export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN
 
 # clear
 # echo POIN DEBUG DEBUT

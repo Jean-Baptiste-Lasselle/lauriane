@@ -140,11 +140,11 @@ CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
 # build de l'image mariadb.
 generer_fichiers () {
 	# > script sql pour créer la bdd
-	rm -f ./creer-bdd-application.sql
-	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> ./creer-bdd-application.sql
+	rm -f $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sql
+	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sql
 	# > script shell pour créer la bdd
-	rm -f ./creer-bdd-application.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > ./creer-bdd-application.sh
+	rm -f $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sh
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
@@ -156,27 +156,27 @@ generer_fichiers () {
 
 
 	# > scripts sql/sh pour créer l'utilisateur applicatif
-	rm -f ./creer-utilisateur-applicatif.sql
-	echo "use mysql; " >> ./creer-utilisateur-applicatif.sql
-	# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> ./creer-utilisateur-applicatif.sql
-	echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> ./creer-utilisateur-applicatif.sql
-	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_APP_USER_NAME'@'%' WITH GRANT OPTION;" >> ./creer-utilisateur-applicatif.sql
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
+	echo "use mysql; " >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
+	# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> $CONTEXTE_DU_BUILD_DOCKER./creer-utilisateur-applicatif.sql
+	echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
+	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_APP_USER_NAME'@'%' WITH GRANT OPTION;" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
 	
 	
 		# > script shell pour créer l'utilisateur applicatif
-	rm -f ./creer-utilisateur-applicatif.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-utilisateur-applicatif.sql" >> ./creer-utilisateur-applicatif.sh
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-utilisateur-applicatif.sql" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sh
 	
-	rm -f ./configurer-utilisateur-mgmt.sql
-	echo "use mysql; " >> ./configurer-utilisateur-mgmt.sql
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
+	echo "use mysql; " >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
 	# plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer. donc idem pour $MARIADB_DB_MGMT_USER_NAME
-	echo "-- # Plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer." >> ./configurer-utilisateur-mgmt.sql
-	echo "-- # Donc idem pour $MARIADB_DB_MGMT_USER_NAME" >> ./configurer-utilisateur-mgmt.sql
-	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_MGMT_USER_NAME'@'%' WITH GRANT OPTION;" >> ./configurer-utilisateur-mgmt.sql
+	echo "-- # Plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer." >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
+	echo "-- # Donc idem pour $MARIADB_DB_MGMT_USER_NAME" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
+	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_MGMT_USER_NAME'@'%' WITH GRANT OPTION;" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
 
 	# > script shell pour configurer l'utilisateur utilisé par le dveloppeur pour gérer la BDD applicative.
-	rm -f ./configurer-utilisateur-mgmt.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./configurer-utilisateur-mgmt.sql" >> ./configurer-utilisateur-mgmt.sh
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./configurer-utilisateur-mgmt.sql" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
 }
 
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
@@ -332,56 +332,43 @@ echo "			sudo ./configurer-user-et-bdd-sql.sh"
 echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
 read
-# docker restart $NOM_CONTENEUR_TOMCAT
-# > configurer l'accès "remote" pour les 2 utilisateurs  $DB_MGMT_USER_NAME  et  $DB_APP_USER_NAME
-# https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
-# clear
-# echo " "
-# echo " "
-# echo " "
-# echo POINT DEBUG 2
-# echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
-# echo "   "
-# echo "   les actions suivantes ont été réalisées:"
-# echo "   "
-# echo "	=> /creer-bdd-application.sh"
-# echo "	=> /creer-utilisateur-applicatif.sh"
-# echo "	=> /configurer-utilisateur-mgmt.sh"
-# echo "   ----------------- "
-# echo "    "
-# echo "    "
-# echo "   utilisateur mgmt "
-# echo "   ----------------- "
-# echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
-# echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
-# echo "   "
-# echo "   utilisateur applicatif "
-# echo "   ---------------------- "
-# echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
-# echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
-# read
-# sudo docker exec -it $NOM_CONTENEUR_MARIADB mysql_secure_installation
-# ==>> En général, je désactive l'accès remote pour l'utlisateur root, et j'ai testé: les deux autres utilisateurs MYSQL créés, n'ont de droits administrateurs que sur la BDD appli
-# clear
-# echo POINT DEBUG 3 /  FIN DE SCRIPT
-# echo VERIF CONF DS CONTENEUR SGBDR utilisateurs : 
-# echo "   "
-# echo "   ----------------------------------- "
-# echo "   ----------------------------------- "
-# echo "   mysql secure installation terminée. "
-# echo "   ----------------------------------- "
-# echo "   ----------------------------------- "
-# echo "   "
-# echo "   utilisateur mgmt "
-# echo "   ----------------- "
-# echo "   utilisateur=$MARIADB_DB_MGMT_USER_NAME"
-# echo "   mot de passe=$MARIADB_DB_MGMT_USER_PWD"
-# echo "   "
-# echo "   utilisateur applicatif "
-# echo "   ---------------------- "
-# echo "   utilisateur=$MARIADB_DB_APP_USER_NAME"
-# echo "   mot de passe=$MARIADB_DB_APP_USER_PWD"
-# read
+
+
+############################################################################################################################################################
+############################################################################################################################################################
+############################################################################################################################################################
+##########################											GESTION SUDOERS												############################
+############################################################################################################################################################
+############################################################################################################################################################
+############################################################################################################################################################
+# TODO =>>> mettre à jour la configuration /etc/sudoers
+rm -f $MAISON/lauriane/sudoers.ajout
+# export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
+# export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
+echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute deployment commands" >> $MAISON/lauriane/sudoers.ajout
+echo "$USER ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" >> $MAISON/lauriane/sudoers.ajout
+echo "" >> $MAISON/lauriane/sudoers.ajout
+# echo "" >> $MAISON/lauriane/sudoers.ajout
+cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
+clear
+echo " --------------------------------------------------------  "
+echo " --- De plus, l'utilisateur linux que votre plugin  "
+echo " --- doit utiliser est: "
+echo " --- 				 "
+echo " --- 				nom d'utilisateur linux: $USER"
+echo " --- 				 "
+echo " --- 				mot de passe: vous devez le connaître"
+echo " --- 				 "
+echo " --- "
+echo " --- "
+echo " contenu du fichier         /etc/sudoers|grep $USER       :"
+cat /etc/sudoers|grep $USER
+echo " --- "
+echo " --- "
+echo " --- "
+echo " ---------------------------------------------------------------------------------------------------- "
+read
+
 
 
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
