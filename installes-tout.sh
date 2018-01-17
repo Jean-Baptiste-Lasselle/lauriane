@@ -346,6 +346,7 @@ read
 rm -f $MAISON/lauriane/sudoers.ajout
 # export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
 # export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
+echo "" >> $MAISON/lauriane/sudoers.ajout
 echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute deployment commands" >> $MAISON/lauriane/sudoers.ajout
 echo "$USER ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" >> $MAISON/lauriane/sudoers.ajout
 echo "" >> $MAISON/lauriane/sudoers.ajout
