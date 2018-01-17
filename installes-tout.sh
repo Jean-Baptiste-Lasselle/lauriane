@@ -140,11 +140,11 @@ CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
 # build de l'image mariadb.
 generer_fichiers () {
 	# > script sql pour créer la bdd
-	rm -f $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sql
-	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sql
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sql
+	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sql
 	# > script shell pour créer la bdd
-	rm -f $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > $CONTEXTE_DU_BUILD_DOCKER./creer-bdd-application.sh
+	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sh
+	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sh
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
 	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
@@ -341,6 +341,7 @@ read
 ############################################################################################################################################################
 ############################################################################################################################################################
 ############################################################################################################################################################
+#
 # TODO =>>> mettre à jour la configuration /etc/sudoers
 rm -f $MAISON/lauriane/sudoers.ajout
 # export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
