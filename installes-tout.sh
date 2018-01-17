@@ -351,6 +351,17 @@ echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute deployment commands" >> $MAISON/
 echo "$USER ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" >> $MAISON/lauriane/sudoers.ajout
 echo "" >> $MAISON/lauriane/sudoers.ajout
 # echo "" >> $MAISON/lauriane/sudoers.ajout
+clear
+echo " --- Justez avaant de toucher /etc/sudoers:  "
+echo "			" 
+echo "			cat $MAISON/lauriane/sudoers.ajout" 
+echo "			" 
+echo " ---------------------------------------------------------------------------------------------------- "
+cat $MAISON/lauriane/sudoers.ajout
+echo " ---------------------------------------------------------------------------------------------------- "
+echo " ---------	Pressez une touche pour ajouter en fin de /etc/sudoers 							------- "
+echo " ---------------------------------------------------------------------------------------------------- "
+read
 cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
 clear
 echo " --------------------------------------------------------  "
