@@ -362,7 +362,9 @@ echo " -------------------------------------------------------------------------
 echo " ---------	Pressez une touche pour ajouter en fin de /etc/sudoers 							------- "
 echo " ---------------------------------------------------------------------------------------------------- "
 read
-cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
+# cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
+# echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
+cat $MAISON/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
 clear
 echo " --------------------------------------------------------  "
 echo " --- De plus, l'utilisateur linux que votre plugin  "
