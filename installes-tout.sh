@@ -366,17 +366,13 @@ echo " -------------------------------------------------------------------------
 read
 # cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
 # echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
-# cat $MAISON/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
+
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
-# export EDITOR='tee -a'
-rm -f ./jibl-dummy-editor.sh
-echo "#!/bin/bash" >> ./jibl-dummy-editor.sh
-# echo "echo \"$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN\" >> /etc/sudoers" >> ./jibl-dummy-editor.sh
-echo "echo \"$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, /bin/rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN\" >> \$1" >> ./jibl-dummy-editor.sh
-# ./jibl-dummy-editor.sh
-sudo chmod +x ./jibl-dummy-editor.sh
-sudo EDITOR=./jibl-dummy-editor.sh visudo
+
+# celui-ci marche, c'est testé:
+cat $MAISON/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
+
 clear
 echo " --------------------------------------------------------  "
 echo " --- De plus, l'utilisateur linux que votre plugin  "
