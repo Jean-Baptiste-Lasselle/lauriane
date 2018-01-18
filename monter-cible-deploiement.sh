@@ -72,8 +72,21 @@ DB_APP_USER_NAME=appli-de-lauriane
 DB_APP_USER_PWD=mdp@ppli-l@urian3
 
 
+############################################################
+# l'utilisateur linux qui fera office d'opérateur
+# pour le compte du plugin maven "deployeur-maven-plugin"
+# cet utilisateur devrait être différent de celui utilisé
+# pour construire la cible de déploiement. Il devrait de 
+# plus être inexistant avant, et créé pour le
+# comissionning de la cible de déploiement.
+MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
+MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
+# le repo git qui assistera le
+# plugin maven "deployeur-maven-plugin"
 NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
 URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
+
+
 
 ############################################################
 ############################################################
