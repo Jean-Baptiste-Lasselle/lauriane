@@ -394,6 +394,24 @@ read
 
 # TODO: générer le lauriane/config.deployeur.plugin.xml
 
+# TODO: installer le DATASDOURCE dans le serveur JEE
+
+# # installation du $TOMCAT_HOME/conf/context.xml $CATALINA_BASE/conf/context.xml (si aucune configurationd 'hôtes virutels multiples, $CATALINE_BASE prend la valeur de $CATALINA_HOME)
+sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+# # installation du dbcp.jar
+# déjà installé de base avec tomcat 8.0
+# # installation de la bonne version du connecteur jdbc, en fonction de la version de MariaDB
+VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
+wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNECTEUR_JDBC_MARIADB/mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar
+# TODO: remplcaer automatiquement dans le fichier $MAISON/lauriane/context.xml, la valeur du nom du driver, l'adresse IP etc....
+
+sudo docker cp ./mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/lib
+sudo docker restart $NOM_CONTENEUR_TOMCAT
+
+
+
+
+
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
