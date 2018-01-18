@@ -341,6 +341,8 @@ read
 ############################################################################################################################################################
 ############################################################################################################################################################
 ############################################################################################################################################################
+############################################################################################################################################################
+############################################################################################################################################################
 #
 # TODO =>>> mettre à jour la configuration /etc/sudoers
 rm -f $MAISON/lauriane/sudoers.ajout
@@ -398,6 +400,8 @@ read
 
 # # installation du $TOMCAT_HOME/conf/context.xml $CATALINA_BASE/conf/context.xml (si aucune configurationd 'hôtes virutels multiples, $CATALINE_BASE prend la valeur de $CATALINA_HOME)
 sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+# sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+
 # # installation du dbcp.jar
 # déjà installé de base avec tomcat 8.0
 # # installation de la bonne version du connecteur jdbc, en fonction de la version de MariaDB
@@ -408,7 +412,11 @@ wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNE
 sudo docker cp ./mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/lib
 sudo docker restart $NOM_CONTENEUR_TOMCAT
 
-
+# ----------------------------------------------------------------------------------------------------------------------------------------------
+# pour consulter les logs serveur:
+# --------------------------------
+# sudo docker exec -it ciblededeploiement-composant-srv-jee /bin/bash -c "more /usr/local/tomcat/logs/catalina.2018-01-18.log"
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
