@@ -369,7 +369,8 @@ read
 # cat $MAISON/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" | sudo EDITOR='tee -a' visudo
+export EDITOR='tee -a'
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" | sudo visudo
 clear
 echo " --------------------------------------------------------  "
 echo " --- De plus, l'utilisateur linux que votre plugin  "
