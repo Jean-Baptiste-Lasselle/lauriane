@@ -376,7 +376,7 @@ echo "#!/bin/bash" >> ./jibl-dummy-editor.sh
 echo "echo \"$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN\" >> \$1" >> ./jibl-dummy-editor.sh
 # ./jibl-dummy-editor.sh
 sudo chmod +x ./jibl-dummy-editor.sh
-sudo EDIT=./jibl-dummy-editor.sh visudo
+sudo EDITOR=./jibl-dummy-editor.sh visudo
 clear
 echo " --------------------------------------------------------  "
 echo " --- De plus, l'utilisateur linux que votre plugin  "
