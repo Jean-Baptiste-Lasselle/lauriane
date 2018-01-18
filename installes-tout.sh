@@ -392,7 +392,7 @@ echo " --- "
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 
-
+# TODO: générer le lauriane/config.deployeur.plugin.xml
 
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
 # ============= >>> générer les fichiers  (QUI VONT FFAIRE OBJET D'UN ADD DANS LES DOCKER COMPOSE FILE et autres DOCKERFILES) <<< =============
