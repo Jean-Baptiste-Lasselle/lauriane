@@ -98,25 +98,10 @@ URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Las
 # ---------------------------------------------------------
 # [description]
 # ---------------------------------------------------------
-# Cette fonction permet de donner des valeurs aux variables
-# d'environnement:
-#		¤ {NOM_CONTENEUR_TOMCAT} 	
-#		¤ {NUMERO_PORT_SRV_JEE} 	--no-port-srv-jee
-#		¤ {NUMERO_PORT_SGBDR} 		--no-port-sgbdr
+# Cette fonction permet de demander à l'utilisateur de
+# saisir un nom et un mot de passe pour l'utilisateur linux
+# opérateur du plugin "deployeur-maven-plugin"
 # 
-# Et ce, en procédant de la manière suivante:
-#  - si ce script est invoqué avec l'option 
-#    "--all-defaults", alors toutes les variables
-#    d'environnement prennent leur valeur par défaut.
-#  - si ce script est invoqué avec l'option "--ask-me",
-#    et l'option "--all-defaults", alors message d'erreur
-#  - si ce script est invoqué avec l'option "--ask-me",
-#    alors les valeurs des variables d'environnement pour
-#    lesquelles aucune option silencieuse n'a été utilisée
-#    sont demandées interactivement.
-#  - Pour chaque variable, sauf NOM_CONTENEUR_TOMCAT:
-#		¤ une option silencieuse est utilisable, pour attribuer une valeur 
-#		¤ si l'option silencieuse n'est pas utilisée, la valeur par défaut est appliquée si et ssi l'option --ask-me n'a pas été utilisée
 # ---------------------------------------------------------
 # [signature]
 # ---------------------------------------------------------
@@ -125,12 +110,45 @@ URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Las
 #
 # ---------------------------------------------------------
 
+demander_infos_creation_operateur_mvnplugin () {
+	
+	clear
+	# TODO: demander à l'utilisateur de choisir un nom d'utilisateur, et un mot de passe à saisir deux fois
+	echo " ----------------------------------------------------------------------------------------- "
+	echo " -- CREATION UTILISATEUR POUR DEPLOYEUR-MAVEN-PLUGIN ------------------------------------- "
+	echo " -- Nous allons devoir créer un utilisateur Linux dans"
+	echo " -- la cible de déploiement, utilisateur qui aura la possibilité d'opérer avec docker"
+	echo " ----------------------------------------------------------------------------------------- "
+	
+	echo "Quel sera le nom d'utilisateur de ce user linux?"
+	echo " "
+	read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+	# read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD
+	
 
-# traiter_args () {
+	echo "Saisissez un mot de passe pour ce user linux?"
+	echo " "
+	# read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+	read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD1
+	
+	echo "Confirmez le mot de passe de ce user linux en le saisissant de nouveau:"
+	echo " "
+	# read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+	read VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD2
+	# peut-être amélioré: avec vérification égalité des deux mots de passes.
+	VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=$VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD2
+	clear
+	echo " ----------------------------------------------------------------------------------------- "
+	echo " -- L' UTILISATEUR LINUX :							------------------------------------ "
+	echo " -- 		$VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME"
+	echo " -- Sera créé."
+	echo " ----------------------------------------------------------------------------------------- "
+	echo " "
+	read
+}
 
+# demander_infos_creation_operateur_mvnplugin () { # TODO: demander à l'utilisateur de choisir un nom d'utilisateur, et un mot de passe à saisir deux fois
 
-
-# }
 
 determiner_addr_ip_initiale_machine () {
 
@@ -341,7 +359,8 @@ case "$DOIS_JE_CONFIG_IPSTATIQUE" in
 	*) echo "L'utilisateur [$USER] a saisi une réponse incompréhensible: Aucune reconfiguration réseau ne sera donc faite.";;
 esac
 demander_choix_no_ports
-
+# à faire lorsque 'lon aura bien implémenter le module qui créera l'utilisateur dans le script "installes-tout.sh"
+# demander_infos_creation_operateur_mvnplugin
 ############################################################
 ############################################################
 #	  Export des Variables d'environnement globales	 	   #
@@ -366,9 +385,15 @@ export DB_MGMT_USER_PWD
 export DB_APP_USER_NAME
 export DB_APP_USER_PWD
 
+
 export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN
 export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN
 
+# à dé-commenter pour activer la demadne des infos de user plugin maven
+# MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=$VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+# MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=$VAL_MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD
+export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+export MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD
 
 # clear
 # echo POIN DEBUG DEBUT
