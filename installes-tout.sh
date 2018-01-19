@@ -416,8 +416,14 @@ wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNE
 sudo docker cp ./mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/lib
 
 
-# installation de la JSTL dans le serveur (au lieu du projet)
-# wget http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+# installation de la JSTL dans le serveur (au lieu du projet) ...?
+VERSION_JSTL=1.2
+# wget http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-$VERSION_JSTL.jar
+# sudo docker cp ./jstl-1.2.jar $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/lib
+
+# pour un éventuel passage en mode debug du serveur (utilisé pour: debug deploiement datasource)
+# sudo docker cp $MAISON/lauriane/logging-debug.properties ciblededeploiement-composant-srv-jee:/usr/local/tomcat/conf/logging.properties
+
 
 sudo docker restart $NOM_CONTENEUR_TOMCAT
 
