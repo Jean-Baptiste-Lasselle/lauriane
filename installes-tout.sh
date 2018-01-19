@@ -423,6 +423,7 @@ VERSION_JSTL=1.2
 
 # pour un éventuel passage en mode debug du serveur (utilisé pour: debug deploiement datasource)
 # sudo docker cp $MAISON/lauriane/logging-debug.properties ciblededeploiement-composant-srv-jee:/usr/local/tomcat/conf/logging.properties
+sudo docker cp $MAISON/lauriane/logging.properties ciblededeploiement-composant-srv-jee:/usr/local/tomcat/conf
 
 
 sudo docker restart $NOM_CONTENEUR_TOMCAT
