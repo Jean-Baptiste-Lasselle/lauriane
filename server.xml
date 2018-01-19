@@ -43,6 +43,11 @@
               description="User database that can be updated and saved"
               factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
               pathname="conf/tomcat-users.xml" />
+	<!-- JIBL -->
+	<Resource name="jdbc/organisactionDS" auth="Container" 
+	type="javax.sql.DataSource" initialSize="10" maxTotal="20" maxIdle="10" maxWaitMillis="10000"
+	username="root" password="peuimporte" driverClassName="org.mariadb.jdbc.Driver"
+	url="jdbc:mariadb://192.168.1.149:8456/bdd_organisaction" />
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
@@ -122,83 +127,6 @@
 
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
-
-			<Context path="/jiblWebappTest-0.0.6-SNAPSHOT" reloadable="true">
-			 <!-- docBase="\jiblWebappTest-0.0.6-SNAPSHOT" -->
-
-				<!-- Default set of monitored resources. If one of these changes, the -->
-				<!-- web application will be reloaded. -->
-				
-				<!-- <WatchedResource>WEB-INF/web.xml</WatchedResource> -->
-				<!-- <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource> -->
-
-				<!-- Uncomment this to disable session persistence across Tomcat restarts -->
-				<!-- <Manager pathname="" /> -->
-
-				<!-- Uncomment this to enable Comet connection tacking (provides events 
-					on session expiration as well as webapp lifecycle) -->
-				<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
-					/> -->
-
-					
-				<!-- CONFIGURATION DU DATACSOURCE -->
-				<Resource name="jdbc/organisactionDS" auth="Container"
-					type="javax.sql.DataSource" initialSize="10" maxTotal="20" maxIdle="10" maxWaitMillis="10000"
-					username="root" password="peuimporte" driverClassName="org.mariadb.jdbc.Driver"
-					url="jdbc:mariadb://192.168.1.149:8456/bdd_organisaction" />
-					
-				<!-- <Resource name="jdbc/organisactionDS" -->
-						  <!-- auth="Container" -->
-						  <!-- type="javax.sql.DataSource" -->
-						  <!-- /> -->
-				
-				<!-- <ResourceParams name="jdbc/TutoPool"> -->
-					<!-- <parameter> -->
-						<!-- <name>username</name> -->
-						<!-- <value>root</value> -->
-					<!-- </parameter> -->
-					<!-- <parameter> -->
-						<!-- <name>password</name> -->
-						<!-- <value>peuimporte</value> -->
-					<!-- </parameter> -->
-					<!-- <parameter> -->
-						<!-- <name>driverClassName</name> -->
-						<!-- <value>org.mariadb.jdbc.Driver</value> -->
-					<!-- </parameter> -->
-					<!-- <parameter> -->
-						<!-- <name>url</name> -->
-						<!-- <value>jdbc:mariadb://192.168.1.148:8456/bdd_oraganisaction</value> -->
-					<!-- </parameter> -->
-					
-					<!-- autres paramètres de pool de connexions SGBDR -->
-					<!-- <parameter> -->
-						<!-- <name>maxActive</name> -->
-						<!-- <value>20</value> -->
-					<!-- </parameter> -->
-					<!-- <parameter> -->
-						<!-- <name>maxIdle</name> -->
-						<!-- <value>7</value> -->
-					<!-- </parameter> -->
-					<!-- <parameter> -->
-						<!-- <name>maxWait</name> -->
-						<!-- <value>10000</value> -->
-					<!-- </parameter> -->
-					
-					
-				<!-- </ResourceParams> -->
-					
-					
-					
-					
-					
-					
-					
-				<!-- <Resource name="organisaction/SourceDeDonnees" auth="Container" -->
-					<!-- type="javax.sql.DataSource" maxActive="20" maxIdle="10" maxWait="10000" -->
-					<!-- username="lauriane" password="lauriane" driverClassName="org.mariadb.jdbc.Driver" -->
-					<!-- url="jdbc:mariadb://192.168.1.148:8456/bdd_oraganisaction" /> -->
-				
-			</Context>
 			
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
