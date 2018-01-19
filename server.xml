@@ -44,8 +44,8 @@
               factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
               pathname="conf/tomcat-users.xml" />
 	<!-- JIBL -->
-	<Resource name="jdbc/organisactionDS" global="jdbc/organisactionDS" auth="Container" 
-	type="javax.sql.DataSource" initialSize="10" maxTotal="20" maxIdle="10" maxWaitMillis="10000"
+	<Resource name="jdbc/organisactionDS" auth="Container" 
+	type="javax.sql.DataSource" maxTotal="20" maxIdle="10" maxWaitMillis="10000"
 	username="root" password="peuimporte" driverClassName="org.mariadb.jdbc.Driver"
 	url="jdbc:mariadb://192.168.1.149:8456/bdd_organisaction" />
   </GlobalNamingResources>
