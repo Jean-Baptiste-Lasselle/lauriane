@@ -405,7 +405,10 @@ sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tom
 # # installation du dbcp.jar
 # déjà installé de base avec tomcat 8.0
 # # installation de la bonne version du connecteur jdbc, en fonction de la version de MariaDB
-VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
+
+ # cette versiond e connecteur MariaDB / JDBC n'est comptatible qu'avec Java 8 et Java 9, pas Java 7, or c'esty Java 7 qui est installé dans le conteneur docker
+# VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
+VERSION_CONNECTEUR_JDBC_MARIADB=1.7.1
 wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNECTEUR_JDBC_MARIADB/mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar
 
 # TODO: remplcaer automatiquement dans le fichier $MAISON/lauriane/context.xml, la valeur du nom du driver, l'adresse IP etc....
