@@ -407,11 +407,47 @@ sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tom
 # # installation de la bonne version du connecteur jdbc, en fonction de la version de MariaDB
 VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
 wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNECTEUR_JDBC_MARIADB/mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar
+
 # TODO: remplcaer automatiquement dans le fichier $MAISON/lauriane/context.xml, la valeur du nom du driver, l'adresse IP etc....
 
 sudo docker cp ./mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/lib
+
+
+# installation de la JSTL dans le serveur (au lieu du projet)
+# wget http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+
 sudo docker restart $NOM_CONTENEUR_TOMCAT
 
+
+clear
+echo " --------------------------------------------------------  "
+echo " --- Enfin, dans le conteneur Tomcat, vous pouvez         "
+echo " ---  "
+echo " --- 				 "
+# echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"rm -f /usr/local/tomcat/conf/context.xml\""
+echo " --- vérifier le déploiement du connecteur JDBC /MARIADB: "
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"ls -all /usr/local/tomcat/lib\""
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"ls -all /usr/local/tomcat/lib|grep jdbc\""
+echo " --- vérifier le déploiement du context.xml: "
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"cat /usr/local/tomcat/conf/context.xml\""
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"more /usr/local/tomcat/conf/context.xml\""
+echo " --- vérifier les logs serveurs: "
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"ls -all /usr/local/tomcat/logs/\""
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"more /usr/local/tomcat/logs/catalina*.log|grep dbcp\""
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"rm -f /usr/local/tomcat/logs/catalina*.log\""
+echo " --- 				sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c \"ls -all /usr/local/tomcat/logs/\""
+echo " --- 				 "
+echo " --- "
+echo " --- "
+echo " contenu du fichier  /usr/local/tomcat/conf/context.xml :"
+sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c "cat /usr/local/tomcat/conf/context.xml"
+echo " Bibliothèques serveur       :"
+sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c "ls -all /usr/local/tomcat/lib"
+echo " --- "
+echo " --- "
+echo " --- "
+echo " ---------------------------------------------------------------------------------------------------- "
+read
 # ----------------------------------------------------------------------------------------------------------------------------------------------
 # pour consulter les logs serveur:
 # --------------------------------
