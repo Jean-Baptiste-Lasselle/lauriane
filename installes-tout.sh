@@ -401,6 +401,10 @@ read
 # # installation du $TOMCAT_HOME/conf/context.xml $CATALINA_BASE/conf/context.xml (si aucune configurationd 'hôtes virutels multiples, $CATALINE_BASE prend la valeur de $CATALINA_HOME)
 # sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
 # sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+sudo docker cp $MAISON/lauriane/create-bdd-test-data1.sql $NOM_CONTENEUR_MARIADB:/creer-bdd-et-table-test-avec-donnees.sql
+sudo docker exec -it $NOM_CONTENEUR_MARIADB /bin/bash -c "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < /creer-bdd-et-table-test-avec-donnees.sql"
+
+
 
 # # installation du dbcp.jar
 # déjà installé de base avec tomcat 8.0
