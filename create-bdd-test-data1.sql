@@ -13,9 +13,10 @@
 
 
 -- Export de la structure de la base pour bdd_organisaction
-DROP DATABASE IF EXISTS `bdd_organisaction`;
-CREATE DATABASE IF NOT EXISTS `bdd_organisaction` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `bdd_organisaction`;
+-- DROP DATABASE IF EXISTS `bdd_organisaction`;
+-- CREATE DATABASE IF NOT EXISTS `bdd_organisaction` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+-- Jean-Baptiste Lasselle: la chaîne [VAL_NOM_BDD_APPLI] ci-dessous, est remplacée par la valeur effective du nom de la bdd, au cours des opérations, au provisionning de la cible de déploiement)
+USE `VAL_NOM_BDD_APPLI`;
 
 -- Export de la structure de la table bdd_organisaction. membresassoc
 CREATE TABLE IF NOT EXISTS `membresassoc` (
