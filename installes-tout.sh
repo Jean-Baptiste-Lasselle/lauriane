@@ -399,7 +399,7 @@ read
 # TODO: installer le DATASDOURCE dans le serveur JEE
 
 # # installation du $TOMCAT_HOME/conf/context.xml $CATALINA_BASE/conf/context.xml (si aucune configurationd 'hôtes virutels multiples, $CATALINE_BASE prend la valeur de $CATALINA_HOME)
-sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+# sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
 # sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
 
 # # installation du dbcp.jar
@@ -425,7 +425,13 @@ VERSION_JSTL=1.2
 # sudo docker cp $MAISON/lauriane/logging-debug.properties ciblededeploiement-composant-srv-jee:/usr/local/tomcat/conf/logging.properties
 sudo docker cp $MAISON/lauriane/logging.properties ciblededeploiement-composant-srv-jee:/usr/local/tomcat/conf
 
-
+# => Définit le niveau de log de l'applicationd ans le serveur jee
+# NIVEAU_DE_LOG=INFO
+# NIVEAU_DE_LOG=FINE
+# NIVEAU_DE_LOG=FINEST
+NIVEAU_DE_LOG=DEBUG
+sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c "echo \"export CATALINA_OPTS=\\\"\$CATALINA_OPTS -Dorg.slf4j.simpleLogger.defaultLogLevel=$NIVEAU_DE_LOG\\\"\" >> /usr/local/tomcat/bin/setenv.sh"
+ 
 sudo docker restart $NOM_CONTENEUR_TOMCAT
 
 
@@ -456,6 +462,7 @@ sudo docker exec -it $NOM_CONTENEUR_TOMCAT /bin/bash -c "ls -all /usr/local/tomc
 echo " --- "
 echo " --- "
 echo " --- "
+echo " --- prochains coups d'essais: https://examples.javacodegeeks.com/enterprise-java/tomcat/tomcat-connection-pool-configuration-example/ "
 echo " ---------------------------------------------------------------------------------------------------- "
 read
 # ----------------------------------------------------------------------------------------------------------------------------------------------
