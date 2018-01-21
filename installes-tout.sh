@@ -403,10 +403,11 @@ read
 sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
 
 # Injection de la valeur du nom de la BDD de l'application, dans le script de création de la tabel de données de tests.
-sed -i "s/$VAL_NOM_BDD_APPLI/$NOM_BDD_APPLI/g" $MAISON/lauriane/create-bdd-test-data1.sql
-sudo docker cp $MAISON/lauriane/create-bdd-test-data1.sql $NOM_CONTENEUR_MARIADB:/creer-bdd-et-table-test-avec-donnees.sql
+sed -i "s/VAL_NOM_BDD_APPLI/$NOM_BDD_APPLI/g" $MAISON/lauriane/create-bdd-test-data1.sql
+chmod 777 $MAISON/lauriane/create-bdd-test-data1.sql
+sudo docker cp $MAISON/lauriane/create-bdd-test-data1.sql $NOM_CONTENEUR_MARIADB:/root/creer-bdd-et-table-test-avec-donnees.sql
 # Cette opération peut être laissée, suggérée à l'utililisateur
-sudo docker exec -it $NOM_CONTENEUR_MARIADB /bin/bash -c "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < /creer-bdd-et-table-test-avec-donnees.sql"
+sudo docker exec -it $NOM_CONTENEUR_MARIADB /bin/bash -c "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < /root/creer-bdd-et-table-test-avec-donnees.sql"
 
 
 
