@@ -400,7 +400,7 @@ read
 
 # # installation du $TOMCAT_HOME/conf/context.xml $CATALINA_BASE/conf/context.xml (si aucune configurationd 'hôtes virutels multiples, $CATALINE_BASE prend la valeur de $CATALINA_HOME)
 # sudo docker cp $MAISON/lauriane/context.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
-# sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
+sudo docker cp $MAISON/lauriane/server.xml $NOM_CONTENEUR_TOMCAT:/usr/local/tomcat/conf
 
 # Injection de la valeur du nom de la BDD de l'application, dans le script de création de la tabel de données de tests.
 sed -i "s/$VAL_NOM_BDD_APPLI/$NOM_BDD_APPLI/g" $MAISON/lauriane/create-bdd-test-data1.sql
