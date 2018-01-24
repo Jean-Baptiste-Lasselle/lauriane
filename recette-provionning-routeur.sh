@@ -1,4 +1,22 @@
 #!/bin/bash
+
+############################################################
+############################################################
+############################################################
+############################################################
+############################################################
+# 					PROVISIONNING ROUTEUR 		 		   #
+# 				   RESEAU USINE LOGICIELLE		 		   #
+############################################################
+############################################################
+############################################################
+############################################################
+############################################################
+############################################################
+
+
+
+
 ############################################################
 ############################################################
 # 					Compatibilité système		 		   #
@@ -49,6 +67,11 @@
 # ...
 # ----------------------------------------------------------
 
+############################################################
+############################################################
+#							ENV.						   #
+############################################################
+############################################################
 
 ############################################################
 ############################################################
@@ -78,11 +101,14 @@
 # ---------------------------------------------------------
 
 
-determiner_un () {
+nomdefonctionauchoix () {
 
 
 
 }
+
+# # appel de la fonction sans parenthèses
+# nomdefonctionauchoix
 
 ############################################################
 ############################################################
@@ -92,21 +118,19 @@ determiner_un () {
 # 
 # Cette recette s'applique pour une VM ayant:
 # 4 cartes réseaux:
+#
 # - une en mode "Accès par pont": elle sera ainsi connectée au réseau physique dans lequel se trouve la livebox, chez moi (la livebox contient un serveur DHCP, en plus de jouer le rôle de routeur)
 # - une en mode "Internal Network": et le nom du réseau interne VirtualBox, sera: "RESEAU_USINE_LOGICIELLE" // routeur R1, cette VM
 # - une en mode "Internal Network": et le nom du réseau interne VirtualBox, sera: "RESEAU_CIBLE_DEPLOIEMENT" // sera en dhcp dans ce réseau, avec le routeur R2
 # - une en mode "Internal Network": et le nom du réseau interne VirtualBox, sera: "RESEAU_MACHINES_PHYSIQUES"// sera en dhcp dans ce réseau, avec le routeur R3
-# Une fois un OS installé et configuré, cette VM sera le routeur du "RESEAU_USINE_LOGICIELLE", qui sera connecté en dhcp dans les autres réseaux:
+# 
+# Une fois un OS VyOS installé et configuré, cette VM sera le routeur du "RESEAU_USINE_LOGICIELLE".
 # 
 # 
-# == >> Utliser 3 "Internal netwwork" virtual box, + un accès par pont à un 4 ième réseau, revient à se trouver dans la situation de 4 réseau PHYSIQUEMENT
+# == >> Utliser 3 "Internal network" virtual box, + un accès par pont à un 4 ième réseau, revient à se trouver dans la situation de 4 réseaux PHYSIQUEMENT déconnectés.
 # 
 #		 ¤ avec le routeur R2 dans le réseau "RESEAU_CIBLE_DEPLOIEMENT"
 #		 ¤ avec le routeur R3 dans le réseau "RESEAU_MACHINES_PHYSIQUES"
-# Ceci étant, dans ce cas d'utilisation d'un routeur par réseau, j'utilise 3 VMs rien que pour les routeurs, donc il est à voir comment
-# faire plus efficace pour segmenter les réseaux, ou alors voir s'il ne serait pas suffisant au déaprt, de faire des versions où l'on est surtout coupé d'internet, et on gère derrière...
-# 
-# 
 # 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 4 cartes réseau au lieu de 3.
@@ -152,6 +176,19 @@ determiner_un () {
 # 
 # le réseau dans lequel je mets toutes les machiens que je veux particulièrement protéger, comme mes serveurs.
 # C'est dans ce réseau qu'ils sont provisionnnés en pixie
+
+
+# Ceci étant, dans ce cas d'utilisation d'un routeur par réseau, j'utilise 3 VMs rien
+# que pour les routeurs, donc il est à voir comment faire plus efficace pour segmenter
+# les réseaux, ou alors voir s'il ne serait possible de proposer plusieurs
+# installations, comme il y a un minikube pour kubernetes k8s.
+# Exemple: faire 2 installateurs :
+
+#    Formule utltra compacte (tiens dans un PC 16 Gb de RAM): installe la cible de déploiement minimale en une VM de 4Gb RAM, le eclipse dans une VM de 6Gb de RAM, et un gitlab et un artifactory dans une VM de 4 Gb
+#    Formule Juza des nuages (en tout, au moins 2 machines physiques, laptop MAC 8 Gb de RAM et desktop 32 Gb  de RAM, 8 vCPUs consommés): installe la cible de déploiement en une VM de 16Gb RAM, 4 vCPUs (avec Kubernetes dedans), le eclipse dans une VM de 6Gb de RAM (2 vCPUs), et un gitlab et un artifactory dans une VM de 8 Gb (2 vCPUS), un autre gitlab et un Jenkins dans une VM de 8 Gb de RAM
+#    Formule Toki (en tout, au moins 2 machines physiques, et 64 Gb de RAM, 12 vCPUs consommés): installe la cible de déploiement en une VM de 16Gb RAM, 4 vCPUs (avec Kubernetes dedans), le eclipse dans une VM de 6Gb de RAM (2 vCPUs), et un gitlab et un artifactory dans une VM de 8 Gb (2 vCPUs), 3 autres Gitlabs dans une VM de 16 Gb et un Jenkins dans une VM de 16Gb de RAM (4 vCPUs)
+
+
 
 ############################################################
 ############################################################
@@ -249,7 +286,7 @@ show version
 # 
 configure
 ###################################
-# REGLE NAT: RESEAU_USINE_LOGICIELLE ==>> RESEAU_EXTERIEUR
+# REGLE NAT: RESEAU_USINE_LOGICIELLE ==>> RESEAU_EXTERIEUR  (et internet, le routeur ISP étant configuré lui aussi avec une règle NAT masquerade).
 ###################################
 # 1./ on entre en mode édition d'une règle NAT
 #     l'entier qui est le "numéro de règle (rule)" est libre de choix.
@@ -303,7 +340,7 @@ exit
 
 configure
 ###################################
-# REGLE NAT: RESEAU_USINE_LOGICIELLE ==>> RESEAU_CIBLE_DEPLOIEMENT
+# REGLE NAT: RESEAU_USINE_LOGICIELLE ==>> RESEAU_MACHINES_PHYSIQUES
 ###################################
 # 1./ on entre en mode édition d'une règle NAT
 #     l'entier qui est le "numéro de règle (rule)" est libre de choix.
