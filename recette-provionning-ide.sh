@@ -100,7 +100,7 @@ determiner_un () {
 # 
 # Une VM:
 # 	
-# 	¤ avec 1 carte réseau en mode "réseau interne" ("Internal Networking"), le réseau internétant le réseau interne VirtualBox "RESEAU_USINE_LOGICIELLE"
+# 	¤ avec 1 carte réseau en mode "réseau interne" ("Internal Networking"), avec le réseau interne VirtualBox "RESEAU_USINE_LOGICIELLE"
 # 	¤ 2 CPUs
 # 	¤ 6144 Mo de RAM (6 Go)
 # 	¤ 1 disque dur de 80 Go
@@ -153,7 +153,7 @@ determiner_un () {
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 4 cartes réseau au lieu de 3.
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# réseau                              |                net id + netmask                             |         interfaces réseau linux
+# "Internal Network" VirtualBox       |                net id + netmask                             |         interfaces réseau linux
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------
 # RESEAU_EXTERIEUR                    |                 192.168.1.0/24   (réseau de la livebox)     |       eth0       Le réseau via lequel on a accès à internet.
 # RESEAU_USINE_LOGICIELLE             |                 192.168.2.0/24                              |       eth1       Le réseau de l'usine logicielle
