@@ -200,6 +200,19 @@ sudo tar -C unsquashfs -c . | docker import - $NOMIMAGEDOCKER
 ####################################################################################
 ###############		DOCKER BUILD POUR ARRIVER A CREER LE USER       ################
 ####################################################################################
+
+CORPORATE_PREFIX_NOM_IMAGE_DOCKER=jibl
+PRODUIT_IMAGE_DOCKER=vyos
+VERSIONIMAGEDOCKER=v0.0.1-SNAPSHOT
+NOMIMAGEDOCKER=$CORPORATE_PREFIX_NOM_IMAGE_DOCKER/$PRODUIT_IMAGE_DOCKER:$VERSIONIMAGEDOCKER
+
+
+VERSIONIMAGEDOCKER=v0.0.2-SNAPSHOT
+NOM_NOUVELLE_IMAGE_DOCKER_JIBL=$CORPORATE_PREFIX_NOM_IMAGE_DOCKER/$PRODUIT_IMAGE_DOCKER:$VERSIONIMAGEDOCKER
+CONTEXTE_DU_BUILD_DOCKER=/home/jibl/jibl-vyos/builddocker
+mkdir -p $CONTEXTE_DU_BUILD_DOCKER
+cd $CONTEXTE_DU_BUILD_DOCKER
+
 ####################################################################################
 ####################################################################################
 ######   Le dockerfile qu'il faut générer (celui-là est testé, il marche)
@@ -213,25 +226,18 @@ echo "RUN useradd $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.docker
 echo "RUN mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR" >> ./image-jibl-vyos.2.dockerfile
 echo "USER vyos" >> ./image-jibl-vyos.2.dockerfile
 echo "WORKDIR $MAISON_OPERATIONS_DS_CONTENEUR" >> ./image-jibl-vyos.2.dockerfile
+# echo "CMD   ?? " >> ./image-jibl-vyos.2.dockerfile
 # # CMD /bin/bash
 ####################################################################################
 ####################################################################################
 ####################################################################################
+
 # Docker build
 #  Bon, ce build fonctionne, mais quand j'essaie 
 # 
 # 
 # 
-CORPORATE_PREFIX_NOM_IMAGE_DOCKER=jibl
-PRODUIT_IMAGE_DOCKER=vyos
-VERSIONIMAGEDOCKER=v0.0.1-SNAPSHOT
-NOMIMAGEDOCKER=$CORPORATE_PREFIX_NOM_IMAGE_DOCKER/$PRODUIT_IMAGE_DOCKER:$VERSIONIMAGEDOCKER
 
-
-VERSIONIMAGEDOCKER=v0.0.2-SNAPSHOT
-NOM_NOUVELLE_IMAGE_DOCKER_JIBL=$CORPORATE_PREFIX_NOM_IMAGE_DOCKER/$PRODUIT_IMAGE_DOCKER:$VERSIONIMAGEDOCKER
-CONTEXTE_DU_BUILD_DOCKER=/home/jibl/jibl-vyos/builddocker
-cd $CONTEXTE_DU_BUILD_DOCKER
 # sudo docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
 sudo docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.2.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
 sudo docker images # et voilà la liste des images que tu as dans ton repo local docker ( --tag , c'est pratique ... ;)
@@ -272,8 +278,12 @@ sudo docker ps -a # et voilà la liste des conteneurs docker que tu as créés.
 
 # https://hub.docker.com/r/2stacks/vyos/
 # https://www.hackster.io/2stacks
-export NOM_CONTENEUR_VYOS=vyos-jibl-conteneur
+NOM_CONTENEUR_VYOS=vyos1
+export NOM_CONTENEUR_VYOS
 # Celui-là, il "fonctionne": il ne s'arrête pas sauvagement, mais par contre pour l'instant impossible de créer mon user vyos ou de faire su vyos, et donc IMPOSSIBLE DE FAIRE CONFIGURE
+sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+NOM_CONTENEUR_VYOS=vyos2
+export NOM_CONTENEUR_VYOS
 sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
 #l'affichage que j'obtiens en retour:
 # # [jibl@pc-125 jibl-vyos]$ sudo docker ps -a
@@ -285,7 +295,7 @@ sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/
 # 
 # Then run using:   
 #############################
-sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
+# sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
 # Je rentre dans le conteneur, et j'essaie "configure". Résultat: je suis "root", et VyOS m'oblige à utiliser un utilisateur "vyos", qui a les droits sudoers, qui est dans le groupe vyos, et qui a come mot de passe vyos."
 # aller, dans le conteneur, je créée un userlinux "vyos/vyos", je lui donne les droits sudoers avec ajout dans /etc/sudoers.
 #############################
@@ -295,6 +305,23 @@ sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
 #       sudo docker exec --user vyos -it vyos /bin/vbash
 # j'ai une erreur très claire qui me dit "unable to find user vyos: no matching entries in passwd file"
 
+# clear
+echo " ---------------------------------------------------------  "
+echo " ---------------------------------------------------------  "
+echo " ---------------------------------------------------------  "
+sudo docker ps -a
+sudo docker images
+echo "sudo docker ps -a"
+echo "sudo docker images"
+echo ""
+echo "sudo docker exec -it vyos /bin/vbash"
+echo ""
+echo " VERIFICATION DU LOG ERREURS "
+echo ""
+echo " ---------------------------------------------------------  "
+echo " ---------------------------------------------------------  "
+echo " ---------------------------------------------------------  "
+read
 
 
 
@@ -304,6 +331,172 @@ sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
 
 
 
+
+
+clear
+sudo docker ps -a
+sudo docker images
+echo "sudo docker ps -a"
+echo "sudo docker images"
+echo ""
+echo "sudo docker exec -it vyos /bin/vbash"
+echo ""
+echo "Pour la suite : Test d'images diverses de VyOS dans un conteneur docker "
+echo ""
+echo ""
+read
+
+
+#######################################################################################
+# Test de TOUTES (celles qui ont un minimum d'instructions documentées)
+# les images trouvées sur le DOCKERHUB, en cherchant "vyos" (on peut pas faire mieux.)
+#######################################################################################
+NOM_NOUVELLE_IMAGE_DOCKER_TEST=mnagaku/vyos:latest
+export NOM_NOUVELLE_IMAGE_DOCKER_TEST
+
+# test d'image : https://hub.docker.com/r/mnagaku/vyos/
+NOM_NOUVELLE_IMAGE_DOCKER_TEST=mnagaku/vyos:latest
+sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+
+NOM_CONTENEUR_VYOS=vyos-test1
+sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+NOM_CONTENEUR_VYOS=vyos-test12
+sudo docker run -d --name $NOM_CONTENEUR_VYOS --net=host --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+
+clear
+sudo docker ps -a
+sudo docker images
+echo "sudo docker ps -a"
+echo "sudo docker images"
+echo "sudo docker exec -it vyos /bin/vbash"
+echo ""
+echo "   TEST IMAGE DOCKER : $NOM_NOUVELLE_IMAGE_DOCKER_TEST   "
+echo "   N.B. : le conteneur $$NOM_CONTENEUR_VYOS a été démarré avec  l'option [--net=host]   "
+echo ""
+read
+
+########################################################################################################################################################
+# résultats test: NULL (sortie console:)
+########################################################################################################################################################
+		# [jibl@pc-125 ~]$ sudo docker ps -a
+
+		# CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
+		# be32c55bb932        stano/vyos:1.1.8-amd64   "/sbin/init"        4 minutes ago       Up 4 minutes                            vyos
+		# 8a7ca17176e6        mnagaku/vyos:latest      "/sbin/init"        8 minutes ago       Up 8 minutes                            vyos-test1
+		
+		# [jibl@pc-125 ~]$ sudo docker exec -it vyos-test1 /bin/vbash
+		# vbash-4.1# su - vyos
+		
+		# Unknown id: vyos
+		
+		# vbash-4.1# configure
+		
+		# You are attempting to enter configuration mode as root.
+		# It may have unintended consequences and render your system
+		# unusable until restart.
+		# Please do it as an administrator level VyOS user instead.
+		
+		# vbash-4.1#
+
+########################################################################################################################################################
+
+
+
+# test d'image : https://hub.docker.com/r/stano/vyos/
+# NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:1.1.8-amd64
+NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:latest
+sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+
+NOM_CONTENEUR_VYOS=vyos-test2
+sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+# sudo docker run -d --name vyos                --privileged -v /lib/modules:/lib/modules stano/vyos:1.1.8-amd64 /sbin/init
+clear
+sudo docker ps -a
+sudo docker images
+echo "sudo docker ps -a"
+echo "sudo docker images"
+echo "sudo docker exec -it vyos /bin/vbash"
+echo ""
+echo "   TEST IMAGE DOCKER : $NOM_NOUVELLE_IMAGE_DOCKER_TEST   "
+echo ""
+read
+
+########################################################################################################################################################
+# résultats test: NULL (sortie console:)
+########################################################################################################################################################
+		# [jibl@pc-125 ~]$ sudo docker ps -a
+
+		# CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
+		# be32c55bb932        stano/vyos:1.1.8-amd64   "/sbin/init"        4 minutes ago       Up 4 minutes                            vyos
+		# 8a7ca17176e6        mnagaku/vyos:latest      "/sbin/init"        8 minutes ago       Up 8 minutes                            vyos-test1
+		
+		# [jibl@pc-125 ~]$ sudo docker exec -it vyos-test1 /bin/vbash
+		# vbash-4.1# su - vyos
+		
+		# Unknown id: vyos
+		
+		# vbash-4.1# configure
+		
+		# You are attempting to enter configuration mode as root.
+		# It may have unintended consequences and render your system
+		# unusable until restart.
+		# Please do it as an administrator level VyOS user instead.
+		
+		# vbash-4.1#
+
+########################################################################################################################################################
+
+
+
+# test d'image : https://hub.docker.com/r/higebu/vyos/
+# NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:1.1.8-amd64
+NOM_NOUVELLE_IMAGE_DOCKER_TEST=higebu/vyos:latest
+sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+
+NOM_CONTENEUR_VYOS=vyos-test3
+sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+# sudo docker run -d --name vyos                --privileged -v /lib/modules:/lib/modules stano/vyos:1.1.8-amd64 /sbin/init
+clear
+sudo docker ps -a
+sudo docker images
+echo "sudo docker ps -a"
+echo "sudo docker images"
+echo "sudo docker exec -it vyos /bin/vbash"
+echo ""
+echo "   TEST IMAGE DOCKER : $NOM_NOUVELLE_IMAGE_DOCKER_TEST   "
+echo ""
+read
+
+########################################################################################################################################################
+# résultats test: NULL (sortie console:)
+########################################################################################################################################################
+		# [jibl@pc-125 ~]$ sudo docker ps -a
+
+		# CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
+		# be32c55bb932        stano/vyos:1.1.8-amd64   "/sbin/init"        4 minutes ago       Up 4 minutes                            vyos
+		# 8a7ca17176e6        mnagaku/vyos:latest      "/sbin/init"        8 minutes ago       Up 8 minutes                            vyos-test1
+		
+		# [jibl@pc-125 ~]$ sudo docker exec -it vyos-test1 /bin/vbash
+		# vbash-4.1# su - vyos
+		
+		# Unknown id: vyos
+		
+		# vbash-4.1# configure
+		
+		# You are attempting to enter configuration mode as root.
+		# It may have unintended consequences and render your system
+		# unusable until restart.
+		# Please do it as an administrator level VyOS user instead.
+		
+		# vbash-4.1#
+
+########################################################################################################################################################
+
+
+
+
+# à tester : https://www.higebu.com/blog/2014/12/10/docker-on-vyos/#.WmrVk-co-Uk
+# c'est aussi lui: https://hub.docker.com/r/higebu/vyos/
 
 
 
@@ -330,38 +523,38 @@ sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
 # OPERATEUR_VYOS_LINUX_USER_GRP=vyos
 # OPERATEUR_VYOS_LINUX_USER_PWD=vyos
 
-mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR
+# mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR
 # création user vyos, groupe vyos
 
 # sudo groupadd $OPERATEUR_VYOS_LINUX_USER_GRP  # j'ai véirfié, il n'existe pas dans le conteneur au départ
 # sudo useradd $OPERATEUR_VYOS_LINUX_USER_NAME # créée le groupe à la volée
 # sudo useradd -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME
-sudo useradd -ms /bin/bash $OPERATEUR_VYOS_LINUX_USER_NAME
-sudo passwd $OPERATEUR_VYOS_LINUX_USER_NAME
-sudo usermod -aG $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME
+# sudo useradd -ms /bin/bash $OPERATEUR_VYOS_LINUX_USER_NAME
+# sudo passwd $OPERATEUR_VYOS_LINUX_USER_NAME
+# sudo usermod -aG $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME
 
 # droits sudoers
-mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers
-sudo cp /etc/sudoers $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.bckup
+# mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers
+# sudo cp /etc/sudoers $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.bckup
 
-rm -f $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
-echo "" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
-echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute deployment commands" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# rm -f $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# echo "" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute deployment commands" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
 # echo "$OPERATEUR_VYOS_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker exec*, /bin/rm -rf ./$NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
-echo "$OPERATEUR_VYOS_LINUX_USER_NAME ALL=NOPASSWD: ALL" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
-echo "" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# echo "$OPERATEUR_VYOS_LINUX_USER_NAME ALL=NOPASSWD: ALL" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# echo "" >> $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
 
-clear
-echo " --- Juste avant de toucher /etc/sudoers:  "
-echo "			" 
-echo "			cat $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout" 
-echo "			" 
-echo " ---------------------------------------------------------------------------------------------------- "
-cat $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
-echo " ---------------------------------------------------------------------------------------------------- "
-read
-cat $MAISON_OPERATIONS_DS_CONTENEUR/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
-sudo cp $MAISON_OPERATIONS_DS_CONTENEUR/lauriane/sudoers.ajout /etc/sudoers
+# clear
+# echo " --- Juste avant de toucher /etc/sudoers:  "
+# echo "			" 
+# echo "			cat $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout" 
+# echo "			" 
+# echo " ---------------------------------------------------------------------------------------------------- "
+# cat $MAISON_OPERATIONS_DS_CONTENEUR/cuisine-sudoers/sudoers.ajout
+# echo " ---------------------------------------------------------------------------------------------------- "
+# read
+# cat $MAISON_OPERATIONS_DS_CONTENEUR/lauriane/sudoers.ajout | sudo EDITOR='tee -a' visudo
+# sudo cp $MAISON_OPERATIONS_DS_CONTENEUR/lauriane/sudoers.ajout /etc/sudoers
 
 
 
@@ -444,3 +637,4 @@ sudo cp $MAISON_OPERATIONS_DS_CONTENEUR/lauriane/sudoers.ajout /etc/sudoers
 
 ############################################################
 ############################################################
+clear
