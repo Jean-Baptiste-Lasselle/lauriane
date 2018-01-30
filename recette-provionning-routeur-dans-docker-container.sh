@@ -221,10 +221,26 @@ cd $CONTEXTE_DU_BUILD_DOCKER
 # FROM jibl/vyos:v0.0.1-SNAPSHOT
 echo "FROM $NOMIMAGEDOCKER" >> ./image-jibl-vyos.2.dockerfile
 # RUN useradd vyos
-echo "RUN useradd $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+# j'exécute les commandes docker dans l'hôte, avec un utilsiateur lnux pour lequel 1000 est la valeur affichée par l'exécution de "echo $UID"
+# suivant les indications de : https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf
+UID_USER_MAPPED_IN_HOST=1000
+UID_USER_MAPPED_IN_HOST=$UID
+# echo "RUN useradd $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+# echo "useradd -r -u $UID -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+echo "RUN groupadd $OPERATEUR_VYOS_LINUX_USER_GRP" >> ./image-jibl-vyos.2.dockerfile
+echo "RUN useradd -u $UID -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+# pour reprodurie l'état des usrrs dans la VM VuOS créée à partir d'un *.iso, on ajoute le suer vyos à tous les groupes [users adm disk sudo dip quaggavty vyattacfg fuse]
+# OPERATEUR_VYOS_LINUX_ADDITIONAL_GRPS=[users adm disk sudo dip quaggavty vyattacfg fuse]
+for OPERATEUR_VYOS_LINUX_ADDITIONAL_GRP in users adm disk sudo dip quaggavty vyattacfg fuse
+do
+	echo "RUN usermod -aG $OPERATEUR_VYOS_LINUX_ADDITIONAL_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+done
+# et dans VyOs installé dans une VM avec l'iSO, le user vyos peut faire toutes les commandes sans donner de mot de passe (mais d'aillerus sna sfaire surod non plus)
+echo "RUN echo \"$OPERATEUR_VYOS_LINUX_USER_NAME ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers" >> ./image-jibl-vyos.2.dockerfile
 # RUN mkdir -p /opes-jibl
 echo "RUN mkdir -p $MAISON_OPERATIONS_DS_CONTENEUR" >> ./image-jibl-vyos.2.dockerfile
-echo "USER vyos" >> ./image-jibl-vyos.2.dockerfile
+# on reste en "ROOT", pour l'exécution du conteneur. Mais le user "vyos" a été créé et a les droits ROOT >> ./image-jibl-vyos.2.dockerfile
+# echo "USER vyos" >> ./image-jibl-vyos.2.dockerfile
 echo "WORKDIR $MAISON_OPERATIONS_DS_CONTENEUR" >> ./image-jibl-vyos.2.dockerfile
 # echo "CMD   ?? " >> ./image-jibl-vyos.2.dockerfile
 # # CMD /bin/bash
@@ -238,10 +254,15 @@ echo "WORKDIR $MAISON_OPERATIONS_DS_CONTENEUR" >> ./image-jibl-vyos.2.dockerfile
 # 
 # 
 
-# sudo docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
-sudo docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.2.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
-sudo docker images # et voilà la liste des images que tu as dans ton repo local docker ( --tag , c'est pratique ... ;)
-sudo docker ps -a # et voilà la liste des conteneurs docker que tu as créés.
+# sudo docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.2.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
+# sudo docker images # et voilà la liste des images que tu as dans ton repo local docker ( --tag , c'est pratique ... ;)
+# sudo docker ps -a # et voilà la liste des conteneurs docker que tu as créés.
+
+docker build --tag $NOM_NOUVELLE_IMAGE_DOCKER_JIBL -f ./image-jibl-vyos.2.dockerfile $CONTEXTE_DU_BUILD_DOCKER # ben le build, quoi ...
+docker images # et voilà la liste des images que tu as dans ton repo local docker ( --tag , c'est pratique ... ;)
+docker ps -a # et voilà la liste des conteneurs docker que tu as créés.
+
+
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -281,10 +302,12 @@ sudo docker ps -a # et voilà la liste des conteneurs docker que tu as créés.
 NOM_CONTENEUR_VYOS=vyos1
 export NOM_CONTENEUR_VYOS
 # Celui-là, il "fonctionne": il ne s'arrête pas sauvagement, mais par contre pour l'instant impossible de créer mon user vyos ou de faire su vyos, et donc IMPOSSIBLE DE FAIRE CONFIGURE
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOMIMAGEDOCKER /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOMIMAGEDOCKER /sbin/init
 NOM_CONTENEUR_VYOS=vyos2
 export NOM_CONTENEUR_VYOS
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
 #l'affichage que j'obtiens en retour:
 # # [jibl@pc-125 jibl-vyos]$ sudo docker ps -a
 # # CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -356,12 +379,18 @@ export NOM_NOUVELLE_IMAGE_DOCKER_TEST
 
 # test d'image : https://hub.docker.com/r/mnagaku/vyos/
 NOM_NOUVELLE_IMAGE_DOCKER_TEST=mnagaku/vyos:latest
-sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+export NOM_NOUVELLE_IMAGE_DOCKER_TEST
+# sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
 
 NOM_CONTENEUR_VYOS=vyos-test1
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+export NOM_CONTENEUR_VYOS
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
 NOM_CONTENEUR_VYOS=vyos-test12
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --net=host --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+export NOM_CONTENEUR_VYOS
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --net=host --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --net=host --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
 
 clear
 sudo docker ps -a
@@ -405,10 +434,14 @@ read
 # test d'image : https://hub.docker.com/r/stano/vyos/
 # NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:1.1.8-amd64
 NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:latest
-sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+export NOM_NOUVELLE_IMAGE_DOCKER_TEST
+# sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
 
 NOM_CONTENEUR_VYOS=vyos-test2
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+export NOM_CONTENEUR_VYOS
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
 # sudo docker run -d --name vyos                --privileged -v /lib/modules:/lib/modules stano/vyos:1.1.8-amd64 /sbin/init
 clear
 sudo docker ps -a
@@ -451,10 +484,14 @@ read
 # test d'image : https://hub.docker.com/r/higebu/vyos/
 # NOM_NOUVELLE_IMAGE_DOCKER_TEST=stano/vyos:1.1.8-amd64
 NOM_NOUVELLE_IMAGE_DOCKER_TEST=higebu/vyos:latest
-sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+export NOM_NOUVELLE_IMAGE_DOCKER_TEST
+# sudo docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
+docker pull $NOM_NOUVELLE_IMAGE_DOCKER_TEST
 
 NOM_CONTENEUR_VYOS=vyos-test3
-sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+export NOM_CONTENEUR_VYOS
+# sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_TEST /sbin/init
 # sudo docker run -d --name vyos                --privileged -v /lib/modules:/lib/modules stano/vyos:1.1.8-amd64 /sbin/init
 clear
 sudo docker ps -a
@@ -500,6 +537,201 @@ read
 
 
 
+
+
+
+
+
+
+
+
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#########################################		UTILSIATEURS LINUX DANS LE CONTEUR	VYOS			###################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+# Quand VyOS est isntallé dans une VM, sns conteneur, à partir de l'iso: Informations collectées
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------- tous les users : [cut -d':' -f 1 /etc/passwd] -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------- tous les groupes : [cut -d':' -f 1 /etc/group] -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------- map users/groups : [cut -d: -f1 /etc/passwd | xargs groups] ----------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Quels sont les users linux et les groupes?
+# J'exécute la commande : [vyos@vyos:~$ cut -d: -f1 /etc/passwd | xargs groups]
+# et j'obtiens la sortie:
+# 
+#				root : root
+#				daemon : daemon
+#				bin : bin
+#				sys : sys
+#				sync : nogroup
+#				games : games
+#				man : man
+#				lp : lp
+#				mail : mail
+#				news : news
+#				uucp : uucp
+#				proxy : proxy
+#				www-data : www-data adm sudo users quaggavty vyattacfg
+#				backup : backup
+#				list : list
+#				irc : irc
+#				gnats : gnats
+#				nobody : nogroup
+#				libuuid : libuuid
+#				quagga : quagga
+#				ntp : ntp
+#				snmp : snmp
+#				sshd : nogroup
+#				dnsmasq : nogroup
+#				radvd : nogroup
+#				_lldpd : _lldpd
+#				hacluster : haclient
+#				tss : tss
+#				vyos : users adm disk sudo dip quaggavty vyattacfg fuse
+#				vyos@vyos:~$
+#
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -- 
+# -------------------------------------------------------------------------------------------------------------------------------------
+# tous les groupes : [cut -d':' -f 1 /etc/group]
+# -------------------------------------------------------------------------------------------------------------------------------------
+#				vyos@vyos:~$ cut -d':' -f 1 /etc/group
+#				root
+#				daemon
+#				bin
+#				sys
+#				adm
+#				tty
+#				disk
+#				lp
+#				mail
+#				news
+#				uucp
+#				man
+#				proxy
+#				kmem
+#				dialout
+#				fax
+#				voice
+#				cdrom
+#				floppy
+#				tape
+#				sudo
+#				audio
+#				dip
+#				www-data
+#				backup
+#				operator
+#				list
+#				irc
+#				src
+#				gnats
+#				shadow
+#				utmp
+#				video
+#				sasl
+#				plugdev
+#				staff
+#				games
+#				users
+#				nogroup
+#				libuuid
+#				quaggavty
+#				quagga
+#				vyattacfg
+#				vyattaop
+#				crontab
+#				ntp
+#				snmp
+#				ssh
+#				fuse
+#				_lldpd
+#				netdev
+#				haclient
+#				tss
+#
+#
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -- 
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------
+# tous les users : [cut -d':' -f 1 /etc/passwd]
+# -------------------------------------------------------------------------------------------------------------------------------------
+#				vyos@vyos:~$ cut -d':' -f 1 /etc/passwd
+#				root
+#				daemon
+#				bin
+#				sys
+#				sync
+#				games
+#				man
+#				lp
+#				mail
+#				news
+#				uucp
+#				proxy
+#				www-data
+#				backup
+#				list
+#				irc
+#				gnats
+#				nobody
+#				libuuid
+#				quagga
+#				ntp
+#				snmp
+#				sshd
+#				dnsmasq
+#				radvd
+#				_lldpd
+#				hacluster
+#				tss
+#				vyos
+#
+# -------------------------------------------------------------------------------------------------------------------------------------
+# -- 
+# -------------------------------------------------------------------------------------------------------------------------------------
+#
+ 
+# 
+# 
+# 
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
 
 
 # a exécuter dans le conteneur:   a exécuter dans le conteneur:   a exécuter dans le conteneur:   a exécuter dans le conteneur:   
