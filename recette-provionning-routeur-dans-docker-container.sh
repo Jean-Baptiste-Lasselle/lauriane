@@ -135,7 +135,7 @@
 ############################################################
 ############################################################
 
-
+# TODO: rajouter le git clone pour récupérer ce script et ses dépendances: les "dot.bashrc", "dot.bash_logout", "dot.profile" dans le repo git
 
 
 MAISON=`pwd`
@@ -216,6 +216,7 @@ cd $CONTEXTE_DU_BUILD_DOCKER
 ####################################################################################
 ####################################################################################
 ######   Le dockerfile qu'il faut générer (celui-là est testé, il marche)
+######   Et copie des dépendances du dockerfile dans le $CONTEXTE_DU_BUILD_DOCKER
 ####################################################################################
 ####################################################################################
 # FROM jibl/vyos:v0.0.1-SNAPSHOT
@@ -229,6 +230,22 @@ UID_USER_MAPPED_IN_HOST=$UID
 # echo "useradd -r -u $UID -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
 echo "RUN groupadd $OPERATEUR_VYOS_LINUX_USER_GRP" >> ./image-jibl-vyos.2.dockerfile
 echo "RUN useradd -u $UID -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+echo "RUN mkdir -p /home/$OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+# echo "RUN useradd --create-home -u $UID -g $OPERATEUR_VYOS_LINUX_USER_GRP $OPERATEUR_VYOS_LINUX_USER_NAME" >> ./image-jibl-vyos.2.dockerfile
+# --------------------------------------------------------------------------------------------------------------------------------------------------------
+# Après avoir créé le répertoire /home/$OPERATEUR_VYOS_LINUX_USER_NAME, je copie dans ce répertoire les modèles de :
+# --------------------------------------------------------------------------------------------------------------------------------------------------------
+# => .bashrc
+# => .profile
+# => .bash_logout
+cp $MAISON/home/vyos/dot.bashrc $CONTEXTE_DU_BUILD_DOCKER/dot.bashrc
+cp $MAISON/home/vyos/dot.profile $CONTEXTE_DU_BUILD_DOCKER/dot.profile
+cp $MAISON/home/vyos/dot.bash_logout $CONTEXTE_DU_BUILD_DOCKER/dot.bash_logout
+echo "ADD dot.bashrc /home/$OPERATEUR_VYOS_LINUX_USER_NAME/.bashrc" >> ./image-jibl-vyos.2.dockerfile
+echo "ADD dot.profile /home/$OPERATEUR_VYOS_LINUX_USER_NAME/.profile" >> ./image-jibl-vyos.2.dockerfile
+echo "ADD dot.bash_logout /home/$OPERATEUR_VYOS_LINUX_USER_NAME/.bash_logout" >> ./image-jibl-vyos.2.dockerfile
+# --------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # pour reprodurie l'état des usrrs dans la VM VuOS créée à partir d'un *.iso, on ajoute le suer vyos à tous les groupes [users adm disk sudo dip quaggavty vyattacfg fuse]
 # OPERATEUR_VYOS_LINUX_ADDITIONAL_GRPS=[users adm disk sudo dip quaggavty vyattacfg fuse]
 for OPERATEUR_VYOS_LINUX_ADDITIONAL_GRP in users adm disk sudo dip quaggavty vyattacfg fuse
@@ -319,7 +336,7 @@ docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modul
 # Then run using:   
 #############################
 # sudo docker exec -it $NOM_CONTENEUR_VYOS /bin/vbash
-# Je rentre dans le conteneur, et j'essaie "configure". Résultat: je suis "root", et VyOS m'oblige à utiliser un utilisateur "vyos", qui a les droits sudoers, qui est dans le groupe vyos, et qui a come mot de passe vyos."
+# Je rentre dans le conteneur, et j'essaie "configure". Résultat: je suis "root", et VyOS m'oblige à utiliser un utilisateur "vyos", qui a les droits sudoers, qui est dans le groupe vyos, et qui a cmome mot de passe vyos."
 # aller, dans le conteneur, je créée un userlinux "vyos/vyos", je lui donne les droits sudoers avec ajout dans /etc/sudoers.
 #############################
 
