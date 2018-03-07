@@ -1,3 +1,7 @@
+# Information
+
+Ce repo est en cours de construction, pour constituer un support de formation en ligne.
+
 # Résumé
 
 Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipelines un peu particuliers...
