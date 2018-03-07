@@ -29,9 +29,7 @@ rm -rf $PROVISIONNING_HOME/recettes-cible-deploiement
 mkdir -p $PROVISIONNING_HOME/recettes-cible-deploiement
 
 # à l'opérateur: Mises à jour système de la LTS, avant début des opérations - nepeut être versionné synchrone avec le versionning d'une recette de déploiement
-# sudo apt-get remove -y libappstream3
-# sudo apt-get update -y
-# sudo apt-get install -y git
+
 
 
 ############################################################################################################################################################
