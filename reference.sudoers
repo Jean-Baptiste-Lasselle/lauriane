@@ -1,0 +1,70 @@
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+lauriane ALL=NOPASSWD: /bin/rm -rf /home/lauriane/software-factory-website
+# lauriane ALL=NOPASSWD: /usr/bin/docker cp*, /usr/bin/docker restart*, /usr/bin/docker ps*, /usr/bin/docker exec*, /bin/rm -rf /home/lauriane/software-factory-website
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+
+########################
+
+Cette version de l'application web exemple permet à la version suivante du plugin maven:
+https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin/releases/tag/v1.0.0
+de vérifier son fonctionnement, avec une cible dee déploiement construite par :
+https://github.com/Jean-Baptiste-Lasselle/lauriane/releases/tag/v7.0.0
+
+Cette version de l'application web exemple fait usage du plugin maven:
+
+	{https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin}
+	
+pour pouvoir vous aussi utiliser ce plugin, afin de construire et 
+déployer automatiquement  cette application web exemple, vous devez
+cloner son repo et le construire et l'installer dans votre
+repo maven local avec l'instruction:
+		mvn clean install
+Pour fonctionner, ce plugin a besoin de faire usage d'un repo git accessible à la fois par
+le plugin maven, et la cible de déploiement. 
+Pour utiliser ce plugin afin de déployer l'application exemple, dans le pom.xml
+vous devez adapter la valeur de certains paramètres:
+ - adresse IP 				(VM cible du déploiement)
+ - usernames et password 	(VM cible du déploiement)
+ - username et password 	(repo git que vous créez pour être utilisé par le "deployeur-maven-plugin")
+
+puis:
+
+mvn clean install
+
+toutes les opérations
+Ci dessus lorsque je parle de cible de déploiement, je parle de
+l'infrastructure construite par la dernière version de https://github.com/Jean-Baptiste-Lasselle/lauriane
+ 
+
+
+https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement
+
+https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin/releases/tag/v1.0.0

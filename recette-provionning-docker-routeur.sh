@@ -158,6 +158,25 @@
 # commit
 # save
 
+configure
+# set system package repository squeeze url http://ftp.jp.debian.org/debian/
+
+ # Maintenant que Squeeze est archivée, comment puis-je obtenir des paquets de cette version ?
+    # Utilisez la ligne suivante dans votre fichier sources.list :
+
+        # deb http://archive.debian.org/debian squeeze main
+        # deb http://archive.debian.org/debian squeeze-lts main
+
+set system package repository squeeze url http://archive.debian.org/debian
+set system package repository squeeze distribution squeeze
+set system package repository squeeze components 'main contrib non-free'
+set system package repository squeeze-lts url http://archive.debian.org/debian
+set system package repository squeeze-lts distribution squeeze-lts
+set system package repository squeeze-lts components 'main contrib non-free'
+
+commit
+save
+
 ################################################################################################
 # Vérifiez que les deux lignes suivantes sont bien présentes dans "/etc/apt/sources.list" :
 # (mais non-commentées, bien sûr...)

@@ -364,14 +364,74 @@ commit
 save
 exit
 
+
+
+# 
+# 
+# 
+# Remarque improtante: LEs opérations ci-dessous, de configuration du service DHCP-SERVER sur le routeur VyOS, ne fait aucune mention d'interfaces réseau linux.
+# Autrement dit, je pense que si ce routeur était el routeur de plusieurs réseaux à la fois, alors il serait serveur DHCP "authoritative" pour tous ces réseaux, ou aucun.
+# 
+# Cependant, il me semble assez naturel de vouloir 1 réseau <=> 1 routeur, ou alors si on accepte de router 2 réseau IP différents avec le même routeur, on peut aussi accepter qu'ils partagent aussi leur serveur DHCP.
+# 
+# Pour les différentes distrib, je pourrai diminuer le nombre de routeur en confondant deux réseaux tout simplement, et en diminuant le nombre de VMs:
+# 		distrib.1./ 2 réseaux, 1 routeur au lieu de 4 pour une usine "à la maison sans serveur"
+# 		distrib.2./ 3 réseaux, 2 routeurs au lieu de 4 pour une usine "à la maison avec un gros PC et un laptop, sans serveur."
+# 		distrib.3./ 4 réseaux, 3 routeurs, et IdmManagement pour une usine "à la maison avec un poste de dev 8 Gb RAM minimum, et des serveurs."
+# 
+# Pour que le routeur R1 fasse office de serveur DHCP pour le réseau {RESEAU_USINE_LOGICIELLE} / {192.168.2.0/24}
+
+DHCP_NET_VYOSNAME=routeurr1reseaudhcp
+DHCP_NET_ID=192.168.2.0/24
+DHCP_NET_DEFAULT_ROUTER_IP=192.168.2.1
+DHCP_NET_DNS_SERVER_IP=8.8.8.8
+DHCP_NET_DHCP_LEASE=86400
+DHCP_NET_DHCP_IP_RANGE_MIN=192.168.2.55
+DHCP_NET_DHCP_IP_RANGE_MAX=192.168.2.245
+
+export DHCP_NET_ID
+export DHCP_NET_DEFAULT_ROUTER_IP
+export DHCP_NET_DNS_SERVER_IP
+export DHCP_NET_DHCP_LEASE
+export DHCP_NET_DHCP_IP_RANGE_MIN
+export DHCP_NET_DHCP_IP_RANGE_MAX
+export DHCP_NET_VYOSNAME
+
+configure
+
+set service dhcp-server shared-network-name $DHCP_NET_VYOSNAME authoritative enable
+set service dhcp-server shared-network-name $DHCP_NET_VYOSNAME subnet $DHCP_NET_ID default-router $DHCP_NET_DEFAULT_ROUTER_IP
+set service dhcp-server shared-network-name $DHCP_NET_VYOSNAME subnet $DHCP_NET_ID dns-server $DHCP_NET_DNS_SERVER_IP
+set service dhcp-server shared-network-name $DHCP_NET_VYOSNAME subnet $DHCP_NET_ID lease $DHCP_NET_DHCP_LEASE
+set service dhcp-server shared-network-name $DHCP_NET_VYOSNAME subnet $DHCP_NET_ID start $DHCP_NET_DHCP_IP_RANGE_MIN stop $DHCP_NET_DHCP_IP_RANGE_MAX
+
+commit
+save
+exit
+
+
+
+
 # et voilà, le routeur VyOS agit comme routeur sur le réseau {RESEAU_USINE_LOGICIELLE|192.168.2.0/24}, à l'adresse 192.168.2.1
-
 # et les VMs crées dans ce réseau {RESEAU_USINE_LOGICIELLE-192.168.2.0/24}, ont accès à toute VM créée dans chacun des autres réseaux.
+# par exemple, toutes les VMs créées dans le réseau {RESEAU_USINE_LOGICIELLE|192.168.2.0/24} auront accès à internet. Et pourtant, 
+# Et pourtant, aucune d'entre elles n'a de connexion de pont. Ce qui prouve que le type de réseau "Internal network" de virtualBox, établit une conneexion physique virtuelle entre le routeur et la VM, le "Internal Network" joue le rôle d'un switch, plusieurs VMs et un routeur peuent s'y connecter physiquement, et ce n'est ni un hôte au sens de la théorie des réseaux qui définit hôtes et routeurs comme des notiosn duales, ni un routeur. Ce ne peut donc qu'être un switch virtuel.
 
 
-# TODO suite/test: configurer les routeurs R1, R2, et R3, pour qu'ils attribuent des adresses IP en DHCP, en activant le
-# service DHCP pour les interfces réseaux en IP fixe (eth1, pour R1, eth2, pour  R2, eth3, pour R3)
 
+
+
+
+
+
+
+
+
+
+
+
+
+# Pour les tests, ils peuvent se faire avec des machines Ubuntu
 
 #
 # Il suffit de créer 2 Vms dans ce réseau 192.168.2.0/24, pour voir

@@ -58,27 +58,27 @@
 ############################################################
 
 # installation docker
-apt-get remove -y apt-transport-https ca-certificates curl software-properties-common
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg|apt-key add -
+# apt-get remove -y apt-transport-https ca-certificates curl software-properties-common
+# apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg|apt-key add -
 
 # config repo ubuntu contenant les dépendances docker
-apt-key fingerprint 0EBFCD88 >> ./VERIF-EMPREINTE-CLE-REPO.lauriane
+# apt-key fingerprint 0EBFCD88 >> ./VERIF-EMPREINTE-CLE-REPO.lauriane
 # le fichier "./VERIF-EMPREINTE-CLE-REPO.lauriane" doit contenir:
 # 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
 
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 
 
 apt-get update -y
 
-apt-get install -y docker-ce
+# apt-get install -y docker-ce
 
-usermod -aG docker $USER
+# usermod -aG docker $USER
 
-systemctl enable docker
-systemctl start docker
+# systemctl enable docker
+# systemctl start docker
 
 
 clear
@@ -92,15 +92,15 @@ clear
 # >>>> ENV. SETUP.
 # NOM_CONTENEUR_TOMCAT=ciblededeploiement-composant-srv-jee
 # NUMERO_PORT_SRV_JEE=8785
-VERSION_TOMCAT=8.0
-# MAISON=/home/lauriane
+# VERSION_TOMCAT=8.0
+MAISON=`pwd`
 # NOM_CONTENEUR_SGBDR=ciblededeploiement-composant-sgbdr
 # NUMERO_PORT_SGBDR=3308
 # NUMERO_PORT_SGBDR=3355
 # NOM_BDD_APPLI=bdd_appli_lauriane
-NOM_BDD_APPLI=bdd_organisaction
+# NOM_BDD_APPLI=bdd_organisaction
 
-MARIADB_MDP_ROOT_PASSWORD=peuimporte
+# MARIADB_MDP_ROOT_PASSWORD=peuimporte
 
 # DB_MGMT_USER_NAME=lauriane
 # DB_MGMT_USER_PWD=lauriane
@@ -110,122 +110,37 @@ MARIADB_MDP_ROOT_PASSWORD=peuimporte
 
 # Avec cet utilisateur, on va créer la BDD $NOM_BDD_APPLI, et
 # créer l'utilisateur $DB_APP_USER_NAME
-MARIADB_DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME
-MARIADB_DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD
+# MARIADB_DB_MGMT_USER_NAME=$DB_MGMT_USER_NAME
+# MARIADB_DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD
 
 
-MARIADB_DB_APP_USER_NAME=$DB_APP_USER_NAME
-MARIADB_DB_APP_USER_PWD=$DB_APP_USER_PWD
+# MARIADB_DB_APP_USER_NAME=$DB_APP_USER_NAME
+# MARIADB_DB_APP_USER_PWD=$DB_APP_USER_PWD
 
 # 		¤ 
-VERSION_MARIADB=10.1
-CONTEXTE_DU_BUILD_DOCKER=$MAISON/lauriane
-export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v1
-NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
-NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
-REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
-rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
-mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+# VERSION_MARIADB=10.1
+# CONTEXTE_DU_BUILD_DOCKER=$MAISON/lauriane
+# export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v1
+# NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
+# NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
+# REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
+# rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+# mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
 # >>>>>>>>>>>> [$CONF_MARIADB_A_APPLIQUER] >>> DOIT EXISTER
 # CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
-CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
+# CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
 
 ############################################################
 ############################################################
 #					déclarations fonctions				   #
 ############################################################
 ############################################################
-# ----------------------------------------------------------
-# ces fichiers générés sont des dépendaces du
-# build de l'image mariadb.
-generer_fichiers () {
-	# > script sql pour créer la bdd
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sql
-	echo "CREATE DATABASE $NOM_BDD_APPLI; " >> $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sql
-	# > script shell pour créer la bdd
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-bdd-application.sql" > $CONTEXTE_DU_BUILD_DOCKER/creer-bdd-application.sh
-	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-	# ============= >>> MAIS EN FAIT IL FAUT FAIRE DE LA MACHINE A ETATS SUR VERSION DOCKER COMPOSE FILE <<< ======================================
-	# docker cp ./creer-bdd-application.sql $NOM_CONTENEUR_SGBDR:. 
-	# docker cp ./creer-bdd-application.sh $NOM_CONTENEUR_SGBDR:. 
-	# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-application.sh
-	# ou alors:
-	# docker exec -it $NOM_CONTENEUR_SGBDR /bin/bash < ./creer-bdd-application.sh
-
-
-	# > scripts sql/sh pour créer l'utilisateur applicatif
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
-	echo "use mysql; " >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
-	# echo "select @mdp:= PASSWORD('$MARIADB_DB_APP_USER_PWD');" >> $CONTEXTE_DU_BUILD_DOCKER./creer-utilisateur-applicatif.sql
-	echo "CREATE USER '$MARIADB_DB_APP_USER_NAME'@'%' IDENTIFIED BY '$MARIADB_DB_APP_USER_PWD';" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
-	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_APP_USER_NAME'@'%' WITH GRANT OPTION;" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sql
-	
-	
-		# > script shell pour créer l'utilisateur applicatif
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./creer-utilisateur-applicatif.sql" >> $CONTEXTE_DU_BUILD_DOCKER/creer-utilisateur-applicatif.sh
-	
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
-	echo "use mysql; " >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
-	# plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer. donc idem pour $MARIADB_DB_MGMT_USER_NAME
-	echo "-- # Plus facile d'appliquer les  mêmes droits aux deux utilisateurs pour commencer." >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
-	echo "-- # Donc idem pour $MARIADB_DB_MGMT_USER_NAME" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
-	echo "GRANT ALL PRIVILEGES ON $NOM_BDD_APPLI.* TO '$MARIADB_DB_MGMT_USER_NAME'@'%' WITH GRANT OPTION;" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sql
-
-	# > script shell pour configurer l'utilisateur utilisé par le dveloppeur pour gérer la BDD applicative.
-	rm -f $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
-	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./configurer-utilisateur-mgmt.sql" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
-}
-
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# > construction du conteneur SERVEUR JEE  <
-# >    -------------------------------     <
-# >    ce conteneur est une dépendance     <
-# >    -------------------------------     <
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:8.0
-# docker run -it --name $NOM_CONTENEUR_TOMCAT --rm -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
-# docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 tomcat:$VERSION_TOMCAT
-docker run --name $NOM_CONTENEUR_TOMCAT -p $NUMERO_PORT_SRV_JEE:8080 -d tomcat:$VERSION_TOMCAT
-# http://adressIP:8888/
-
-# clear
-# echo POINT DEBUG
-# echo CONTENEUR TOMCAT CREE CONF DS CONTENEUR
-# echo "   sudo docker exec -it ccc /bin/bash"
-# read
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-# >    construction du conteneur SGBDR     <
-# >    -------------------------------     <
-# >    ce conteneur est une dépendance     <
-# >    -------------------------------     <
-# >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
-#
 
 
 
-# export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v3
-cd $CONTEXTE_DU_BUILD_DOCKER
-clear
-pwd
-generer_fichiers
-sudo docker build --tag $NOM_IMAGE_DOCKER_SGBDR -f ./mariadb.dockerfile $CONTEXTE_DU_BUILD_DOCKER
-cd $MAISON
 
 
 
-clear
-# > créer le conteneur avec usr, et root_user
-# La "--collation-server" permet de définir l'ordre lexicographique des mots formés à partir de l'alphabet définit par le jeu de caractères utilisé
-# La "--character-set-server" permet de définir l'encodage et le jeu de caractères utilisé
-# sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -v $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB:/etc/mysql -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-sudo docker run --name $NOM_CONTENEUR_MARIADB -e MYSQL_ROOT_PASSWORD=$MARIADB_MDP_ROOT_PASSWORD -e MYSQL_USER=$MARIADB_DB_MGMT_USER_NAME -e MYSQL_PASSWORD=$MARIADB_DB_MGMT_USER_PWD -p $NO_PORT_EXTERIEUR_MARIADB:3306 -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-# sudo docker run --name sonnom -e MYSQL_ROOT_PASSWORD=peuimporte -e MYSQL_USER=jibl -e MYSQL_PASSWORD=jibl -p $3309:3306 -d $NOM_IMAGE_DOCKER_SGBDR  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-#
 #
 # clear
 # echo POINT DEBUG 1
@@ -321,8 +236,6 @@ echo " -------------------------------------------------------------------------
 sleep 20s
 # sleep 15s => testé, ce n'est pas assez.
 sudo ./configurer-user-et-bdd-sql.sh
-echo " >>>>>>>>>>>>>>>>>>>>>>>>>>>>   seconde tentative [ configurer-user-et-bdd-sql.sh ] "
-sudo ./configurer-user-et-bdd-sql.sh
 # sleep 5s
 # sudo ./configurer-user-et-bdd-sql.sh
 echo " --------------------------------------------------------  "
@@ -358,7 +271,7 @@ echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /usr/bin/docker cp*, /
 echo "" >> $MAISON/lauriane/sudoers.ajout
 # echo "" >> $MAISON/lauriane/sudoers.ajout
 clear
-echo " --- Justez avaant de toucher /etc/sudoers:  "
+echo " --- Juste avant de toucher /etc/sudoers:  "
 echo "			" 
 echo "			cat $MAISON/lauriane/sudoers.ajout" 
 echo "			" 

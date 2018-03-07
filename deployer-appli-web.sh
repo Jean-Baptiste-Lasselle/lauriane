@@ -169,9 +169,11 @@ esac
 
 # construction d'un conteneur tomcat 
 clear
-echo "Quand tu appuieras sur Entrée, attends quelque secondes, et ton serveur tomcat sera accessible à:"
+echo "Quand vous presserez Entrée, attendez quelque secondes, et votre serveur tomcat sera accessible à:"
 echo "		http://adressIP-detaVM:8888/"
-echo "Quand tu veux."
+echo " "
+echo " "
+# echo "Quand tu veux."
 read
 # docker run -it --name ciblededeploiement --rm -p 8888:8080 tomcat:8.0
 # http://adressIP:8888/

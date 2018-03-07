@@ -324,7 +324,8 @@ docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modul
 NOM_CONTENEUR_VYOS=vyos2
 export NOM_CONTENEUR_VYOS
 # sudo docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
-docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+# docker run -d --name $NOM_CONTENEUR_VYOS --privileged -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
+docker run -d --name $NOM_CONTENEUR_VYOS --privileged --net=host -v /lib/modules:/lib/modules $NOM_NOUVELLE_IMAGE_DOCKER_JIBL /sbin/init
 #l'affichage que j'obtiens en retour:
 # # [jibl@pc-125 jibl-vyos]$ sudo docker ps -a
 # # CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
