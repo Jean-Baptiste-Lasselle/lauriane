@@ -16,7 +16,7 @@ PROVISIONNING_HOME=$HOME/provisionning-scala
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # à demander interactivement à l'utilisateur: "DAns quel répertoire souhaitez-vous que l'application scala soit déployée? C'est dans ce répertoire que la commande st sera lancée. [Par défaut, le répertoire utilsié sera le répertoire ..]:"
-export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$PROVISIONNING_HOME/software-factory-website
+export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
 
 # Pas tant qu'on a une dépendance au script de lauraine, lulu... ======================>>>> dépendance
 # export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/home/lauriane/tulavuvlulu
