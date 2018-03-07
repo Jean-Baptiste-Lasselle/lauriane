@@ -5,7 +5,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour utiliser `recette-provisionning-scala-env.sh`
 
-## exécutez dans votre cible de déploiment 
+## Exécutez dans votre cible de déploiment 
 
 * Un update de votre système:`sudo apt-get update -y`
 
@@ -19,7 +19,7 @@ Clonez le repo de référence de la recette, et exécutez-là:
 * `sudo chmod +x lauriane/recette-provisionning-scala-env.sh`
 * `sudo lauriane/recette-provisionning-scala-env.sh`
 
-## `recette-provisionning-scala-env.sh`, variables d'environnement:
+## Variables d'environnement:
 
 Cette recette comporte deux varibles d'environnements dont la valeur est utilisées pour configurer le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
