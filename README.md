@@ -19,9 +19,17 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 Clonez le repo de référence de la recette, et exécutez-là:
 
-* `git clone https://github.com/Jean-Baptiste-Lasselle/lauriane`
-* `sudo chmod +x lauriane/recette-provisionning-scala-env.sh`
-* `sudo lauriane/recette-provisionning-scala-env.sh`
+[comment]: <> `git clone https://github.com/Jean-Baptiste-Lasselle/lauriane`
+[comment]: <> `sudo chmod +x lauriane/recette-provisionning-scala-env.sh`
+[comment]: <> `sudo lauriane/recette-provisionning-scala-env.sh`
+
+* `export PROVISIONNING_HOME=$HOME/provisionning-scala`
+* `mkdir -p $PROVISIONNING_HOME/recettes-operations`
+* `git clone https://github.com/Jean-Baptiste-Lasselle/lauriane $PROVISIONNING_HOME/recettes-operations`
+* `sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-scala.sh`
+* `cd $PROVISIONNING_HOME/recettes-operations`
+* `./monter-cible-deploiement-scala.sh`
+
 
 ## Variables d'environnement
 
