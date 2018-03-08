@@ -45,66 +45,7 @@
 ############################################################################################################################################################
 ############################################################################################################################################################
 #
-############################################################################################################################################################
-# ################################   				Gestion des sudoers pour le deployeur-maven-plugin   					################################
-############################################################################################################################################################
-# TODO =>>> mettre à jour la configuration /etc/sudoers
-rm -f $PROVISIONNING_HOME/sudoers.ajout
-# export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
-# export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
 
-
-echo "" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /bin/rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "" >> $PROVISIONNING_HOME/sudoers.ajout
-# echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.ajout
-clear
-echo " --- Justez avaant de toucher /etc/sudoers:  "
-echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.ajout" 
-echo "			" 
-echo " ---------------------------------------------------------------------------------------------------- "
-cat $PROVISIONNING_HOME/sudoers.ajout
-echo " ---------------------------------------------------------------------------------------------------- "
-# echo " ---------	Pressez une touche pour ajouter en fin de /etc/sudoers 							------- "
-# echo " ---------------------------------------------------------------------------------------------------- "
-# read
-# cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
-# echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
-
-# MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
-# MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
-
-# celui-ci marche, c'est testé:
-cat $PROVISIONNING_HOME/sudoers.ajout | sudo EDITOR='tee -a' visudo
-
-# clear
-echo " ---------------------------------------------------------------------------------------------------- "
-echo " --- De plus, l'utilisateur linux que votre plugin  "
-echo " --- doit utiliser est: "
-echo " --- 				 "
-echo " --- 				nom d'utilisateur linux: $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME"
-echo " --- 				 "
-echo " --- 				mot de passe: $MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD"
-echo " --- 				 "
-echo " --- "
-echo " --- "
-echo " contenu du fichier         /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME       :"
-cat /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
-echo " --- "
-echo " --- "
-echo " --- "
-echo " ---------------------------------------------------------------------------------------------------- "
-echo " ----------  Pressez une touche pour lancer le démarrage intiial de l'applciation Scala. "
-echo " ---------------------------------------------------------------------------------------------------- "
-read
-
-
-
-git clone https://github.com/laurianemollier/ubuntu-script/ $PROVISIONNING_HOME/recettes-cible-deploiement
-sudo chmod +x $PROVISIONNING_HOME/recettes-cible-deploiement/install-web-site.sh
-sudo $PROVISIONNING_HOME/recettes-cible-deploiement/install-web-site.sh
 
 
 # DOCKER POSTGRESQL:  https://amattn.com/p/tutorial_postgresql_usage_examples_with_docker.html
@@ -114,7 +55,7 @@ sudo $PROVISIONNING_HOME/recettes-cible-deploiement/install-web-site.sh
 
 # ---------------------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------
-# --------------------                	report code lauriane isntall SBT		                 ----------------------
+# --------------------                	report code lauriane install SBT		                 ----------------------
 # ---------------------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -184,7 +125,7 @@ fi
 #    echo "Git is already installed"
 #fi
 
-git clone https://github.com/laurianemollier/software-factory-website.git
+git clone https://github.com/laurianemollier/software-factory-website.git $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
 
 sudo apt-get update
@@ -201,8 +142,8 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD '123123';"
 sudo -i -u postgres createdb software-factory --host=localhost --port=5432 --username=postgres
 
 
-PATH_SAMPLE="software-factory-website"
-mkdir "$PATH_SAMPLE"
+# PATH_SAMPLE="software-factory-website"
+# mkdir "$PATH_SAMPLE"
 
 clear
 # echo "Compile and run the website..."
@@ -211,6 +152,6 @@ clear
     # sbt run
 # )
 echo "Compile and run the website on dev mode..."
-(cd "$PATH_SAMPLE" ;
+(cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
     sbt ~compile ~run
 )
