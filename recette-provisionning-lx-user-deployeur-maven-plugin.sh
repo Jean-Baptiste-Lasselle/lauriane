@@ -88,7 +88,7 @@ echo " --- 				 "
 echo " --- "
 echo " --- "
 echo " contenu du fichier         /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME       :"
-cat /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+sudo cat /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
 echo " --- "
 echo " --- "
 echo " --- "
