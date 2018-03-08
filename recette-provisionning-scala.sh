@@ -125,25 +125,25 @@ fi
 #    echo "Git is already installed"
 #fi
 
-git clone https://github.com/laurianemollier/software-factory-website.git $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
 
-sudo apt-get update
+# sudo apt-get update
 # heroku
 # wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 #postgresql
-sudo apt-get update
+# sudo apt-get update -y
 sudo apt-get install -y postgresql postgresql-contrib
 sudo -i -u postgres createdb software_factory
-sudo apt-get update
+sudo apt-get update -y
 
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD '123123';"
 sudo -i -u postgres createdb software-factory --host=localhost --port=5432 --username=postgres
 
-
-# PATH_SAMPLE="software-factory-website"
-# mkdir "$PATH_SAMPLE"
+# export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
+# on récupère le code source de l'application
+# git clone https://github.com/laurianemollier/software-factory-website.git $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
+git clone $URI_REPO_GIT_CODE_SOURCE_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
 clear
 # echo "Compile and run the website..."

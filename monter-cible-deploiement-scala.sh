@@ -11,7 +11,7 @@
 ############################################################################################################################################################
 # 
 # 
-
+export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
 export PROVISIONNING_HOME=$HOME/provisionning-scala
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
@@ -39,7 +39,7 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 ############################################################################################################################################################
 # 
 # On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
-sudo chmod +x ./recette-provisionning-scala.sh
 sudo chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
+sudo chmod +x ./recette-provisionning-scala.sh
 # si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
 ./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-scala.sh
