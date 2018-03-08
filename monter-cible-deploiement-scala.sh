@@ -21,12 +21,7 @@ export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
 # Pas tant qu'on a une dépendance au script de lauraine, lulu... ======================>>>> dépendance
 # export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/home/lauriane/tulavuvlulu
 
-
 # création des répertoires de travail pour le provisionning
-rm -rf $PROVISIONNING_HOME
-mkdir -p $PROVISIONNING_HOME
-# rm -rf $PROVISIONNING_HOME/recettes-cible-deploiement
-mkdir -p $PROVISIONNING_HOME/recettes-cible-deploiement
 rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
