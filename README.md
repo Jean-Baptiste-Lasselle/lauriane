@@ -31,6 +31,15 @@ Clonez le repo de référence de la recette, et exécutez-là:
 * `cd $PROVISIONNING_HOME/recettes-operations`
 * `./monter-cible-deploiement-scala.sh`
 
+```
+export PROVISIONNING_HOME=$HOME/provisionning-scala
+rm -rf $PROVISIONNING_HOME
+mkdir -p $PROVISIONNING_HOME/recettes-operations
+git clone https://github.com/Jean-Baptiste-Lasselle/lauriane $PROVISIONNING_HOME/recettes-operations
+sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-scala.sh
+cd $PROVISIONNING_HOME/recettes-operations
+./monter-cible-deploiement-scala.sh
+```
 
 ## Variables d'environnement
 
