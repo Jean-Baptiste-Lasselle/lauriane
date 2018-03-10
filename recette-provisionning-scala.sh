@@ -137,13 +137,25 @@ fi
 # wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 #postgresql
+
+export HOSTNAME_BDD=localhost
+export NO_PORT_BDD=localhost
+export NOM_BDD=software-factory
+export USER_SQL_PROVISION_SCALA=postgres
+export MDP_USER_SQL_PROVISION_SCALA=123123
 # sudo apt-get update -y
 sudo apt-get install -y postgresql postgresql-contrib
 sudo -i -u postgres createdb software_factory
 sudo apt-get update -y
 
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD '123123';"
-sudo -i -u postgres createdb software-factory --host=localhost --port=5432 --username=postgres
+# J'ajoute le mot de passe de l'utilisateur postgres dans le fichier local
+# (ma sécurité repose donc sur la sécurité de la cible de déploiement)
+
+export PGPASSFILE=./provision-cala.pgpass
+echo "$HOSTNAME_BDD:$NO_PORT_BDD:$NOM_BDD:$USER_SQL_PROVISION_SCALA:$MDP_USER_SQL_PROVISION_SCALA" >> $PGPASSFILE
+
+sudo -i -u postgres createdb $NOM_BDD --host=$HOSTNAME_BDD --port=$NO_PORT_BDD --username=$USER_SQL_PROVISION_SCALA --no-password
 
 # export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
 # on récupère le code source de l'application
