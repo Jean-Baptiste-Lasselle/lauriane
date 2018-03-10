@@ -152,7 +152,8 @@ clear
     # sbt run
 # )
 echo " JIBL: version de Java "
-java -version
+java -version >> java.version
+cat java.version
 echo " JIBL: juste pour vérifier AVANT [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
 pwd
 cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
@@ -163,7 +164,7 @@ echo " JIBL: juste pour vérifier AVANT [sbt ~compile ~run].... REPERTOIRE COURA
 pwd
 sbt ~compile ~run
 echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
-	
+pwd
 # (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
     # echo " JIBL: juste pour vérifier provision-scala...."
     # sbt ~compile ~run
