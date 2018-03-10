@@ -167,10 +167,11 @@ pwd
 echo "Compile and run the website on dev mode..."
 echo " JIBL: juste pour vérifier AVANT [sbt ~compile ~run].... REPERTOIRE COURANT: "
 pwd
-sbt ~compile ~run
-echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
-pwd
+sbt ~run
+# sbt ~compile ~run
 # (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
     # echo " JIBL: juste pour vérifier provision-scala...."
     # sbt ~compile ~run
 # )
+echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
+pwd
