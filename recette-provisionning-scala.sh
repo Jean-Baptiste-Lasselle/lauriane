@@ -103,6 +103,8 @@ fi
 # Install sbt
 
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' sbt |grep "install ok installed")
+
+echo "JIBL VERIFIE valeur PKG_OK=$PKG_OK"
 if [ "" == "$PKG_OK" ]; then
     echo "Install sbt..."
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
