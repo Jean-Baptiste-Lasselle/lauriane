@@ -23,8 +23,8 @@ export PROVISIONNING_HOME=$HOME/provisionning-scala
 
 
 # création des répertoires de travail pour le provisionning => doivent exister...
-# rm -rf $PROVISIONNING_HOME
-# mkdir -p $PROVISIONNING_HOME
+rm -rf $PROVISIONNING_HOME
+mkdir -p $PROVISIONNING_HOME
 # rm -rf $PROVISIONNING_HOME/recettes-cible-deploiement
 # mkdir -p $PROVISIONNING_HOME/recettes-cible-deploiement
 
@@ -78,7 +78,7 @@ export VERSION_POSTGRESQL=9.5
 # 
 # 
 # 
-
+cd $PROVISIONNING_HOME
 rm -f $PROVISIONNING_HOME/sudoers.$0.ajout
 # export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
 # export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
