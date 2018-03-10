@@ -110,7 +110,10 @@ if [ "" == "$PKG_OK" ]; then
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
     sudo apt-get update -y
-    sudo apt-get install -y sbt
+    # sudo apt-get install -y sbt
+	# j'ai trouvé sur le web: apparrement il n'y a pas de repo officiel SBT/ Ubuntu qui soit sécurisé correctement avec clé GPG
+	# donc autant faire une installation en chintant l'authentification des packages.
+    sudo apt-get install -y --allow-unauthenticated sbt
     clear
 else 
     echo "Sbt is already installed"
