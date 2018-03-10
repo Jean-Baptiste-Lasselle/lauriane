@@ -17,8 +17,10 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 ## Exécutez ensuite `recette-provisionning-scala-env.sh`
 
-Clonez le repo de référence de la recette, et exécutez-là:
+### Première possibilité: Clonez le repo de référence de la recette, et exécutez-là
 
+* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés.
+* puis exécutez les commandes suivantes:
 ```
 # l'URI du repo git du code source de l'application scala qui sera déployée initialement
 export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo
@@ -30,6 +32,12 @@ sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-s
 cd $PROVISIONNING_HOME/recettes-operations
 ./monter-cible-deploiement-scala.sh $URI_REPO_GIT_CODE_SOURCE_APP_SCALA
 ```
+### Deuxième possibilité: Clonez le repo de référence de la recette, et exécutez-là
+
+* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés.
+* Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
+* utilisez le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin):
+`mvn clean deployeur:provision-scala`
 
 ## Variables d'environnement
 

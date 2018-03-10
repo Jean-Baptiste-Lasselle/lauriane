@@ -30,6 +30,7 @@ fi
 
 
 export PROVISIONNING_HOME=$HOME/provisionning-scala
+# export WHERE_I_WAS_CLONED=$PROVISIONNING_HOME/recettes-operations
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # à demander interactivement à l'utilisateur: "DAns quel répertoire souhaitez-vous que l'application scala soit déployée? C'est dans ce répertoire que la commande st sera lancée. [Par défaut, le répertoire utilsié sera le répertoire ..]:"
@@ -57,7 +58,7 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 # 
 # On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
 cd $PROVISIONNING_HOME
-sudo chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
-sudo chmod +x ./recette-provisionning-scala.sh
+chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
+chmod +x ./recette-provisionning-scala.sh
 # si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
 ./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-scala.sh

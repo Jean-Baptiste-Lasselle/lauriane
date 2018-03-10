@@ -12,7 +12,7 @@
 # 
 # 
 
-# export PROVISIONNING_HOME=$HOME/provisionning-scala
+export PROVISIONNING_HOME=$HOME/provisionning-scala
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 # export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # à demander interactivement à l'utilisateur: "DAns quel répertoire souhaitez-vous que l'application scala soit déployée? C'est dans ce répertoire que la commande st sera lancée. [Par défaut, le répertoire utilsié sera le répertoire ..]:"
@@ -30,7 +30,7 @@
 
 # à l'opérateur: Mises à jour système de la LTS, avant début des opérations - nepeut être versionné synchrone avec le versionning d'une recette de déploiement
 
-
+export VERSION_POSTGRESQL=9.5
 
 ############################################################################################################################################################
 ############################################################################################################################################################
@@ -44,55 +44,109 @@
 #
 ############################################################################################################################################################
 # ################################   				Gestion des sudoers pour le deployeur-maven-plugin   					################################
+# ################################   			  pour le goal "provision-scala" du deployeur-maven-plugin   				################################
 ############################################################################################################################################################
-# TODO =>>> mettre à jour la configuration /etc/sudoers
-rm -f $PROVISIONNING_HOME/sudoers.ajout
+# TODO =>>> Pour l'utilisateur linux exécutant la provision scala, une configuration sudoers est
+#           nécessaire, parce que certaines instructions de la recette DOIVENT être
+#           exécutées avec sudo.
+
+# - Liste des commandes qui doivent être exécutées avec sudo dans la recette
+# 			SCALA
+# 			sudo apt-get update -y
+# 			sudo apt-get -y install default-jre
+# 			sudo apt-get -y install default-jdk
+# 			sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+# 			sudo apt-get install -y sbt
+# 			POSTGRESQL
+# 			sudo apt-get install -y postgresql postgresql-contrib
+# 			sudo -i -u postgres createdb software_factory
+# 			sudo apt-get update -y
+# 			sudo -u postgres psql -c "ALTER USER postgres PASSWORD '123123';"
+# 			sudo -i -u postgres createdb software-factory --host=localhost --port=5432 --username=postgres
+# 
+# - Liste config sudoers inférée
+# 		+ /usr/sbin/visudo
+# 		+ /bin/cat /etc/sudoers
+# 		+ /usr/bin/apt-get update -y
+# 		+ /usr/bin/apt-get install -y default-jre
+# 		+ /usr/bin/apt-get install -y default-jdk
+# 		+ /usr/bin/apt-get adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+# 		+ /usr/bin/apt-get install -y sbt
+# 		+ /usr/bin/apt-get install -y postgresql postgresql-contrib
+# 		+ /usr/lib/postgresql/9.5/bin/postgres createdb *
+# 		+ /usr/lib/postgresql/9.5/bin/psql *
+# 
+# 
+# 
+
+rm -f $PROVISIONNING_HOME/sudoers.$0.ajout
 # export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
 # export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
 
 
-echo "" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: /bin/rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" >> $PROVISIONNING_HOME/sudoers.ajout
-echo "" >> $PROVISIONNING_HOME/sudoers.ajout
-# echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.ajout
+echo "" >> $PROVISIONNING_HOME/sudoers.$0.ajout
+echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.$0.ajout
+
+export CONFIG_SUDOERS_A_APPLIQUER=""
+# la recette doit pouvoir configurer des sudoers
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/sbin/visudo *"
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /bin/cat /etc/sudoers"
+# la recette doit pouvoir mettre à jour le système
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get update -y"
+# la recette doit pouvoir installer le JAVA JDK
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get install -y default-jre"
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get install -y default-jdk"
+# la recette doit pouvoir configurer ce repository ubuntu pour apt-get:
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get adv --keyserver hkp://keyserver.ubuntu.com:80 --recv *"
+# la recette doit pouvoir installer SBT
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get install -y sbt"
+# la recette doit pouvoir installer PostGreSQL
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get install -y postgresql postgresql-contrib"
+# la recette doit pouvoir crééer la BDD de l'application Scala, quelque soit son nom
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/postgres createdb *"
+# la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
+
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.$0.ajout
+echo "" >> $PROVISIONNING_HOME/sudoers.$0.ajout
+# echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.$0.ajout
 clear
 echo " --- Justez avaant de toucher /etc/sudoers:  "
 echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.ajout" 
+echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.$0.ajout" 
 echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
-cat $PROVISIONNING_HOME/sudoers.ajout
+cat $PROVISIONNING_HOME/sudoers.$0.ajout
 echo " ---------------------------------------------------------------------------------------------------- "
 # echo " ---------	Pressez une touche pour ajouter en fin de /etc/sudoers 							------- "
 # echo " ---------------------------------------------------------------------------------------------------- "
 # read
-# cat $MAISON/lauriane/sudoers.ajout >> /etc/sudoers
+# cat $MAISON/lauriane/sudoers.$0.ajout >> /etc/sudoers
 # echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
 
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
 
 # celui-ci marche, c'est testé:
-cat $PROVISIONNING_HOME/sudoers.ajout | sudo EDITOR='tee -a' visudo
+cat $PROVISIONNING_HOME/sudoers.$0.ajout | sudo EDITOR='tee -a' visudo
 
 # clear
-echo " ---------------------------------------------------------------------------------------------------- "
-echo " --- De plus, l'utilisateur linux que le [deployeur-maven-plugin]  "
-echo " --- doit utiliser est: "
-echo " --- 				 "
-echo " --- 				nom d'utilisateur linux: $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME"
-echo " --- 				 "
-echo " --- 				mot de passe: $MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD"
-echo " --- 				 "
-echo " --- "
-echo " --- "
-echo " contenu du fichier         /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME       :"
-sudo cat /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
-echo " --- "
-echo " --- "
-echo " --- "
-echo " ---------------------------------------------------------------------------------------------------- "
-echo " ----------  Pressez une touche pour lancer le démarrage intiial de l'applciation Scala. "
-echo " ---------------------------------------------------------------------------------------------------- "
+# echo " ---------------------------------------------------------------------------------------------------- "
+# echo " --- De plus, l'utilisateur linux que le [deployeur-maven-plugin]  "
+# echo " --- doit utiliser est: "
+# echo " --- 				 "
+# echo " --- 				nom d'utilisateur linux: $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME"
+# echo " --- 				 "
+# echo " --- 				mot de passe: $MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD"
+# echo " --- 				 "
+# echo " --- "
+# echo " --- "
+# echo " contenu du fichier         /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME       :"
+# sudo cat /etc/sudoers|grep $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+# echo " --- "
+# echo " --- "
+# echo " --- "
+# echo " ---------------------------------------------------------------------------------------------------- "
+# echo " ----------  Pressez une touche pour lancer le démarrage intiial de l'applciation Scala. "
+# echo " ---------------------------------------------------------------------------------------------------- "
 # read

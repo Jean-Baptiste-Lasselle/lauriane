@@ -65,9 +65,9 @@ echo "That the installation begins!!"
 
 # Install Java 
 
-sudo apt-get update
-sudo apt-get -y install default-jre
-sudo apt-get -y install default-jdk
+sudo apt-get update -y
+sudo apt-get install -y default-jre
+sudo apt-get install -y default-jdk
 
 if type -p java; then
     echo Found java executable in PATH
@@ -77,9 +77,9 @@ elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
     _java="$JAVA_HOME/bin/java"
 else
     echo "Install Java..."
-    sudo apt-get update
-    sudo apt-get -y install default-jre
-    sudo apt-get -y install default-jdk
+    sudo apt-get update -y
+    sudo apt-get install -y default-jre
+    sudo apt-get install -y default-jdk
    
 fi
 
@@ -94,8 +94,8 @@ if [[ "$_java" ]]; then
 	echo "The actual version is $version"
         echo "Install Java..."
         sudo apt-get update
-        sudo apt-get -y install default-jre
-        sudo apt-get -y install default-jdk
+        sudo apt-get install -y default-jre
+        sudo apt-get install -y default-jdk
     fi
 fi
 
@@ -107,8 +107,8 @@ if [ "" == "$PKG_OK" ]; then
     echo "Install sbt..."
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
-    sudo apt-get -y update
-    sudo apt-get -y install sbt
+    sudo apt-get update -y
+    sudo apt-get install -y sbt
     clear
 else 
     echo "Sbt is already installed"
