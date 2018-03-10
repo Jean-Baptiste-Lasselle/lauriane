@@ -79,13 +79,13 @@ export VERSION_POSTGRESQL=9.5
 # 
 # 
 cd $PROVISIONNING_HOME
-rm -f $PROVISIONNING_HOME/sudoers.$0.ajout
+rm -f $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # export NOM_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=lauriane-deploiement
 # export URL_REPO_GIT_ASSISTANT_DEPLOYEUR_MVN_PLUGIN=https://github.com/Jean-Baptiste-Lasselle/lauriane-deploiement.git
 
 
-echo "" >> $PROVISIONNING_HOME/sudoers.$0.ajout
-echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.$0.ajout
+echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir configurer des sudoers
@@ -107,28 +107,28 @@ CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VE
 # la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
 
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.$0.ajout
-echo "" >> $PROVISIONNING_HOME/sudoers.$0.ajout
-# echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.$0.ajout
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+# echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout
 clear
 echo " --- Justez avaant de toucher /etc/sudoers:  "
 echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.$0.ajout" 
+echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout" 
 echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
-cat $PROVISIONNING_HOME/sudoers.$0.ajout
+cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 echo " ---------------------------------------------------------------------------------------------------- "
 # echo " ---------	Pressez une touche pour ajouter en fin de /etc/sudoers 							------- "
 # echo " ---------------------------------------------------------------------------------------------------- "
 # read
-# cat $MAISON/lauriane/sudoers.$0.ajout >> /etc/sudoers
+# cat $MAISON/lauriane/sudoers.provision-scala-fullstack.ajout >> /etc/sudoers
 # echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
 
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 # MVN_PLUGIN_OPERATEUR_LINUX_USER_PWD=lauriane
 
 # celui-ci marche, c'est testé:
-cat $PROVISIONNING_HOME/sudoers.$0.ajout | sudo EDITOR='tee -a' visudo
+cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout | sudo EDITOR='tee -a' visudo
 
 # clear
 # echo " ---------------------------------------------------------------------------------------------------- "
