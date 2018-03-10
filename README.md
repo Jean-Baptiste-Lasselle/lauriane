@@ -34,7 +34,14 @@ cd $PROVISIONNING_HOME/recettes-operations
 ```
 ### Deuxième possibilité: Clonez le repo de référence de la recette, et exécutez-là
 
-* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés.
+* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés, et 
+* Avec un utilisateur linux administrateur (qui peut exécuter avec `sudo`), exécutez:
+```
+curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
+chmod +x ./recette-provisionning-lx-user-provision-scala.sh
+./recette-provisionning-lx-user-provision-scala.sh
+```
+
 * Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * utilisez le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin):
 `mvn clean deployeur:provision-scala`
