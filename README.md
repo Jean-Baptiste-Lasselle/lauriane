@@ -20,13 +20,15 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 Clonez le repo de référence de la recette, et exécutez-là:
 
 ```
+# l'URI du repo git du code source de l'application scala qui sera déployée initialement
+export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo
 export PROVISIONNING_HOME=$HOME/provisionning-scala
 rm -rf $PROVISIONNING_HOME
 mkdir -p $PROVISIONNING_HOME/recettes-operations
 git clone https://github.com/Jean-Baptiste-Lasselle/lauriane $PROVISIONNING_HOME/recettes-operations
 sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-scala.sh
 cd $PROVISIONNING_HOME/recettes-operations
-./monter-cible-deploiement-scala.sh
+./monter-cible-deploiement-scala.sh $URI_REPO_GIT_CODE_SOURCE_APP_SCALA
 ```
 
 ## Variables d'environnement
