@@ -151,12 +151,18 @@ clear
     # sbt compile
     # sbt run
 # )
-
-cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT"
+echo " JIBL: version de Java "
+java -version
+echo " JIBL: juste pour vérifier AVANT [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
+pwd
+cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
+echo " JIBL: juste pour vérifier APRES [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
+pwd
 echo "Compile and run the website on dev mode..."
-echo " JIBL: juste pour vérifier AVANT provision-scala...."
+echo " JIBL: juste pour vérifier AVANT [sbt ~compile ~run].... REPERTOIRE COURANT: "
+pwd
 sbt ~compile ~run
-echo " JIBL: juste pour vérifier APRES provision-scala...."
+echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
 	
 # (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
     # echo " JIBL: juste pour vérifier provision-scala...."
