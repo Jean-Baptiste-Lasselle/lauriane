@@ -151,8 +151,14 @@ clear
     # sbt compile
     # sbt run
 # )
+
+cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT"
 echo "Compile and run the website on dev mode..."
-(cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
-    echo " JIBL: juste pour vérifier provision-scala...."
-    sbt ~compile ~run
-)
+echo " JIBL: juste pour vérifier AVANT provision-scala...."
+sbt ~compile ~run
+echo " JIBL: juste pour vérifier APRES provision-scala...."
+	
+# (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
+    # echo " JIBL: juste pour vérifier provision-scala...."
+    # sbt ~compile ~run
+# )
