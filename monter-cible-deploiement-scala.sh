@@ -56,6 +56,8 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 ############################################################################################################################################################
 ############################################################################################################################################################
 # 
+# Je ne sais pas encore pourquoi, mais je dois exécuter ceci: (sinon j'ai une erreur)
+sudo apt-get install -y dialog apt-utils
 # On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
 cd $PROVISIONNING_HOME
 chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
