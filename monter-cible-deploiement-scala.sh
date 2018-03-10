@@ -11,7 +11,24 @@
 ############################################################################################################################################################
 # 
 # 
-export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
+
+
+export URI_REPO_GIT_CODE_SOURCE_APP_SCALA
+ARGUMENT_PASSE_A_L_EXECUTION=$1
+if [ $# -eq 0 ]; then 
+    echo "No arguments supplied"
+    URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
+else 
+	# if [ $# -eq 0 ]; then 
+		# echo "No arguments supplied"
+		# URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
+	# else 
+		# URI_REPO_GIT_CODE_SOURCE_APP_SCALA=$ARGUMENT_PASSE_A_L_EXECUTION
+	# fi
+    URI_REPO_GIT_CODE_SOURCE_APP_SCALA=$ARGUMENT_PASSE_A_L_EXECUTION
+fi
+
+
 export PROVISIONNING_HOME=$HOME/provisionning-scala
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
@@ -39,6 +56,7 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 ############################################################################################################################################################
 # 
 # On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
+cd $PROVISIONNING_HOME
 sudo chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
 sudo chmod +x ./recette-provisionning-scala.sh
 # si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
