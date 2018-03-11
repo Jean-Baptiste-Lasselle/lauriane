@@ -82,9 +82,11 @@ De plus, le goal "deploie-app-scala" du [deployeur-maven-plugin](https://github.
 la provision de l'état initial de la cible de déploiement, en automatisant les opérations décrites dans
 le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
 
-* Mettez votre cible de déploiement dans son état de livraison, comme décrit dans le
+Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous devrez donc:
+
+* Mettre votre cible de déploiement dans son état de livraison, comme décrit dans le
 paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)
-* Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
+* Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
 chmod +x ./recette-provisionning-lx-user-provision-scala.sh
