@@ -135,12 +135,15 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
   * l'URI du repository Git du code source de votre applciation Scala:
   
   `<url-repo-git-app-scala>https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com</url-repo-git-app-scala>`
+  
   * l'URI d'un autre repository Git, qui doit simplement exister (créez-en un). L'usage de ce repo doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin):
   
   `<url-repo-git-deploiements>https://github.com/Jean-Baptiste-Lasselle/deploiement-usine-logicielle.com</url-repo-git-deploiements>`
+  
   * l'adresse IP (ou le nom de domaine, le hostname) de votre cible de déploiement:
   
   `<ip-cible-srv-scala>192.168.1.22</ip-cible-srv-scala>`
+  
   * le nom de l'utilisateur linux que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utilisera pour opérer dans la cible de déploiement:
   
   `<ops-lx-user>genehackman</ops-lx-user>`
