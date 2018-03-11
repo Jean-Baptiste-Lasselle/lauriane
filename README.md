@@ -132,8 +132,10 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
-* * l'URI du repository Git du code source de votre applciation Scala: ``
-* * l'URI du repository Git du code source de votre applciation Scala: ``
+  * l'URI du repository Git du code source de votre applciation Scala: ``
+  * l'URI du repository Git du code source de votre applciation Scala: ``
+  * l'URI du repository Git du code source de votre applciation Scala: ``
+  * l'URI du repository Git du code source de votre applciation Scala: ``
 * => l'URI du repository Git du code source de votre applciation Scala: ``
 * => l'URI d'un autre repository Git, qui doit simplement exister (créez-en un). L'usage de ce repo doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin): ``
 * => l'adresse IP de votre cible de déploiement
