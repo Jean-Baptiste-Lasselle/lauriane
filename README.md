@@ -121,7 +121,8 @@ pour gérer votre cycle de développement d'une application scala.
 Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous devrez donc:
 
 * Mettre votre cible de déploiement dans son état de livraison, comme décrit dans le
-paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)
+paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala), avec 
+la [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin)).
 * Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
@@ -132,14 +133,13 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
-  * l'URI du repository Git du code source de votre applciation Scala:
+  * l'URI du repository Git du code source de votre application Scala:
   
     `<url-repo-git-app-scala>https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com</url-repo-git-app-scala>`
 	
-  * Un nom d'utilsiateur et un mot de passe  repository Git du code source de votre applciation Scala:
-  
-    `<url-repo-git-app-scala>https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com</url-repo-git-app-scala>`
-  
+  * Le nom d'un utilisateur ayant les droits nécessaires pour pousser sur le repository Git du code source de votre application Scala.
+    
+    `<ops-git-username>Jean-Baptiste-Lasselle</ops-git-username>`
     
   * l'URI d'un autre repository Git, qui doit simplement exister (créez-en un).
     Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) l'utilisera 
@@ -157,8 +157,7 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 	<ops-lx-user>genehackman</ops-lx-user>
     <ops-lx-pwd>geneh@ckmanssecretfeaturingintheinvaders</ops-lx-pwd>
 	```
-  
-* (Vous avez déjà mis votre cible de déploiement dans son état initial, que ce soit avec le [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin))
+	
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
