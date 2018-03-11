@@ -56,7 +56,7 @@ instructions suivantes:
 # utilisez l'utilisateur linux créé précédemment
 su $NOM_DU_FUTUR_UTILISATEUR_LINUX
 # l'URI du repo git du code source de l'application scala qui sera déployée initialement
-export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo/de/votre/application/scala
+export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo/code/soure/de/votre/application/scala
 # l'URI du repo git de la recette de provision de l'état initial de la cible de déploiement
 export URI_REPO_GIT_RECETTE_PROVISION_ETAT_INITIAL=https://github.com/Jean-Baptiste-Lasselle/lauriane
 
@@ -71,10 +71,18 @@ cd $PROVISIONNING_HOME/recettes-operations
 
 ### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
-le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) réalise
-automatiquement les opérations décrites dans le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
+Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
+application scala, en automatisant le cycle (goal "deploie-app-scala"):
+* éditer le code source
+* commit & push du code source modifié vers le référentiel de versionning (supporté: tout repo Git)
+* build de l'application scala
+* déploiement de l'application scala vers la cible de déploiement dans son état initial.
 
-* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés, et 
+De plus, le goal "deploie-app-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de réaliser
+la provision de l'état initial de la cible de déploiement, en automatisant les opérations décrites dans
+le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
+
+* Mettez votre cible de déploiement dans son état initial de livraison, comme décris dans le paragrahe ""
 * Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
