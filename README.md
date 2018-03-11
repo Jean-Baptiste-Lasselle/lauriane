@@ -115,7 +115,7 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 ## Commencez à développer
 
 
-Pour ce faire, vous pouvez utilsier l'outil de votre choix, et ce parapgraphe vous décris comment utiliser le  [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
+Ce parapgraphe décrit comment utiliser le  [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 pour gérer votre cycle de développement d'une application scala.
 
 Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous devrez donc:
@@ -128,12 +128,16 @@ curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master
 chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 ./recette-provisionning-lx-user-provision-scala.sh
 ```
+
+
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
-** l'URI du repository Git du code soruce de votre applciation Scala: ``
-** l'URI d'un autre repository Git, qui doit simplement exister (créez-en un), et dont l'usage doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin): ``
-** l'adresse IP de votre cible de déploiement
-** le nom de l'utilisateur linux que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utiolisera pour opérer dans la cible de déploiement.
+* * l'URI du repository Git du code source de votre applciation Scala: ``
+* * l'URI du repository Git du code source de votre applciation Scala: ``
+* => l'URI du repository Git du code source de votre applciation Scala: ``
+* => l'URI d'un autre repository Git, qui doit simplement exister (créez-en un). L'usage de ce repo doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin): ``
+* => l'adresse IP de votre cible de déploiement
+* => le nom de l'utilisateur linux que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utiolisera pour opérer dans la cible de déploiement.
 * (Vous avez déjà mis votre cible de déploiement dans son état initial, que ce soit avec le [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin))
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
