@@ -81,14 +81,7 @@ cd $PROVISIONNING_HOME/recettes-operations
 
 ### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
-Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
-application scala, en automatisant le cycle de développement (goal "deploie-app-scala"):
-* éditer le code source
-* commit & push du code source modifié vers le référentiel de versionning (supporté: tout repo Git)
-* build de l'application scala
-* déploiement de l'application scala vers la cible de déploiement dans son état initial.
-
-De plus, le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de réaliser
+Le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de réaliser
 la provision de l'état initial de la cible de déploiement, en automatisant les opérations décrites dans
 le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
 
@@ -114,6 +107,15 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 ## Commencez à développer
 
+Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
+application scala, en automatisant le cycle de développement avec son goal maven `deploie-app-scala`):
+* Vous éditez le code source de votre application, et le plugin réalise:
+ * le commit & push du code source modifié vers le référentiel de versionning (supporté: tout repo Git)
+ * le build de l'application scala
+ * le déploiement de l'application scala vers une cible de déploiement. La cible de déploiement doit être dans un état reproductible, appelé état initial.
+* Vous réalisez les tests que vous n'avez pas automatisés dans le build de l'application
+* Vous remettez votre cible de déploiement dans son état initial, 
+* et vous recommencez...
 
 Ce paragraphe décrit comment utiliser le  [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 pour gérer votre cycle de développement d'une application scala.
