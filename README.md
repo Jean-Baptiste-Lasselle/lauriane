@@ -13,7 +13,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 * Créez une VM VirtualBox
 * Installez une version d'Ubuntu de la famille 16.x LTS, dans cette VM
-* Au cours de la procédure d'installation d'Ubuntu, créez un utilisateur linux "Adminsitrateur" : il aura la possibilité d'exécuter des commandes avec `sudo`
+* Au cours de la procédure d'installation d'Ubuntu, créez un utilisateur linux adminsitrateur : il aura la possibilité d'exécuter des commandes avec `sudo`. Je noterai `$OPERATEUR_LINUX_LIVRAISON` le username linux de cet utilisateur, dans toute cette documentation.
 * Avec cet utilisateur linux administrateur, Exécutez ensuite:
 ```
 # Un update de votre système:
@@ -122,7 +122,7 @@ Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Las
 
 * Mettre votre cible de déploiement dans son état de livraison, comme décrit dans le
 paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)
-* Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
+* Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
 chmod +x ./recette-provisionning-lx-user-provision-scala.sh
