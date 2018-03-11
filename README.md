@@ -26,21 +26,20 @@ sudo apt-get install -y git
 
 ## Mettez votre cible de déploiement dans son état initial (provision Scala)
 
-
-
+À l'issue de ces opérations, votre cible de déploiement:
+* sera prête à recevoir le déploiement d'une application Scala. 
+* offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGreSQL.
 
 ### Première possibilité: Clonez le repo de référence de la recette, et exécutez-là
 
 Pour mettre votre cible de déploiement dans son état initial, vous allez réaliser
 des opérations dans votre cible de déploiement à l'aide d'un utilisateur linux.
-À l'issue de ces opérations, votre cible de déploiement:
-* sera prête à recevoir le déploiement d'une application Scala. 
-* offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGReSQL.
+PAr exemple, pour installer PostGreSQL.
 
 Etant donné les opérations à réaliser, cet utilisateur linux devra
 être administrateur: il doit pouvoir exécuter des commandes shell avec sudo.
-Vous pourriez créer un tel utilisateur avec les commandes suivantes:
 
+Vous pouvez créer un tel utilisateur avec les commandes suivantes:
 ```
 export NOM_DU_FUTUR_UTILISATEUR_LINUX=scala-provisioner
 # cette commande vous demandera une saisie interactive, exécutez-là séparément de la commande suivante.
@@ -52,7 +51,6 @@ usermod -aG sudo $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
 
 Avec l'utilisateur linux `$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`, exécutez une à une, les
 instructions suivantes:
-
 
 ```
 # utilisez l'utilisateur linux créé précédemment
@@ -71,9 +69,10 @@ cd $PROVISIONNING_HOME/recettes-operations
 ./monter-cible-deploiement-scala.sh $URI_REPO_GIT_CODE_SOURCE_APP_SCALA
 ```
 
-la recette de mise en état intial de la cible de déploiement:
-
 ### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
+
+le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) réalise
+automatiquement les opérations décrites dans le [paragraphe précédent](https://github.com/Jean-Baptiste-Lasselle/lauriane#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
 
 * Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés, et 
 * Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
