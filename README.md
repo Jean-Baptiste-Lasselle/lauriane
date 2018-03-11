@@ -72,7 +72,7 @@ cd $PROVISIONNING_HOME/recettes-operations
 ### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
 le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) réalise
-automatiquement les opérations décrites dans le [paragraphe précédent](https://github.com/Jean-Baptiste-Lasselle/lauriane#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
+automatiquement les opérations décrites dans le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
 
 * Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés, et 
 * Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
