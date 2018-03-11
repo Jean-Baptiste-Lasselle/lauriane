@@ -7,12 +7,30 @@ Ce repo est en cours de construction, pour constituer un support de formation en
 Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipelines un peu particuliers...
 
 
-# Pour utiliser `recette-provisionning-scala-env.sh`
+# Pour développer une application Scala
 
-## Exécutez dans votre cible de déploiment 
+## Mettez votre cible de déploiement dans son état initial
 
+Pour mettre votre cible de déploiement dans son état initial, vous allez réaliser
+des opérations dans votre cible de déploiement à l'aide d'un utilisateur linux.
+À l'issue de ces opérations, votre cible de déploiement:
+* sera prête à recevoir le déploiement d'une application Scala. 
+* offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGReSQL.
+
+Etant donné les opérations à réaliser, cet utilisateur linux devra
+être administrateur: il doit pouvoir exécuter des commandes shell avec sudo.
+Vous pourriez créer un tel utilisateur avec les commandes suivantes:
+
+```
+export NOM_DU_FUTUR_UTILISATEUR_LINUX=scala-provisioner
+adduser $NOM_DU_FUTUR_UTILISATEUR_LINUX
+usermod -aG sudo $NOM_DU_FUTUR_UTILISATEUR_LINUX
+
+```
+
+Avec cet utilsiateur linux 
 * Un update de votre système:`sudo apt-get update -y`
-
+* Une installation d'un serveur SSH :`sudo apt-get install -y openssh-server`
 * L'installation de git:`sudo apt-get install -y git`
 
 ## Exécutez ensuite `recette-provisionning-scala-env.sh`
