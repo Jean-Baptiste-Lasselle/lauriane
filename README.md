@@ -92,9 +92,15 @@ paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#m
 * Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
+chmod +x ./recette-provisionning-lx-user-provision-sql.sh
+./recette-provisionning-lx-user-provision-sql.sh
+```
+* Puis, toujours, avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
+```
 chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 ./recette-provisionning-lx-user-provision-scala.sh
 ```
+
 * Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Exécutez le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) (ce qui mettra votre cible de déploiement dans son état initial):
 `mvn clean deployeur:provision-scala`
