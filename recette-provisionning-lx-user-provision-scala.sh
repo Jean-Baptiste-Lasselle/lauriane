@@ -15,12 +15,6 @@
 export PROVISIONNING_HOME=$HOME/provisionning-scala
 # à demander interactivement à l'utilisateur: "Quel utilisateur linux souhaitez-vous que le deployeur-maven-plugin utilise?"
 export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
-# à demander interactivement à l'utilisateur: "DAns quel répertoire souhaitez-vous que l'application scala soit déployée? C'est dans ce répertoire que la commande st sera lancée. [Par défaut, le répertoire utilsié sera le répertoire ..]:"
-# export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
-
-# Pas tant qu'on a une dépendance au script de lauraine, lulu... ======================>>>> dépendance
-# export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/home/lauriane/tulavuvlulu
-
 
 # création des répertoires de travail pour le provisionning => doivent exister...
 rm -rf $PROVISIONNING_HOME
@@ -41,7 +35,11 @@ export VERSION_POSTGRESQL=9.5
 ############################################################################################################################################################
 ############################################################################################################################################################
 ############################################################################################################################################################
-#
+# 
+# 
+# TODO: Création de l'utilisateur linux $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+
+
 ############################################################################################################################################################
 # ################################   				Gestion des sudoers pour le deployeur-maven-plugin   					################################
 # ################################   			  pour le goal "provision-scala" du deployeur-maven-plugin   				################################
