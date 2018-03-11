@@ -23,7 +23,7 @@ Vous pourriez créer un tel utilisateur avec les commandes suivantes:
 
 ```
 export NOM_DU_FUTUR_UTILISATEUR_LINUX=scala-provisioner
-# cette commande vous demandera une saisie interactive, exécutez-là séparméent de la commande suivante.
+# cette commande vous demandera une saisie interactive, exécutez-là séparément de la commande suivante.
 adduser $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
 # puis lorsque vous avez terminé les saisies interactives exigées
 # par la commande précédente, exécutez:
