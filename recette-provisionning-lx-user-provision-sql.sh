@@ -57,9 +57,10 @@ echo "# Allow user [$USER_SQL_CREE_PAR_INSTALL_POSTGRE] to execute sql provision
 
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir crééer la BDD de l'application Scala, quelque soit son nom
-CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/usr/lib/postgresql/$VERSION_POSTGRESQL/bin/createdb *"
+CONFIG_SUDOERS_A_APPLIQUER="$CONFIG_SUDOERS_A_APPLIQUER/usr/lib/postgresql/$VERSION_POSTGRESQL/bin/createdb *"
 # la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
-CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
+CONFIG_SUDOERS_A_APPLIQUER="$CONFIG_SUDOERS_A_APPLIQUER, /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
+# echo $CONFIG_SUDOERS_A_APPLIQUER
 echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 # Log
@@ -67,7 +68,7 @@ echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 
 echo " --- Juste avant d'appliquer la configuration sudoers à [$USER_SQL_CREE_PAR_INSTALL_POSTGRE]  "
 echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-sql-fullstack.ajout" 
+echo "			cat $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout" 
 echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
 cat $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
