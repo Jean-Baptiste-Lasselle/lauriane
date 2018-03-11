@@ -82,7 +82,7 @@ De plus, le goal "deploie-app-scala" du [deployeur-maven-plugin](https://github.
 la provision de l'état initial de la cible de déploiement, en automatisant les opérations décrites dans
 le [paragraphe précédent](#premi%C3%A8re-possibilit%C3%A9-clonez-le-repo-de-r%C3%A9f%C3%A9rence-de-la-recette-et-ex%C3%A9cutez-l%C3%A0)
 
-* Mettez votre cible de déploiement dans son état de livraison, comme décris dans le
+* Mettez votre cible de déploiement dans son état de livraison, comme décrit dans le
 paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)
 * Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
 ```
