@@ -9,7 +9,27 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
-## Mettez votre cible de déploiement dans son état initial
+## Mettez votre cible de déploiement dans son état de livraison (avant la provision Scala)
+
+* Créez une VM VirtualBox
+* Installez une version d'Ubuntu de la famille 16.x LTS, dans cette VM
+* Au cours de la procédure d'installation d'Ubuntu, créez un utilisateur linux "Adminsitrateur" : il aura la possibilité d'exécuter des commandes avec `sudo`
+* Avec cet utilisateur linux administrateur, Exécutez ensuite:
+```
+# Un update de votre système:
+sudo apt-get update -y
+# Une installation d'un serveur SSH:
+sudo apt-get install -y openssh-server
+# L'installation de git:
+sudo apt-get install -y git
+```
+
+## Mettez votre cible de déploiement dans son état initial (provision Scala)
+
+
+
+
+### Première possibilité: Clonez le repo de référence de la recette, et exécutez-là
 
 Pour mettre votre cible de déploiement dans son état initial, vous allez réaliser
 des opérations dans votre cible de déploiement à l'aide d'un utilisateur linux.
@@ -30,30 +50,28 @@ adduser $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
 usermod -aG sudo $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
 ```
 
-Exécutez ensuite:
-* Un update de votre système:`sudo apt-get update -y`
-* Une installation d'un serveur SSH :`sudo apt-get install -y openssh-server`
-* L'installation de git:`sudo apt-get install -y git`
+Avec l'utilisateur linux `$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`, exécutez une à une, les
+instructions suivantes:
 
-Avec l'utilisateur linux `$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`, exécutez:
 
-## Exécutez ensuite `recette-provisionning-scala-env.sh`
-
-### Première possibilité: Clonez le repo de référence de la recette, et exécutez-là
-
-* Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés.
-* puis exécutez les commandes suivantes:
 ```
+# utilisez l'utilisateur linux créé précédemment
+su $NOM_DU_FUTUR_UTILISATEUR_LINUX
 # l'URI du repo git du code source de l'application scala qui sera déployée initialement
-export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo
+export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=http://nomdedomaineouip:noport/chemin/vers/repo/de/votre/application/scala
+# l'URI du repo git de la recette de provision de l'état initial de la cible de déploiement
+export URI_REPO_GIT_RECETTE_PROVISION_ETAT_INITIAL=https://github.com/Jean-Baptiste-Lasselle/lauriane
+
 export PROVISIONNING_HOME=$HOME/provisionning-scala
 rm -rf $PROVISIONNING_HOME
 mkdir -p $PROVISIONNING_HOME/recettes-operations
-git clone https://github.com/Jean-Baptiste-Lasselle/lauriane $PROVISIONNING_HOME/recettes-operations
+git clone $URI_REPO_GIT_RECETTE_PROVISION_ETAT_INITIAL $PROVISIONNING_HOME/recettes-operations
 sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-scala.sh
 cd $PROVISIONNING_HOME/recettes-operations
 ./monter-cible-deploiement-scala.sh $URI_REPO_GIT_CODE_SOURCE_APP_SCALA
 ```
+
+la recette de mise en état intial de la cible de déploiement:
 
 ### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
