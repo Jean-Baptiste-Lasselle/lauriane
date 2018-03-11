@@ -153,8 +153,10 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
   
   * le nom de l'utilisateur linux, et son mot de passe, que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utilisera pour opérer dans la cible de déploiement:
   
-    `<ops-lx-user>genehackman</ops-lx-user>`
-    `<ops-lx-pwd>geneh@ckmanssecretfeaturingintheinvaders</ops-lx-pwd>`
+    ```
+	<ops-lx-user>genehackman</ops-lx-user>
+    <ops-lx-pwd>geneh@ckmanssecretfeaturingintheinvaders</ops-lx-pwd>
+	```
   
 * (Vous avez déjà mis votre cible de déploiement dans son état initial, que ce soit avec le [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin))
 * Exécutez le goal "deploie-app-scala" :
@@ -163,9 +165,6 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Editez le code source de votre applicaton scala, et du code source des tests de votre application Scala,
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
-
-
-
 
 
 ## Variables d'environnement
