@@ -110,6 +110,37 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Editez le code source de votre applicaton scala
 * Exécutez le goal "deploie-app-scala" (ce qui automatisera le cycle de développement) :
+`mvn clean deployeur:deploie-app-scala`
+
+## Commencez à développer
+
+
+Pour ce faire, vous pouvez utilsier l'outil de votre choix, et ce parapgraphe vous décris comment utiliser le  [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
+pour gérer votre cycle de développement d'une application scala.
+
+Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous devrez donc:
+
+* Mettre votre cible de déploiement dans son état de livraison, comme décrit dans le
+paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)
+* Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
+```
+curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
+chmod +x ./recette-provisionning-lx-user-provision-scala.sh
+./recette-provisionning-lx-user-provision-scala.sh
+```
+* Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
+* (Vous avez déjà mis votre cible de déploiement dans son état initial, quece soit avec le [méthode manuelle](), ou [en utilisant le deployeur-maven-plugin]()
+* Exécutez le goal "deploie-app-scala" (ce qui automatisera le cycle de développement) :
+`mvn clean deployeur:deploie-app-scala`
+* Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
+* Editez le code source de votre applicaton scala
+* Exécutez le goal "deploie-app-scala" (ce qui automatisera le cycle de développement) :
+`mvn clean deployeur:deploie-app-scala`
+
+
+
+
+
 ## Variables d'environnement
 
 Cette recette comporte deux varibles d'environnements dont les valeurs sont utilisées pour configurer le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
