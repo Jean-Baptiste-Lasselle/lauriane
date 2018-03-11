@@ -157,33 +157,3 @@ sudo -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE psql -c "ALTER USER $USER_SQL_CREE_PA
 # echo "$HOSTNAME_BDD:$NO_PORT_BDD:$NOM_BDD:$USER_SQL_CREE_PAR_INSTALL_POSTGRE:$MDP_USER_SQL_CREE_PAR_INSTALL_POSTGRE" >> $PROVISIONNING_HOME/provision-cala.pgpass
 sudo PGPASSWORD="$MDP_USER_SQL_CREE_PAR_INSTALL_POSTGRE" -i -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE createdb $NOM_BDD --host=$HOSTNAME_BDD --port=$NO_PORT_BDD --username=$USER_SQL_CREE_PAR_INSTALL_POSTGRE --no-password
 
-# export URI_REPO_GIT_CODE_SOURCE_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com
-# on récupère le code source de l'application
-# git clone https://github.com/laurianemollier/software-factory-website.git $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
-git clone $URI_REPO_GIT_CODE_SOURCE_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
-
-clear
-# echo "Compile and run the website..."
-# (cd "$PATH_SAMPLE" ;
-    # sbt compile
-    # sbt run
-# )
-echo " JIBL: version de Java "
-java -version >> java.version
-cat java.version
-echo " JIBL: juste pour vérifier AVANT [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
-pwd
-cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
-echo " JIBL: juste pour vérifier APRES [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
-pwd
-echo "Compile and run the website on dev mode..."
-echo " JIBL: juste pour vérifier AVANT [sbt ~compile ~run].... REPERTOIRE COURANT: "
-pwd
-sbt ~run
-# sbt ~compile ~run
-# (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
-    # echo " JIBL: juste pour vérifier provision-scala...."
-    # sbt ~compile ~run
-# )
-echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
-pwd
