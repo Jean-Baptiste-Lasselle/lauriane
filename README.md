@@ -116,8 +116,11 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
 application scala, en automatisant le cycle de développement avec son goal maven `deploie-app-scala`):
-* Vous éditez le code source de votre application, et le plugin réalise:
- * le commit & push du code source modifié vers le référentiel de versionning (supporté: tout repo Git)
+* Vous modifiez le code source de votre application, et le plugin réalise:
+ * le commit & push du code source modifié vers:
+  * le repo git qui constitue votre référentiel de versionning du code source de votre applicaton scala (si vous avez modifié le code source de l'application)
+  * le repo git qui constitue votre référentiel de versionning du code source des tests de votre applicaton scala  (si vous avez modifié le code source des tests de l'application)
+  * le repo git qui constitue votre référentiel de versionning du code source de la recette de montée de la cible de déploiement de votre applicaton scala  (si vous avez modifié le code source de cette recette)
  * le build de l'application scala
  * le déploiement de l'application scala vers une cible de déploiement. La cible de déploiement doit être dans un état reproductible, appelé état initial.
 * Vous réalisez les tests que vous n'avez pas automatisés dans le build de l'application
@@ -164,7 +167,10 @@ Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de v
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
-* Editez le code source de votre applicaton scala, et du code source des tests de votre application Scala,
+* Modifiez:
+ * le code source de votre applicaton scala, ou
+ * le code source des tests de votre application Scala,
+ * le code source de la recette de montée de la cible de déploiement,
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
 
