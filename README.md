@@ -132,11 +132,10 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
-  * l'URI du repository Git du code source de votre applciation Scala: ``
-  * l'URI du repository Git du code source de votre applciation Scala: ``
-  * l'URI d'un autre repository Git, qui doit simplement exister (créez-en un). L'usage de ce repo doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin): ``
-  * l'adresse IP de votre cible de déploiement
-  * le nom de l'utilisateur linux que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utiolisera pour opérer dans la cible de déploiement.
+  * l'URI du repository Git du code source de votre applciation Scala: `<url-repo-git-app-scala>https://github.com/Jean-Baptiste-Lasselle/siteweb-usinelogicielle.com</url-repo-git-app-scala>`
+  * l'URI d'un autre repository Git, qui doit simplement exister (créez-en un). L'usage de ce repo doit être réservé au [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin): `<url-repo-git-deploiements>https://github.com/Jean-Baptiste-Lasselle/deploiement-usine-logicielle.com</url-repo-git-deploiements>`
+  * l'adresse IP (ou le nom de domaine, le hostname) de votre cible de déploiement: `<ip-cible-srv-scala>192.168.1.22</ip-cible-srv-scala>`
+  * le nom de l'utilisateur linux que le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) utilisera pour opérer dans la cible de déploiement: `<ops-lx-user>genehackman</ops-lx-user>`
 * (Vous avez déjà mis votre cible de déploiement dans son état initial, que ce soit avec le [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin))
 * Exécutez le goal "deploie-app-scala" :
 `mvn clean deployeur:deploie-app-scala`
