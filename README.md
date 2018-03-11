@@ -121,8 +121,9 @@ pour gérer votre cycle de développement d'une application scala.
 Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous devrez donc:
 
 * Mettre votre cible de déploiement dans son état de livraison, comme décrit dans le
-paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala), avec 
-la [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin)).
+paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala).
+* Mettre votre cible de déploiement dans son état initial, avec la [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou 
+[en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin)). 
 * Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
