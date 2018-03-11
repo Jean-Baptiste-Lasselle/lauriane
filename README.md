@@ -127,14 +127,6 @@ paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#m
 * Mettre votre cible de déploiement dans son état initial, avec la [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou 
 [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin)). 
 Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de votre application Scala.
-* Avec l'utilisateur linux administrateur créé dans le paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala)(`$OPERATEUR_LINUX_LIVRAISON`), exécutez:
-```
-curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
-chmod +x ./recette-provisionning-lx-user-provision-scala.sh
-./recette-provisionning-lx-user-provision-scala.sh
-```
-
-
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
   * l'URI du repository Git du code source de votre application Scala:
