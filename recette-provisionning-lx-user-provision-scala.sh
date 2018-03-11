@@ -64,7 +64,7 @@ echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # Log
 
 
-echo " --- Justez d'appliquer la configuration sudoers à [$USER_SQL_CREE_PAR_INSTALL_POSTGRE]  "
+echo " --- Juste avant d'appliquer la configuration sudoers à [$USER_SQL_CREE_PAR_INSTALL_POSTGRE]  "
 echo "			" 
 echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-sql-fullstack.ajout" 
 echo "			" 
@@ -153,7 +153,7 @@ echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPL
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout
 
-echo " --- Justez avaant de toucher /etc/sudoers:  "
+echo " --- Juste avant d'appliquer la configuration sudoers à [$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME]  "
 echo "			" 
 echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout" 
 echo "			" 
