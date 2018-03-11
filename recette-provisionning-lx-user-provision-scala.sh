@@ -63,8 +63,8 @@ echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQU
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # Log
 
-clear
-echo " --- Justez avaant de toucher /etc/sudoers:  "
+
+echo " --- Justez d'appliquer la configuration sudoers à [$USER_SQL_CREE_PAR_INSTALL_POSTGRE]  "
 echo "			" 
 echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-sql-fullstack.ajout" 
 echo "			" 
@@ -122,7 +122,7 @@ rm -f $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
-echo "# Allow DEPLOYEUR-MAVEN-PLUGIN to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+echo "# Allow DEPLOYEUR-MAVEN-PLUGIN's operator [$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME] to execute scala deployment commands" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir configurer des sudoers
@@ -152,7 +152,7 @@ CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee -a /etc/ap
 echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # echo "" >> $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout
-clear
+
 echo " --- Justez avaant de toucher /etc/sudoers:  "
 echo "			" 
 echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout" 
