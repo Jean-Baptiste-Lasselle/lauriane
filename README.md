@@ -23,15 +23,19 @@ Vous pourriez créer un tel utilisateur avec les commandes suivantes:
 
 ```
 export NOM_DU_FUTUR_UTILISATEUR_LINUX=scala-provisioner
-adduser $NOM_DU_FUTUR_UTILISATEUR_LINUX
-usermod -aG sudo $NOM_DU_FUTUR_UTILISATEUR_LINUX
-
+# cette commande vous demandera une saisie interactive, exécutez-là séparméent de la commande suivante.
+adduser $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
+# puis lorsque vous avez terminé les saisies interactives exigées
+# par la commande précédente, exécutez:
+usermod -aG sudo $NOM_UTILISATEUR_LINUX_PROVISION_SCALA
 ```
 
-Avec cet utilsiateur linux 
+Exécutez ensuite:
 * Un update de votre système:`sudo apt-get update -y`
 * Une installation d'un serveur SSH :`sudo apt-get install -y openssh-server`
 * L'installation de git:`sudo apt-get install -y git`
+
+Avec l'utilisateur linux `$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`, exécutez:
 
 ## Exécutez ensuite `recette-provisionning-scala-env.sh`
 
@@ -50,10 +54,11 @@ sudo chmod +x $PROVISIONNING_HOME/recettes-operations/monter-cible-deploiement-s
 cd $PROVISIONNING_HOME/recettes-operations
 ./monter-cible-deploiement-scala.sh $URI_REPO_GIT_CODE_SOURCE_APP_SCALA
 ```
-### Deuxième possibilité: Clonez le repo de référence de la recette, et exécutez-là
+
+### Deuxième possibilité: Utilisez le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin)
 
 * Mettez votre cible de déploiement dans son état initial: Update systèmes, openSSH et Git installés, et 
-* Avec un utilisateur linux administrateur (qui peut exécuter avec `sudo`), exécutez:
+* Avec un utilisateur linux administrateur (`$NOM_UTILISATEUR_LINUX_PROVISION_SCALA`), exécutez:
 ```
 curl -O https://raw.githubusercontent.com/Jean-Baptiste-Lasselle/lauriane/master/recette-provisionning-lx-user-provision-scala.sh
 chmod +x ./recette-provisionning-lx-user-provision-scala.sh
