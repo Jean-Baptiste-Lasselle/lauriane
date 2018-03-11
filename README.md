@@ -24,11 +24,21 @@ sudo apt-get install -y openssh-server
 sudo apt-get install -y git
 ```
 
+Imaginions, que, comme moi pour réaliser mes tests, vous utilisiez une machine virtuelle, vous pourriez, à
+l'issue des opérations ci-dessus, réaliser un `snapshot` de la machine virtuelle:
+Ainsi, si dans la suite des opérations, vous rencontrez un problème quelconque, vous
+n'aurez pas besoin de réaliser ces opérations une nouvelle fois.
+
 ## Mettez votre cible de déploiement dans son état initial (provision Scala)
 
 À l'issue de ces opérations, votre cible de déploiement:
 * sera prête à recevoir le déploiement d'une application Scala. 
 * offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGreSQL.
+
+Imaginions, que, comme moi pour réaliser mes tests, vous utilisiez une machine virtuelle, vous pourriez, à
+l'issue des opérations décrites ci-dessous, réaliser un `snapshot` de la machine virtuelle:
+Ainsi, si dans la suite des opérations, vous rencontrez un problème quelconque, vous
+n'aurez pas besoin de réaliser ces opérations une nouvelle fois.
 
 ### Première possibilité: Clonez le repo de référence de la recette, et exécutez-là
 
