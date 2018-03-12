@@ -28,7 +28,7 @@
 # rm -rf $PROVISIONNING_HOME/recettes-cible-deploiement
 # mkdir -p $PROVISIONNING_HOME/recettes-cible-deploiement
 
-# à l'opérateur: Mises à jour système de la LTS, avant début des opérations - nepeut être versionné synchrone avec le versionning d'une recette de déploiement
+# à l'opérateur: Mises à jour système de la LTS, avant début des opérations - ne peut être versionné synchrone avec le versionning d'une recette de déploiement
 
 
 
