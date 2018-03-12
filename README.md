@@ -99,17 +99,17 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Exécutez le goal "provision-scala" du [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) (ce qui mettra votre cible de déploiement dans son état initial):
 `mvn clean deployeur:provision-scala`
-* Exécutez le goal "deploie-app-scala" (ce qui automatisera le cycle de développement) :
-`mvn clean deployeur:deploie-app-scala`
+* Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
+`mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Editez le code source de votre applicaton scala
-* Exécutez le goal "deploie-app-scala" (ce qui automatisera le cycle de développement) :
-`mvn clean deployeur:deploie-app-scala`
+* Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
+`mvn clean deployeur:deploy-scala-app`
 
 ## Commencez à développer
 
 Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
-application scala, en automatisant le cycle de développement avec son goal maven `deploie-app-scala`):
+application scala, en automatisant le cycle de développement avec son goal maven `deploy-scala-app`):
 * Vous modifiez le code source de votre application, et le plugin réalise:
  * le commit & push du code source modifié vers:
   * le repo git qui constitue votre référentiel de versionning du code source de votre applicaton scala (si vous avez modifié le code source de l'application)
@@ -158,15 +158,15 @@ Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de v
     <ops-lx-pwd>geneh@ckmanssecretfeaturingintheinvaders</ops-lx-pwd>
 	```
 	
-* Exécutez le goal "deploie-app-scala" :
-`mvn clean deployeur:deploie-app-scala`
+* Exécutez le goal "deploy-scala-app" :
+`mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Modifiez:
  * le code source de votre applicaton scala, ou
  * le code source des tests de votre application Scala,
  * le code source de la recette de montée de la cible de déploiement,
-* Exécutez le goal "deploie-app-scala" :
-`mvn clean deployeur:deploie-app-scala`
+* Exécutez le goal "deploy-scala-app" :
+`mvn clean deployeur:deploy-scala-app`
 
 
 ## Variables d'environnement
