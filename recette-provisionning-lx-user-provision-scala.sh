@@ -40,43 +40,8 @@ export VERSION_POSTGRESQL=9.5
 # 
 # 
 cd $PROVISIONNING_HOME
-############################################################################################################################################################
-# ################################   				configuration SUDOERS: $USER_SQL_CREE_PAR_INSTALL_POSTGRE   			################################
-# ################################   				Gestion des sudoers pour le deployeur-maven-plugin   					################################
-# ################################   			  pour le goal "provision-scala" du deployeur-maven-plugin   				################################
-############################################################################################################################################################
-# TODO =>>> Pour l'utilisateur linux exécutant la provision scala, une configuration sudoers est
-#           nécessaire, parce que certaines instructions de la recette DOIVENT être
-#           exécutées avec sudo.
-rm -f $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-echo "# Allow user [$USER_SQL_CREE_PAR_INSTALL_POSTGRE] to execute sql provisionning for scala apps" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-
-export CONFIG_SUDOERS_A_APPLIQUER1=""
-# la recette doit pouvoir crééer la BDD de l'application Scala, quelque soit son nom
-CONFIG_SUDOERS_A_APPLIQUER1=$CONFIG_SUDOERS_A_APPLIQUER1"/usr/lib/postgresql/$VERSION_POSTGRESQL/bin/createdb *"
-# la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
-CONFIG_SUDOERS_A_APPLIQUER1=$CONFIG_SUDOERS_A_APPLIQUER1", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
-# la recettede provision scala doit pouvoir 
-CONFIG_SUDOERS_A_APPLIQUER1=$CONFIG_SUDOERS_A_APPLIQUER1", /usr/bin/tee -a /etc/apt/sources.list.d/sbt.list"
-echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER1" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
-echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
-# Log
-
-
-echo " --- Juste avant d'appliquer la configuration sudoers à [$USER_SQL_CREE_PAR_INSTALL_POSTGRE]  "
-echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-sql-fullstack.ajout" 
-echo "			" 
-echo " ---------------------------------------------------------------------------------------------------- "
-cat $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-echo " ---------------------------------------------------------------------------------------------------- "
-
-# application config sudoers
-cat $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout | sudo EDITOR='tee -a' visudo
 
 # TODO: Création de l'utilisateur linux $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
-
 
 ############################################################################################################################################################
 # ################################   				configuration SUDOERS: $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME			################################
@@ -146,15 +111,17 @@ CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get instal
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/createdb *"
 # la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
-# la recettede provision scala doit pouvoir 
+# la recette de provision scala doit pouvoir configurer des repository pour APT-GET
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee -a /etc/apt/sources.list.d/sbt.list"
+# CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee -a /etc/sudoers"
+# CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee *"
 
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 echo " --- Juste avant d'appliquer la configuration sudoers à [$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME]  "
 echo "			" 
-echo "			cat $PROVISIONNING_HOME/lauriane/sudoers.provision-scala-fullstack.ajout" 
+echo "			cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout" 
 echo "			" 
 echo " ---------------------------------------------------------------------------------------------------- "
 cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
@@ -162,4 +129,3 @@ echo " -------------------------------------------------------------------------
 
 # celui-ci marche, c'est testé:
 cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout | sudo EDITOR='tee -a' visudo
-

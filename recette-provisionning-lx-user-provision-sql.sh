@@ -53,7 +53,6 @@ cd $PROVISIONNING_HOME
 #           
 rm -f $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-echo "# Allow user [$USER_SQL_CREE_PAR_INSTALL_POSTGRE] to execute sql provisionning for scala apps" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir crééer la BDD de l'application Scala, quelque soit son nom
@@ -61,7 +60,9 @@ CONFIG_SUDOERS_A_APPLIQUER="$CONFIG_SUDOERS_A_APPLIQUER/usr/lib/postgresql/$VERS
 # la recette doit pouvoir utiliser le client SQL de PostGreSQL, pour exécuter des requêtes SQL d'intialisation de la BDD.
 CONFIG_SUDOERS_A_APPLIQUER="$CONFIG_SUDOERS_A_APPLIQUER, /usr/lib/postgresql/$VERSION_POSTGRESQL/bin/psql *"
 # echo $CONFIG_SUDOERS_A_APPLIQUER
-echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
+
+echo "# Allow user [$USER_SQL_CREE_PAR_INSTALL_POSTGRE] to execute sql provisionning for scala apps" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
+echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 # Log
 
