@@ -64,7 +64,8 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 sudo apt-get install -y dialog apt-utils
 # On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
 cd $PROVISIONNING_HOME
-chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
+# chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
+chmod +x ./recette-provisionning-lx-user-provision-sql.sh
 chmod +x ./recette-provisionning-scala.sh
 # si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
 # ./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-lx-user-provision-sql.sh && ./recette-provisionning-scala.sh
