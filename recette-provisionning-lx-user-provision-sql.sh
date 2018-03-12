@@ -19,8 +19,8 @@ export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane
 export USER_SQL_CREE_PAR_INSTALL_POSTGRE=postgres
 
 # création des répertoires de travail pour le provisionning => doivent exister...
-rm -rf $PROVISIONNING_HOME
-mkdir -p $PROVISIONNING_HOME
+# rm -rf $PROVISIONNING_HOME
+# mkdir -p $PROVISIONNING_HOME
 # rm -rf $PROVISIONNING_HOME/recettes-cible-deploiement
 # mkdir -p $PROVISIONNING_HOME/recettes-cible-deploiement
 
