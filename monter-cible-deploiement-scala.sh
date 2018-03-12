@@ -30,6 +30,8 @@ fi
 
 
 export PROVISIONNING_HOME=$HOME/provisionning-scala
+# rm -rf $PROVISIONNING_HOME
+# mkdir -p $PROVISIONNING_HOME
 # à demander interactivement à l'utilisateur: "DAns quel répertoire souhaitez-vous que l'application scala soit déployée? C'est dans ce répertoire que la commande st sera lancée. [Par défaut, le répertoire utilsié sera le répertoire ..]:"
 export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
 # export WHERE_I_WAS_CLONED=$PROVISIONNING_HOME/recettes-operations
