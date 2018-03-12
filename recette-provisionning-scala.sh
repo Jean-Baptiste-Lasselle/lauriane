@@ -147,7 +147,7 @@ export MDP_USER_SQL_CREE_PAR_INSTALL_POSTGRE=123123
 sudo apt-get install -y postgresql postgresql-contrib
 sudo apt-get update -y
 
-sudo -i -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE createdb software_factory_tiensdonc
+# sudo -i -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE createdb software_factory_tiensdonc
 
 sudo -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE psql -c "ALTER USER $USER_SQL_CREE_PAR_INSTALL_POSTGRE PASSWORD '123123';"
 # J'ajoute le mot de passe de l'utilisateur postgres dans le fichier local

@@ -43,7 +43,7 @@ export USER_SQL_CREE_PAR_INSTALL_POSTGRE=postgres
 # Pas tant qu'on a une dépendance au script de lauraine, lulu... ======================>>>> dépendance
 # export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/home/lauriane/tulavuvlulu
 
-# création des répertoires de travail pour le provisionning
+# création du répertoire de travail pour le provisionning
 rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
@@ -67,4 +67,4 @@ cd $PROVISIONNING_HOME
 chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
 chmod +x ./recette-provisionning-scala.sh
 # si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
-./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-scala.sh
+./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-lx-user-provision-sql.sh && ./recette-provisionning-scala.sh
