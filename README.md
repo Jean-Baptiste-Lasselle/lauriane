@@ -103,8 +103,8 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 `mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Editez:
-  * le code source de votre applicaton scala, ou
-  * le code source des tests de votre application Scala,
+  * le code source de votre applicaton scala, et/ou
+  * le code source des tests de votre application Scala, et/ou
   * le code source de la recette de montée de la cible de déploiement,
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
@@ -133,7 +133,7 @@ Afin d'utiliser le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Las
 paragraphe ["Mettez votre cible de déploiement dans son état de livraison"](#mettez-votre-cible-de-déploiement-dans-son-état-de-livraison-avant-la-provision-scala).
 * Mettre votre cible de déploiement dans son état initial, avec la [méthode manuelle](#première-possibilité-clonez-le-repo-de-référence-de-la-recette-et-exécutez-là), ou 
 [en utilisant le deployeur-maven-plugin](#deuxième-possibilité-utilisez-le-deployeur-maven-plugin)). 
-Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de votre application Scala.
+Votre cible de déploiement est maitnenant prête à recevoir le déploiement de votre application Scala.
 * Sur une machine dans le même réseau IP que votre cible de déploiement, Créez un projet Maven eclipse à partir du [modèle de projet maven](https://github.com/Jean-Baptiste-Lasselle/mavenisation-siteweb-usinelogicielle) (futur archetype maven)
 * Editez le pom.xml, pour indiquer:
   * l'URI du repository Git du code source de votre application Scala:
@@ -165,8 +165,8 @@ Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de v
 `mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Modifiez:
-  * le code source de votre applicaton scala, ou
-  * le code source des tests de votre application Scala,
+  * le code source de votre applicaton scala, et/ou
+  * le code source des tests de votre application Scala, et/ou
   * le code source de la recette de montée de la cible de déploiement,
 * Exécutez le goal "deploy-scala-app" :
 `mvn clean deployeur:deploy-scala-app`
