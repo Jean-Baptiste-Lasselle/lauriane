@@ -63,7 +63,7 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 ############################################################################################################################################################
 # 
 sudo apt-get install -y dialog apt-utils
-# On exécute d'abord la configuration sudoers, parce que la commande SBT démarre un process qui ne se termine pas.
+# On exécute d'abord la configuration sudoers, puis la provision de 'environnement d'exécution de l'application Scala.
 cd $PROVISIONNING_HOME
 # chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
 chmod +x ./recette-provisionning-lx-user-provision-sql.sh
