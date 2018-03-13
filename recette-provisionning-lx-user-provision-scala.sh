@@ -93,7 +93,7 @@ echo "# Allow DEPLOYEUR-MAVEN-PLUGIN's operator [$MVN_PLUGIN_OPERATEUR_LINUX_USE
 ### Pour l' utilisateur "$OPERATEUR_LINUX_LIVRAISON" (celui qui exécute ce script)
 #### La configuration sudoers: une pârtie de celle-ci ne devrait-elle pas aller dans "recette-provisionning-lx-user-deployeur-maven-plugin.sh" ?
 export CONFIG_SUDOERS_A_APPLIQUER_AC_SETENV=""
-CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/usr/sbin/visudo *"
+CONFIG_SUDOERS_A_APPLIQUER_AC_SETENV=$CONFIG_SUDOERS_A_APPLIQUER_AC_SETENV"/usr/sbin/visudo *"
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir configurer des sudoers
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/bin/cat /etc/sudoers"
