@@ -102,7 +102,10 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
-* Editez le code source de votre applicaton scala, le code source des tests de lépplication, et le code source de la recette de montée de la cible de déploiement.
+* Editez:
+  * le code source de votre applicaton scala, ou
+  * le code source des tests de votre application Scala,
+  * le code source de la recette de montée de la cible de déploiement,
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
 
