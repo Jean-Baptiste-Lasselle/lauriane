@@ -68,8 +68,11 @@ cd $PROVISIONNING_HOME
 # chmod +x ./recette-provisionning-lx-user-deployeur-maven-plugin.sh
 chmod +x ./recette-provisionning-lx-user-provision-sql.sh
 chmod +x ./recette-provisionning-scala.sh
-# si un problème survient pendant le provisionning du user linux pour le [deployeur-maven-plugin]
-# ./recette-provisionning-lx-user-deployeur-maven-plugin.sh && ./recette-provisionning-lx-user-provision-sql.sh && ./recette-provisionning-scala.sh
+# -
+# si un problème survient pendant le provisionning du user linux qui effectuera la provision SQL.
+# (crééer la BDD que l'application SCala déployée utilisera)
+# -
 # Il n'est ni logique, ni possible de configurer les droits sudoers de l'opérateur linux que le [deployeur-maven-plugin] utilise, pendant
 # que le [deployeur-maven-plugin] agit....
+# -
 ./recette-provisionning-lx-user-provision-sql.sh && ./recette-provisionning-scala.sh
