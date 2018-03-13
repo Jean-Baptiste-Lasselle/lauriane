@@ -92,10 +92,11 @@ echo "# Allow DEPLOYEUR-MAVEN-PLUGIN's operator [$MVN_PLUGIN_OPERATEUR_LINUX_USE
 
 ### Pour l' utilisateur "$OPERATEUR_LINUX_LIVRAISON" (celui qui exécute ce script)
 #### La configuration sudoers: une pârtie de celle-ci ne devrait-elle pas aller dans "recette-provisionning-lx-user-deployeur-maven-plugin.sh" ?
+export CONFIG_SUDOERS_A_APPLIQUER_AC_SETENV=""
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/usr/sbin/visudo *"
 export CONFIG_SUDOERS_A_APPLIQUER=""
 # la recette doit pouvoir configurer des sudoers
-CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/usr/sbin/visudo *"
-CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /bin/cat /etc/sudoers"
+CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER"/bin/cat /etc/sudoers"
 # la recette doit pouvoir mettre à jour le système
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/apt-get update -y"
 # la recette doit pouvoir installer le JAVA JDK
@@ -119,7 +120,7 @@ CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee -a /etc/ap
 
 # echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 # le "NOPASSWD:SETENV: pour le groupe suoders à la place"
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD:SETENV $CONFIG_SUDOERS_A_APPLIQUER_AC_SETENV, NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 echo " --- Juste avant d'appliquer la configuration sudoers à [$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME]  "
