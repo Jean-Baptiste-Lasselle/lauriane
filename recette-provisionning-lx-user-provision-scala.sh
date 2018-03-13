@@ -160,11 +160,11 @@ cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout | sudo EDITOR='t
 # AHHHH, j'ai une idée, pas parfaite, parce qu'elle pourrait quand même faire péter une machine, mais ce sera plus propre que... bref, moi je ne vois que la phase de boot, postinstallation Scripts, pour faire cela correctement au provisionning de la machine.
 
 # Okay, donc l'idée est la suivante:
-export OPERATEUR=$USER
+# export OPERATEUR=$USER
 # 1./ je récupère un copie de /etc/sudoers que je rends éditable
-sudo cp /etc/sudoers $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
-sudo chown -R $OPERATEUR:$OPERATEUR $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
-sudo chmod +w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sudo cp /etc/sudoers $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sudo chown -R $OPERATEUR:$OPERATEUR $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sudo chmod +w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 
 # 2./ je fait la substitution de :
 # 		%sudo   ALL=(ALL:ALL) ALL
@@ -172,9 +172,20 @@ sudo chmod +w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 #		%sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL
 # 
 # 
-sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 3./ je redonne les mêmes droits sur ce fichier
 # sudo chown -R root:root $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
-sudo chmod -w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sudo chmod -w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 4./ Je remplace le ficheir /etc/suoders par le fichier que j'ai édité
-sudo cp $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout /etc/sudoers
+# sudo cp $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout /etc/sudoers
+
+# Après cela, on ne pourra plu sutiliser visudo squi nous fera un gros caca nerveux parce que l'on a écrasé le ficheir, qui ne correspond plus au ficheir temporaire, et blablabla...
+
+# --------- Autre idée testée: si je ne met pas l'option append, pour tee, qu'es-ce que j'obtyiens? un remplacement total du contenu du fichier?
+# 1./ Je récupère l'original
+touch $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+sudo cat /etc/sudoers >> $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# 2./ Je fais ma substitution
+sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# 3./ Je fais le tee....
+cat $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout | sudo EDITOR='tee' visudo
