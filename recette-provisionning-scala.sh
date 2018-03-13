@@ -145,10 +145,26 @@ export USER_SQL_CREE_PAR_INSTALL_POSTGRE=postgres
 export MDP_USER_SQL_CREE_PAR_INSTALL_POSTGRE=123123
 # sudo apt-get update -y
 sudo apt-get install -y postgresql postgresql-contrib
-sudo apt-get update -y
+# sudo apt-get update -y
 
 # sudo -i -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE createdb software_factory_tiensdonc
 
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+# Cf.: recette-provisionning-lx-user-provision-scala.sh
+#########################################################
+# ok, trouvé: ce qu'il faut, c'est permettre aux sudoers d'exécuter toutes les commandes sans 
+# mot de passe, et en autorisant la préservation des variables d'environnement: 
+# # Donc le groupe sudo redéfinit
+# %sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL
+# # D'autre part, l'utilisateur exécutant la provision de la cible de déploiement (scala + PostGreSQL), soit l'utilisateur $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME, doit
+# # pouvoir exécuter certainbes commandes sans mot de passe , il faut donc ajouter (si export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane):
+# # 
+# lauriane   ALL=(ALL) NOPASSWD: (et la liste des commandes sinon, lauriane ne pourra pas exécuter sans mot de passe)
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
 sudo -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE psql -c "ALTER USER $USER_SQL_CREE_PAR_INSTALL_POSTGRE PASSWORD '123123';"
 # J'ajoute le mot de passe de l'utilisateur postgres dans le fichier local
 # (ma sécurité repose donc sur la sécurité de la cible de déploiement)

@@ -40,8 +40,9 @@ export VERSION_POSTGRESQL=9.5
 # 
 # 
 cd $PROVISIONNING_HOME
-
 # TODO: Création de l'utilisateur linux $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME
+
+
 
 ############################################################################################################################################################
 # ################################   				configuration SUDOERS: $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME			################################
@@ -116,7 +117,9 @@ CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/lib/postgresql/$VE
 # la recette de provision scala doit pouvoir configurer des repository pour APT-GET
 CONFIG_SUDOERS_A_APPLIQUER=$CONFIG_SUDOERS_A_APPLIQUER", /usr/bin/tee -a /etc/apt/sources.list.d/sbt.list"
 
-echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+# echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
+# le "NOPASSWD:SETENV: pour le groupe suoders à la place"
+echo "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout
 
 echo " --- Juste avant d'appliquer la configuration sudoers à [$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME]  "
@@ -129,3 +132,49 @@ echo " -------------------------------------------------------------------------
 
 # celui-ci marche, c'est testé:
 cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout | sudo EDITOR='tee -a' visudo
+
+
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+################################                                      SUDOERS POUR INSTALLATION POSTGRESQL                                       #############################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+# ok, trouvé: ce qu'il faut, c'est permettre aux sudoers d'exécuter toutes les commandes sans 
+# mot de passe, et en autorisant la préservation des variables d'environnement: 
+# # Donc le groupe sudo redéfinit
+# %sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL
+# # D'autre part, l'utilisateur exécutant la provision de la cible de déploiement (scala + PostGreSQL), soit l'utilisateur $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME, doit
+# # pouvoir exécuter certainbes commandes sans mot de passe , il faut donc ajouter (si export MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME=lauriane):
+# # 
+# lauriane   ALL=(ALL) NOPASSWD: (et la liste des commandes sinon, lauriane ne pourra pas exécuter sans mot de passe)
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+##############################################################################################################################################################################################
+
+# celui-là marche c'est testé (il marchera probablement aussi sur centos):
+# sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g'  sudoers
+
+
+# AHHHH, j'ai une idée, pas parfaite, parce qu'elle pourrait quand même faire péter une machine, mais ce sera plus propre que... bref, moi je ne vois que la phase de boot, postinstallation Scripts, pour faire cela correctement au provisionning de la machine.
+
+# Okay, donc l'idée est la suivante:
+export OPERATEUR=$USER
+# 1./ je récupère un copie de /etc/sudoers que je rends éditable
+sudo cp /etc/sudoers $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+sudo chown -R $OPERATEUR:$OPERATEUR $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+sudo chmod +w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# 
+# 2./ je fait la substitution de :
+# 		%sudo   ALL=(ALL:ALL) ALL
+#     par:
+#		%sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL
+# 
+# 
+sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# 3./ je redonne les mêmes droits sur ce fichier
+# sudo chown -R root:root $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+sudo chmod -w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# 4./ Je remplace le ficheir /etc/suoders par le fichier que j'ai édité
+sudo $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout /etc/sudoers
