@@ -102,21 +102,21 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
-* Editez le code source de votre applicaton scala
+* Editez le code source de votre applicaton scala, le code source des tests de lépplication, et le code source de la recette de montée de la cible de déploiement.
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
 
 ## Commencez à développer
 
 Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
-application scala, en automatisant le cycle de développement avec son goal maven `deploy-scala-app`):
-* Vous modifiez le code source de votre application, et le plugin réalise:
- * le commit & push du code source modifié vers:
-  * le repo git qui constitue votre référentiel de versionning du code source de votre applicaton scala (si vous avez modifié le code source de l'application)
-  * le repo git qui constitue votre référentiel de versionning du code source des tests de votre applicaton scala  (si vous avez modifié le code source des tests de l'application)
-  * le repo git qui constitue votre référentiel de versionning du code source de la recette de montée de la cible de déploiement de votre applicaton scala  (si vous avez modifié le code source de cette recette)
- * le build de l'application scala
- * le déploiement de l'application scala vers une cible de déploiement. La cible de déploiement doit être dans un état reproductible, appelé état initial.
+application scala, en automatisant le cycle de développement avec son goal maven `deploy-scala-app`).
+Vous modifiez le code source de votre application, et le plugin réalise:
+* le commit & push du code source modifié vers:
+    * le repo git qui constitue votre référentiel de versionning du code source de votre applicaton scala (si vous avez modifié le code source de l'application)
+    * le repo git qui constitue votre référentiel de versionning du code source des tests de votre applicaton scala  (si vous avez modifié le code source des tests de l'application)
+    * le repo git qui constitue votre référentiel de versionning du code source de la recette de montée de la cible de déploiement de votre applicaton scala  (si vous avez modifié le code source de cette recette)
+* le build de l'application scala
+* le déploiement de l'application scala vers une cible de déploiement. La cible de déploiement doit être dans un état reproductible, appelé état initial.
 * Vous réalisez les tests que vous n'avez pas automatisés dans le build de l'application
 * Vous remettez votre cible de déploiement dans son état initial, 
 * et vous recommencez...
@@ -162,9 +162,9 @@ Votre cible de déploiement est maitnenat prêteà recevoir le déploiement de v
 `mvn clean deployeur:deploy-scala-app`
 * Votre application Scala est déployée: Effectuez les tests qui ne sont pas automatisés dans le build de votre application Scala ([build.sbt](https://www.scala-sbt.org/))
 * Modifiez:
- * le code source de votre applicaton scala, ou
- * le code source des tests de votre application Scala,
- * le code source de la recette de montée de la cible de déploiement,
+  * le code source de votre applicaton scala, ou
+  * le code source des tests de votre application Scala,
+  * le code source de la recette de montée de la cible de déploiement,
 * Exécutez le goal "deploy-scala-app" :
 `mvn clean deployeur:deploy-scala-app`
 
