@@ -12,15 +12,16 @@
 # 
 # 
 
-export URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA=""
+# export URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA=""
+export REPERTOIRE_PROCHAIN_BUILD=""
 export REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=""
 if [ $# -eq 0 ]; then 
-    echo "No arguments supplied for [URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA], applying default value."
-    URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA=https://github.com/Jean-Baptiste-Lasselle/deploiement-usine-logicielle.com
+    echo "No arguments supplied for [REPERTOIRE_PROCHAIN_BUILD], applying default value."
+    REPERTOIRE_PROCHAIN_BUILD=$HOME/next-build-app-scala
 	echo "No argument supplied for [REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT], applying default value."
 	REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
 else
-	URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA=$1 
+	REPERTOIRE_PROCHAIN_BUILD=$1
 	if [ $# -eq 1 ]; then 
 		echo "No argument supplied for [REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT], applying default value."
         REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
@@ -67,30 +68,11 @@ fi
 rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 # On récupère le code source de la dernière version l'application
-git clone $URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
+# git clone $URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
-clear
-# echo "Compile and run the website..."
-# (cd "$PATH_SAMPLE" ;
-    # sbt compile
-    # sbt run
-# )
-echo " JIBL: version de Java "
-java -version >> java.version
-cat java.version
-echo " JIBL: juste pour vérifier AVANT [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
-pwd
-cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
-echo " JIBL: juste pour vérifier APRES [cd $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT].... REPERTOIRE COURANT: "
-pwd
-echo "Compile and run the website on dev mode..."
-echo " JIBL: juste pour vérifier AVANT [sbt ~compile ~run].... REPERTOIRE COURANT: "
-pwd
-sbt ~run
-# sbt ~compile ~run
-# (cd "$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT" ;
-    # echo " JIBL: juste pour vérifier provision-scala...."
-    # sbt ~compile ~run
-# )
-echo " JIBL: juste pour vérifier APRES [sbt ~compile ~run].... REPERTOIRE COURANT: "
-pwd
+# Au lieu de récupérer le code sourec, on récupère l'artefacct exécutable qu'on copie dans 
+cp $REPERTOIRE_PROCHAIN_BUILD/software-factory $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
+
+# et voilà comment très simplement démarrer l'application.
+$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/software-factory 
+
