@@ -177,4 +177,4 @@ sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASS
 # sudo chown -R root:root $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 sudo chmod -w $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 4./ Je remplace le ficheir /etc/suoders par le fichier que j'ai édité
-sudo $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout /etc/sudoers
+sudo cp $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout /etc/sudoers
