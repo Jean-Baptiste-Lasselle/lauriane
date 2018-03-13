@@ -188,6 +188,8 @@ cat $PROVISIONNING_HOME/sudoers.provision-scala-fullstack.ajout | sudo EDITOR='t
 touch $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 sudo cat /etc/sudoers >> $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 2./ Je fais ma substitution
-sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(postgres:postgres) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
+# et comme cela, c'est le user "postgres", qui devra être ajouté au groupe "$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME"
+sed -i 's/sudo[[:space:]]ALL=(ALL:ALL) ALL/sudo   ALL=(ALL:$MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME) NOPASSWD:SETENV:ALL/g' $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout
 # 3./ Je fais le tee....
 cat $PROVISIONNING_HOME/sudoers.sudo-group-modif.ajout | sudo EDITOR='tee' visudo

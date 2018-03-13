@@ -62,7 +62,7 @@ CONFIG_SUDOERS_A_APPLIQUER="$CONFIG_SUDOERS_A_APPLIQUER, /usr/lib/postgresql/$VE
 # echo $CONFIG_SUDOERS_A_APPLIQUER
 
 echo "# Allow user [$USER_SQL_CREE_PAR_INSTALL_POSTGRE] to execute sql provisionning for scala apps" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
-echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD:SETENV: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
+echo "$USER_SQL_CREE_PAR_INSTALL_POSTGRE ALL=NOPASSWD: $CONFIG_SUDOERS_A_APPLIQUER" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 echo "" >> $PROVISIONNING_HOME/sudoers.provision-sql-fullstack.ajout
 # Log
 

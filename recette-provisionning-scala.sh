@@ -145,6 +145,12 @@ export USER_SQL_CREE_PAR_INSTALL_POSTGRE=postgres
 export MDP_USER_SQL_CREE_PAR_INSTALL_POSTGRE=123123
 # sudo apt-get update -y
 sudo apt-get install -y postgresql postgresql-contrib
+
+# Lorsque l'on a créé l'utilsiateur $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME, un groupe de même nom a été crée, et
+# c'est dans ce groupe que l'utilisateur créé par POSTGRESQL, doit se trouver, pour pouvoir créer la BDD
+# cf.recette-provisionning-lx-user-provision-scala.sh
+sudo usermod -aG $MVN_PLUGIN_OPERATEUR_LINUX_USER_NAME $USER_SQL_CREE_PAR_INSTALL_POSTGRE
+
 # sudo apt-get update -y
 
 # sudo -i -u $USER_SQL_CREE_PAR_INSTALL_POSTGRE createdb software_factory_tiensdonc
