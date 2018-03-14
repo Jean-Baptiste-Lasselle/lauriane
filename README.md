@@ -13,7 +13,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
  [As simple as Do, Ré, Mi](https://www.youtube.com/watch?v=ho7796-au8U)
  [![Rock together](https://d1wh43egtz3cgo.cloudfront.net/promotion_images/0523/1386/original/rockwithyou.jpg)](https://www.youtube.com/watch?v=5X-Mrc2l1d0&list=RD5X-Mrc2l1d0)
  
- ![Un peu de rythme pour els opérations]( lauriane/documentation/image/rock-with-u.jpg?raw=true "Rock with U")
+ ![Un peu de rythme pour els opérations](https://github.com/Jean-Baptiste-Lasselle/lauriane/blob/master/documentation/image/rock-with-u.jpg?raw=true "Rock with U")
  
 ## A. Mettez votre cible de déploiement dans son état de livraison
 
