@@ -11,14 +11,14 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
  [As simple as Do, Ré, Mi](https://www.youtube.com/watch?v=ho7796-au8U)
 
- ![Un peu de rythme pour els opérations](# "Rock with U")
- <!-- ![Un peu de rythme pour els opérations](https://github.com/Jean-Baptiste-Lasselle/lauriane/blob/master/documentation/image/rock-with-u.jpg?raw=true "Rock with U") -->
+ <!-- ![Un peu de rythme pour les opérations](# "Rock with U") -->
+ <!-- ![Un peu de rythme pour les opérations](https://github.com/Jean-Baptiste-Lasselle/lauriane/blob/master/documentation/image/rock-with-u.jpg?raw=true "Rock with U") -->
  
 ## A. Mettez votre cible de déploiement dans son état de livraison
 
 À l'issue de ces opérations, votre cible de déploiement:
-* sera prête à recevoir le déploiement d'une application Scala. 
-* offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGreSQL.
+* sera prête à se voir appliquer la [recette de provision scala](#b-mettez-votre-cible-de-déploiement-dans-son-état-initial)
+* l'adresse IP de toutes les machines de la cible de déploiement sont accessibles depuis la machine surlaquelle vous développez.
 
 
 * Créez une VM VirtualBox
