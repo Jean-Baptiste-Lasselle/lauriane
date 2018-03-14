@@ -18,7 +18,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 À l'issue de ces opérations, votre cible de déploiement:
 * sera prête à se voir appliquer la [recette de provision scala](#b-mettez-votre-cible-de-déploiement-dans-son-état-initial)
-* l'adresse IP de toutes les machines de la cible de déploiement sont accessibles depuis la machine surlaquelle vous développez.
+* l'adresse IP de toutes les machines de la cible de déploiement sont accessibles depuis la machine sur laquelle vous développez.
 
 
 * Créez une VM VirtualBox
