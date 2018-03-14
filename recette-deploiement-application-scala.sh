@@ -74,5 +74,5 @@ echo "DEBUG JIBL: [REPERTOIRE_PROCHAIN_BUILD=$REPERTOIRE_PROCHAIN_BUILD]"
 cp -rf $REPERTOIRE_PROCHAIN_BUILD/* $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
 # et voilà comment très simplement démarrer l'application.
-$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/bin/software-factory -Dplay.evolutions.db.default.autoApply=true
+$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/bin/software-factory $3
 
