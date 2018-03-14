@@ -9,7 +9,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
- [As simple as Do, Ré, Mi](https://www.youtube.com/watch?v=ho7796-au8U)
+ [B.O.M.](https://www.youtube.com/watch?v=ho7796-au8U)
 
  <!-- ![Un peu de rythme pour les opérations](# "Rock with U") -->
  <!-- ![Un peu de rythme pour les opérations](https://github.com/Jean-Baptiste-Lasselle/lauriane/blob/master/documentation/image/rock-with-u.jpg?raw=true "Rock with U") -->
