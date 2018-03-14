@@ -9,7 +9,9 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
-## Mettez votre cible de déploiement dans son état de livraison
+ As simple as Do, Ré, Mi
+
+## A. Mettez votre cible de déploiement dans son état de livraison
 
 À l'issue de ces opérations, votre cible de déploiement:
 * sera prête à recevoir le déploiement d'une application Scala. 
@@ -34,7 +36,7 @@ l'issue des opérations ci-dessus, réaliser un `snapshot` de la machine virtuel
 Ainsi, si dans la suite des opérations vous rencontrez un problème quelconque, vous
 n'aurez pas besoin de réaliser ces opérations une nouvelle fois.
 
-## Mettez votre cible de déploiement dans son état initial
+## B. Mettez votre cible de déploiement dans son état initial
 
 À l'issue de ces opérations, votre cible de déploiement:
 * sera prête à recevoir le déploiement d'une application Scala. 
@@ -114,7 +116,7 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 * Exécutez le goal "deploy-scala-app" (ce qui automatisera le cycle de développement) :
 `mvn clean deployeur:deploy-scala-app`
 
-## Commencez à développer
+## C. Commencez à développer
 
 Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
 application scala, en automatisant le cycle de développement avec son goal maven `deploy-scala-app`).
