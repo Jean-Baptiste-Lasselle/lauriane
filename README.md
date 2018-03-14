@@ -121,7 +121,7 @@ chmod +x ./recette-provisionning-lx-user-provision-scala.sh
 
 ## C. Commencez à développer
 
-[B.O.M.](https://www.youtube.com/watch?v=ZM1fkHQP_Pw)
+[B.O.M.](https://www.youtube.com/watch?v=l7ZlSHGFfdc)
 
 Le [deployeur-maven-plugin](https://github.com/Jean-Baptiste-Lasselle/deployeur-maven-plugin) vous permet de développer une 
 application scala, en automatisant le cycle de développement avec son goal maven `deploy-scala-app`).
