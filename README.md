@@ -9,7 +9,12 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
-## Mettez votre cible de déploiement dans son état de livraison (avant la provision Scala)
+## Mettez votre cible de déploiement dans son état de livraison
+
+À l'issue de ces opérations, votre cible de déploiement:
+* sera prête à recevoir le déploiement d'une application Scala. 
+* offrira à toute application Scala déployée en son sein, la possibilité de faire usage d'une base de données PostGreSQL.
+
 
 * Créez une VM VirtualBox
 * Installez une version d'Ubuntu de la famille 16.x LTS, dans cette VM
@@ -29,7 +34,7 @@ l'issue des opérations ci-dessus, réaliser un `snapshot` de la machine virtuel
 Ainsi, si dans la suite des opérations vous rencontrez un problème quelconque, vous
 n'aurez pas besoin de réaliser ces opérations une nouvelle fois.
 
-## Mettez votre cible de déploiement dans son état initial (provision Scala)
+## Mettez votre cible de déploiement dans son état initial
 
 À l'issue de ces opérations, votre cible de déploiement:
 * sera prête à recevoir le déploiement d'une application Scala. 
