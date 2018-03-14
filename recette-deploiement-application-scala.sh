@@ -69,7 +69,7 @@ rm -rf $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 # On récupère le code source de la dernière version l'application
 # git clone $URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
-
+echo "DEBUG JIBL: [REPERTOIRE_PROCHAIN_BUILD=$REPERTOIRE_PROCHAIN_BUILD]"
 # Au lieu de récupérer le code sourec, on récupère l'artefacct exécutable qu'on copie dans 
 cp $REPERTOIRE_PROCHAIN_BUILD/software-factory $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
