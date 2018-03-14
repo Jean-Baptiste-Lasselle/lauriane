@@ -19,12 +19,12 @@ if [ $# -eq 0 ]; then
     echo "No arguments supplied for [REPERTOIRE_PROCHAIN_BUILD], applying default value."
     REPERTOIRE_PROCHAIN_BUILD=$HOME/next-build-app-scala
 	echo "No argument supplied for [REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT], applying default value."
-	REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
+	REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/autre-execution-app-scala
 else
 	REPERTOIRE_PROCHAIN_BUILD=$1
 	if [ $# -eq 1 ]; then 
 		echo "No argument supplied for [REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT], applying default value."
-        REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/software-factory-website
+        REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$HOME/autre-execution-app-scala
 	else 
 	    REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT=$2
 	fi
