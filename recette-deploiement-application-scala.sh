@@ -71,8 +71,8 @@ mkdir -p $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 # git clone $URI_REPO_GIT_DEPLOIEMENTS_APP_SCALA $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 echo "DEBUG JIBL: [REPERTOIRE_PROCHAIN_BUILD=$REPERTOIRE_PROCHAIN_BUILD]"
 # Au lieu de récupérer le code sourec, on récupère l'artefacct exécutable qu'on copie dans 
-cp $REPERTOIRE_PROCHAIN_BUILD/software-factory $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
+cp -rf $REPERTOIRE_PROCHAIN_BUILD/* $REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT
 
 # et voilà comment très simplement démarrer l'application.
-$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/software-factory -Dplay.evolutions.db.default.autoApply=true
+$REPERTOIRE_APP_SCALA_DS_CIBLE_DEPLOIEMENT/bin/software-factory -Dplay.evolutions.db.default.autoApply=true
 
