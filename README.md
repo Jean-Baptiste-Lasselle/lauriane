@@ -9,8 +9,11 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
- As simple as Do, Ré, Mi
-
+ First things first, let's rock...
+ [As simple as Do, Ré, Mi](https://www.youtube.com/watch?v=ho7796-au8U)
+ [![Rock together](https://d1wh43egtz3cgo.cloudfront.net/promotion_images/0523/1386/original/rockwithyou.jpg)](https://www.youtube.com/watch?v=5X-Mrc2l1d0&list=RD5X-Mrc2l1d0)
+ 
+ 
 ## A. Mettez votre cible de déploiement dans son état de livraison
 
 À l'issue de ces opérations, votre cible de déploiement:
