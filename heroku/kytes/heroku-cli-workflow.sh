@@ -305,7 +305,7 @@ heroku ps:scale web=1
 
 
 # -- Heroku offre des services additionnels payants pour le logging, et chacun de ces
-# -- services payants peut être utilisés avec des options spécifiques et
+# -- services (payants?) peut être utilisés avec des options spécifiques et
 # -- documentées pour chaque service.
 # heroku logs --tail autres_options_specifiques_a_chaque_service_additionnel
 # -- >>>>> les services offerts sont du genre Logstash / Kibana. // 
@@ -317,3 +317,40 @@ heroku ps:scale web=1
 # -- It can also be used to launch a console process attached to your local terminal for
 # -- experimenting in your app’s environment, or code that you deployed with your application:
 # heroku run console
+
+
+# ##############  TODO: voir les "config vars" ... pas sûr que ce me soit très utile, dans la mesure où il faut modifier le code source.
+# -- https://devcenter.heroku.com/articles/getting-started-with-scala#define-config-vars
+# -- =>> sert notamment pour paramétrer l'application pourles différentes cibles de déploiement: dev, integration preprod, prod
+# -- affiche toutes les varibles de la configuration
+# heroku config
+# -- permet de définir une variable dans la configuration, et de fixer sa valeur
+# heroku config:set NOM_DE_MA_VARIABLE=asie
+# -- permet de supprimer la définition d'une variable dans la configuration
+# heroku config:unset NOM_DE_MA_VARIABLE
+# -- permet d'obtenir la valeur d'une variable particulière.
+# heroku config:get NOM_DE_MA_VARIABLE
+# -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> OK LES VARIABLES UTILISEES DANS LE Procfile  SONT CELLES DISPONIBLES DANS CETTE CONFIGURATION
+
+
+# ##############  ADD-ONS : 
+# -- Okay, donc en fait la notion de "add-on" Heroku, c'est pour rajouter des dépendances à la cible de déplooiement Heroku.
+# -- Par exemple, il faut ajouter un add-on, pour pouvoir utilsier une BDD, ou un service Logstash, dans un cible de déploiement Heroku..
+# -- Il y a donc des petites notions de packaging à mettre au clair pour les addons (dans quel(s) ficheir(s) de configuration précise-t-on les add-ons à ajouter à la cible de déploiement?
+# -- le client HEROKU va chercher les add-ons dans un rrepository distant qu'éHeroku appelle "marketplace"
+# -- Reste à tester s'il y a bien des add-ons qu'on peut utiliser gratuitement.
+
+# ##############  TODO: utiliser une base de données ds la cible de déploiement Heroku
+# -- 
+# -- 
+# -- 
+# -- 
+
+
+
+
+# #############      REST API CLIENT HEROKU
+# -- 
+# -- Je vais pouvoir faire tout ce que je fais dans ce script, à
+# -- l'aide de la REST API Heroku: https://devcenter.heroku.com/articles/platform-api-quickstart
+# -- 
