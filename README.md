@@ -9,7 +9,7 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 
 # Pour développer une application Scala
 
- [B.O.M.](https://www.youtube.com/watch?v=ho7796-au8U)
+ [B.O.M.](https://www.youtube.com/watch?v=dHJUPm8X8I0)
 
  <!-- ![Un peu de rythme pour les opérations](# "Rock with U") -->
  <!-- ![Un peu de rythme pour les opérations](https://github.com/Jean-Baptiste-Lasselle/lauriane/blob/master/documentation/image/rock-with-u.jpg?raw=true "Rock with U") -->
@@ -20,6 +20,10 @@ Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipeline
 * sera prête à se voir appliquer la [recette de provision scala](#b-mettez-votre-cible-de-déploiement-dans-son-état-initial)
 * l'adresse IP de toutes les machines de la cible de déploiement sont accessibles depuis la machine sur laquelle vous développez.
 
+Votre cible de déploiement Scala se réduira à sa plus simple expression, que nous allons tous de même construire et opérer aussi sérieusement (avec réalisme) que possible: 
+Une seule et unique machine, qu'elle soit physique ou virtuelle.
+
+Procédez comme suit pour :
 
 * Créez une VM VirtualBox
 * Installez une version d'Ubuntu de la famille 16.x LTS, dans cette VM
