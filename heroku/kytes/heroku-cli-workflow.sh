@@ -349,10 +349,32 @@ heroku ps:scale web=1
 
 
 
-# #############     CONCLUSION: `kyte-pr` fera usage de JGit et de la [REST API CLIENT HEROKU]:
-# --      https://devcenter.heroku.com/articles/platform-api-quickstart
-# -- pour automatiser le process  des pipelines aboutissant chez Heroku.
+# #############     CONCLUSION: `kyte-boutique` fera usage de JGit et de la [REST API CLIENT HEROKU]:
 # -- 
-# -- Je vais pouvoir faire tout ce que je fais dans ce script, à
-# -- l'aide de la REST API Heroku: https://devcenter.heroku.com/articles/platform-api-quickstart 
+# --      https://devcenter.heroku.com/articles/platform-api-quickstart
+# -- 
+# -- Pour automatiser le process  des pipelines aboutissant chez Heroku.
+# -- 
+# -- tentative plantée d'implémentation en Java que je peux regarder pour apprendre des erreurs: https://github.com/heroku/direct-to-heroku-client-java
+# -- 
+# -- Note intéressante: avec cette REST API Heroku, je vais donc pouvoir interooger la "marketpplace Heroku", afin de proposer de l'autocomplétion de Procfile. Mais aussi je vais pouvoir vérifier, au déploiement, que les add-ons spécifiés dans le PRocfile sont bien tous existants dans la marketplace heroku).
+# -- 
+# -- 
+# -- Un process standard serait:
+# -- 
+# --  1. On modifie le code source de l'application qui constitue le site web du projet							(composants: ide-service-manager)
+# --  2. On commit & push sur le repo de référence de versionning du code source de l'application				(composants: source-code-manager)
+# --  3. On exécute tous les tests statiques:																	(composants: quality-manager)
+# --     ceux qui peuvent être exécutés sans exécution de l'application, comme des tests JUnit.
+# --  4. On build l'application site web																		(composants: packaging-manager)
+# --  5. On déploie l'application site web dans la cible de déploiement 										(composants: deployment-manager)
+# --  6. On exécute tous les tests à l'exécution:																(composants: quality-manager)
+# --     Ce sont les tests qui nécessitent un déploiement de l'application dans une
+# --     cible de déploiement, comme les tests d'intégration, ou les UAT.
+# --  7. 
+# --  2. 
+# --   
+# --   
+# -- 
+# -- Doc de la REST API Heroku: https://devcenter.heroku.com/articles/platform-api-quickstart 
 # -- 
