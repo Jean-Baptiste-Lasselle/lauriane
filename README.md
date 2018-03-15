@@ -4,7 +4,30 @@ Ce repo est en cours de construction, pour constituer un support de formation en
 
 # Résumé
 
-Ce repo est documenté par ./ModdeDemploi.pdf, qui permet de monter des pipelines un peu particuliers...
+Ce repository est une partie d'un [projet open-source que j'ai initié](https://github.com/Jean-Baptiste-Lasselle/isocahedron) pour éprouver les concepts que je rencontre
+dans la pratique du déveleoppement de logiciels.
+
+Au sein de ce projet, ce repository versionne quelques automatisations:
+
+* de la provision d'une cible de déploiement pour une application Java, et une application Web Java EE.
+* de la provision d'une cible de déploiement pour une application Scala.
+<!-- * de la provision d'une cible de déploiement pour une application C. -->
+<!-- * de la provision d'une cible de déploiement pour une application Python. -->
+<!-- * de la provision d'une cible de déploiement pour une application Node.js. -->
+* du déploiement d'une application Java 
+* du déploiement d'une application Web Java EE 
+* du déploiement d'une application Scala
+<!-- * du déploiement d'une application C -->
+<!-- * du déploiement d'une application Python -->
+<!-- * du déploiement d'une application Node.js -->
+
+
+
+Ce `README.md` est proche d'être complètement à jour: vous trouverez sans encombre le petites typos, ou 
+autres petites erreurs restées dans cette documentation.
+Le document ./ModdeDemploi.pdf n'est absoluement pas prêt pour la lecture, il est un peu mon brouilon pour le [projet open-source que j'ai initié](https://github.com/Jean-Baptiste-Lasselle/isocahedron)
+
+
 
 
 # Pour développer une application Scala
