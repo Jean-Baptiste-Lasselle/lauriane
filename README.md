@@ -4,7 +4,7 @@ Ce repo est en cours de construction, pour constituer un support de formation en
 
 # Résumé
 
-Ce repository est une partie d'un [projet open-source que j'ai initié](https://github.com/Jean-Baptiste-Lasselle/isocahedron) pour éprouver les concepts que je rencontre
+Ce repository est une partie d'un [projet open-source que j'ai initié](https://github.com/Jean-Baptiste-Lasselle/kytes) pour éprouver les concepts que je rencontre
 dans la pratique du déveleoppement de logiciels.
 
 Au sein de ce projet, ce repository versionne quelques automatisations:
