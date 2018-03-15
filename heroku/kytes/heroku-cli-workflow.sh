@@ -349,8 +349,10 @@ heroku ps:scale web=1
 
 
 
-# #############      REST API CLIENT HEROKU
+# #############     CONCLUSION: `kyte-pr` fera usage de JGit et de la [REST API CLIENT HEROKU]:
+# --      https://devcenter.heroku.com/articles/platform-api-quickstart
+# -- pour automatiser le process  des pipelines aboutissant chez Heroku.
 # -- 
 # -- Je vais pouvoir faire tout ce que je fais dans ce script, à
-# -- l'aide de la REST API Heroku: https://devcenter.heroku.com/articles/platform-api-quickstart
+# -- l'aide de la REST API Heroku: https://devcenter.heroku.com/articles/platform-api-quickstart 
 # -- 
