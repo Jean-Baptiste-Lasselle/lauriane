@@ -1,0 +1,1063 @@
+18-Jan-2018 00:49:50.038 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server version:        Apache Tomcat/8.0.48
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server built:          Nov 30 2017 16:26:50 UTC
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server number:         8.0.48.0
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log OS Name:               Linux
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log OS Version:            4.4.0-21-generic
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Architecture:          amd64
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Java Home:             /usr/lib/jvm/java-7-openjdk-amd64/jre
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Version:           1.7.0_151-b01
+18-Jan-2018 00:49:50.040 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Vendor:            Oracle Corporation
+18-Jan-2018 00:49:50.041 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_BASE:         /usr/local/tomcat
+18-Jan-2018 00:49:50.041 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_HOME:         /usr/local/tomcat
+18-Jan-2018 00:49:50.041 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(2%)[27mstener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tom
+[7m--More--(2%)[27mcat/conf/logging.properties
+[7m--More--(2%)[27m18-Jan-2018 00:49:50.041 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(3%)[27mstener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.Cl
+[7m--More--(3%)[27massLoaderLogManager
+[7m--More--(3%)[27m18-Jan-2018 00:49:50.041 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(3%)[27mstener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+[7m--More--(3%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(3%)[27mstener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catali
+[7m--More--(3%)[27mna.webresources
+[7m--More--(3%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(3%)[27mstener.log Command line argument: -Dignore.endorsed.dirs=
+[7m--More--(4%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(4%)[27mstener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+[7m--More--(4%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(4%)[27mstener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+[7m--More--(4%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(4%)[27mstener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+[7m--More--(4%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.core.AprLifecycleListen
+[7m--More--(4%)[27mer.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.2.16 using APR
+[7m--More--(5%)[27m version 1.5.1.
+[7m--More--(5%)[27m18-Jan-2018 00:49:50.042 INFO [main] org.apache.catalina.core.AprLifecycleListen
+[7m--More--(5%)[27mer.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters
+[7m--More--(5%)[27m [false], random [true].
+[7m--More--(5%)[27m18-Jan-2018 00:49:50.045 INFO [main] org.apache.catalina.core.AprLifecycleListen
+[7m--More--(5%)[27mer.initializeSSL OpenSSL successfully initialized (OpenSSL 1.1.0f  25 May 2017)
+[7m--More--(5%)[27m18-Jan-2018 00:49:50.144 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+[7m--More--(5%)[27mtializing ProtocolHandler ["http-apr-8080"]
+[7m--More--(5%)[27m18-Jan-2018 00:49:50.155 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+[7m--More--(6%)[27mtializing ProtocolHandler ["ajp-apr-8009"]
+[7m--More--(6%)[27m18-Jan-2018 00:49:50.157 INFO [main] org.apache.catalina.startup.Catalina.load I
+[7m--More--(6%)[27mnitialization processed in 628 ms
+[7m--More--(6%)[27m18-Jan-2018 00:49:50.182 INFO [main] org.apache.catalina.core.StandardService.st
+[7m--More--(6%)[27martInternal Starting service Catalina
+[7m--More--(6%)[27m18-Jan-2018 00:49:50.182 INFO [main] org.apache.catalina.core.StandardEngine.sta
+[7m--More--(6%)[27mrtInternal Starting Servlet Engine: Apache Tomcat/8.0.48
+[7m--More--(6%)[27m18-Jan-2018 00:49:50.217 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(7%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+[7m--More--(7%)[27mat/webapps/docs
+[7m--More--(7%)[27m18-Jan-2018 00:49:50.810 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(7%)[27mp.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+[7m--More--(7%)[27mtomcat/webapps/docs has finished in 592 ms
+[7m--More--(7%)[27m18-Jan-2018 00:49:50.810 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(7%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+[7m--More--(7%)[27mat/webapps/ROOT
+[7m--More--(7%)[27m18-Jan-2018 00:49:50.840 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(8%)[27mp.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+[7m--More--(8%)[27mtomcat/webapps/ROOT has finished in 30 ms
+[7m--More--(8%)[27m18-Jan-2018 00:49:50.841 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(8%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+[7m--More--(8%)[27mat/webapps/host-manager
+[7m--More--(8%)[27m18-Jan-2018 00:49:50.912 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(8%)[27mp.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+[7m--More--(8%)[27mtomcat/webapps/host-manager has finished in 71 ms
+[7m--More--(8%)[27m18-Jan-2018 00:49:50.921 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(9%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+[7m--More--(9%)[27mat/webapps/examples
+[7m--More--(9%)[27m18-Jan-2018 00:49:51.583 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(9%)[27mp.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+[7m--More--(9%)[27mtomcat/webapps/examples has finished in 662 ms
+[7m--More--(9%)[27m18-Jan-2018 00:49:51.586 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(9%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+[7m--More--(9%)[27mat/webapps/manager
+[7m--More--(9%)[27m18-Jan-2018 00:49:51.704 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(10%)[27mp.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+[7m--More--(10%)[27mtomcat/webapps/manager has finished in 118 ms
+[7m--More--(10%)[27m18-Jan-2018 00:49:51.715 INFO [main] org.apache.coyote.AbstractProtocol.start St
+[7m--More--(10%)[27marting ProtocolHandler ["http-apr-8080"]
+[7m--More--(10%)[27m18-Jan-2018 00:49:51.825 INFO [main] org.apache.coyote.AbstractProtocol.start St
+[7m--More--(10%)[27marting ProtocolHandler ["ajp-apr-8009"]
+[7m--More--(10%)[27m18-Jan-2018 00:49:51.906 INFO [main] org.apache.catalina.startup.Catalina.start 
+[7m--More--(10%)[27mServer startup in 1748 ms
+[7m--More--(10%)[27m18-Jan-2018 00:52:05.034 INFO [Thread-3] org.apache.coyote.AbstractProtocol.paus
+e Pausing ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:05.087 INFO [Thread-3] org.apache.coyote.AbstractProtocol.paus
+e Pausing ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:05.138 INFO [Thread-3] org.apache.catalina.core.StandardServic
+e.stopInternal Stopping service Catalina
+18-Jan-2018 00:52:05.169 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop
+ Stopping ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:05.221 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop
+ Stopping ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:05.274 INFO [Thread-3] org.apache.coyote.AbstractProtocol.dest
+roy Destroying ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:05.275 INFO [Thread-3] org.apache.coyote.AbstractProtocol.dest
+roy Destroying ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:06.513 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server version:        Apache Tomcat/8.0.48
+18-Jan-2018 00:52:06.515 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server built:          Nov 30 2017 16:26:50 UTC
+18-Jan-2018 00:52:06.515 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server number:         8.0.48.0
+18-Jan-2018 00:52:06.515 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log OS Name:               Linux
+18-Jan-2018 00:52:06.516 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+[7m--More--(13%)[27mstener.log OS Version:            4.4.0-21-generic
+18-Jan-2018 00:52:06.516 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Architecture:          amd64
+18-Jan-2018 00:52:06.516 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Java Home:             /usr/lib/jvm/java-7-openjdk-amd64/jre
+18-Jan-2018 00:52:06.516 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Version:           1.7.0_151-b01
+18-Jan-2018 00:52:06.516 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Vendor:            Oracle Corporation
+18-Jan-2018 00:52:06.517 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_BASE:         /usr/local/tomcat
+18-Jan-2018 00:52:06.517 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_HOME:         /usr/local/tomcat
+18-Jan-2018 00:52:06.517 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tom
+cat/conf/logging.properties
+18-Jan-2018 00:52:06.518 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.Cl
+assLoaderLogManager
+18-Jan-2018 00:52:06.518 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+18-Jan-2018 00:52:06.518 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catali
+[7m--More--(16%)[27mna.webresources
+18-Jan-2018 00:52:06.518 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dignore.endorsed.dirs=
+18-Jan-2018 00:52:06.518 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+18-Jan-2018 00:52:06.519 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+18-Jan-2018 00:52:06.519 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+18-Jan-2018 00:52:06.519 INFO [main] org.apache.catalina.core.AprLifecycleListen
+er.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.2.16 using APR
+ version 1.5.1.
+18-Jan-2018 00:52:06.519 INFO [main] org.apache.catalina.core.AprLifecycleListen
+er.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters
+ [false], random [true].
+18-Jan-2018 00:52:06.522 INFO [main] org.apache.catalina.core.AprLifecycleListen
+er.initializeSSL OpenSSL successfully initialized (OpenSSL 1.1.0f  25 May 2017)
+18-Jan-2018 00:52:06.604 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+tializing ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:06.614 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+tializing ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:06.617 INFO [main] org.apache.catalina.startup.Catalina.load I
+nitialization processed in 551 ms
+[7m--More--(18%)[27m18-Jan-2018 00:52:06.647 INFO [main] org.apache.catalina.core.StandardService.st
+artInternal Starting service Catalina
+18-Jan-2018 00:52:06.647 INFO [main] org.apache.catalina.core.StandardEngine.sta
+rtInternal Starting Servlet Engine: Apache Tomcat/8.0.48
+18-Jan-2018 00:52:06.666 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+at/webapps/docs
+18-Jan-2018 00:52:07.221 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+ne[Catalina].StandardHost[localhost].StandardContext[/docs]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+[7m--More--(21%)[27m[K	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+[7m--More--(23%)[27mBasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+ava:94)
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+[7m--More--(25%)[27m[K	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+t.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:07.223 SEVERE [localhost-startStop-1] org.apache.catalina.star
+tup.HostConfig.deployDirectory Error deploying web application directory /usr/lo
+cal/tomcat/webapps/docs
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+ndardHost[localhost].StandardContext[/docs]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:757)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+[7m--More--(27%)[27m.java:1868)[K
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+18-Jan-2018 00:52:07.224 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+tomcat/webapps/docs has finished in 557 ms
+18-Jan-2018 00:52:07.224 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+at/webapps/ROOT
+18-Jan-2018 00:52:07.300 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+ne[Catalina].StandardHost[localhost].StandardContext[]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+[7m--More--(29%)[27m[K	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+[7m--More--(31%)[27m[K	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+BasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+ava:94)
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+[7m--More--(33%)[27m[K	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+t.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:07.301 SEVERE [localhost-startStop-1] org.apache.catalina.star
+tup.HostConfig.deployDirectory Error deploying web application directory /usr/lo
+cal/tomcat/webapps/ROOT
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+[7m--More--(35%)[27mndardHost[localhost].StandardContext[]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:757)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+18-Jan-2018 00:52:07.301 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+tomcat/webapps/ROOT has finished in 77 ms
+18-Jan-2018 00:52:07.301 INFO [localhost-startStop-1] org.apache.catalina.startu
+[7m--More--(37%)[27mp.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+at/webapps/host-manager
+18-Jan-2018 00:52:07.393 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+ne[Catalina].StandardHost[localhost].StandardContext[/host-manager]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+[7m--More--(39%)[27m[K	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+BasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+[7m--More--(41%)[27m[K	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+ava:94)
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+[7m--More--(43%)[27mt.java:5212)[K
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:07.394 SEVERE [localhost-startStop-1] org.apache.catalina.star
+tup.HostConfig.deployDirectory Error deploying web application directory /usr/lo
+cal/tomcat/webapps/host-manager
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+ndardHost[localhost].StandardContext[/host-manager]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:757)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+[7m--More--(45%)[27mjava:1152)[K
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+18-Jan-2018 00:52:07.395 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+tomcat/webapps/host-manager has finished in 93 ms
+18-Jan-2018 00:52:07.395 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+at/webapps/examples
+18-Jan-2018 00:52:07.558 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+ne[Catalina].StandardHost[localhost].StandardContext[/examples]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+[7m--More--(47%)[27m[K	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+[7m--More--(50%)[27m[K	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+BasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+ava:94)
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+[7m--More--(52%)[27m[K	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+t.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:07.559 SEVERE [localhost-startStop-1] org.apache.catalina.star
+tup.HostConfig.deployDirectory Error deploying web application directory /usr/lo
+cal/tomcat/webapps/examples
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+ndardHost[localhost].StandardContext[/examples]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:757)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+[7m--More--(54%)[27m[K	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+18-Jan-2018 00:52:07.559 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+tomcat/webapps/examples has finished in 164 ms
+18-Jan-2018 00:52:07.560 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deploying web application directory /usr/local/tomc
+at/webapps/manager
+18-Jan-2018 00:52:07.628 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+[7m--More--(56%)[27mne[Catalina].StandardHost[localhost].StandardContext[/manager]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+[7m--More--(58%)[27m[K	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+BasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+[7m--More--(60%)[27mava:94)[K
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+t.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:07.628 SEVERE [localhost-startStop-1] org.apache.catalina.star
+[7m--More--(62%)[27mtup.HostConfig.deployDirectory Error deploying web application directory /usr/lo
+cal/tomcat/webapps/manager
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+ndardHost[localhost].StandardContext[/manager]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:757)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.jav
+a:1126)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig
+.java:1868)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+[7m--More--(64%)[27m18-Jan-2018 00:52:07.629 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployDirectory Deployment of web application directory /usr/local/
+tomcat/webapps/manager has finished in 68 ms
+18-Jan-2018 00:52:07.630 INFO [main] org.apache.coyote.AbstractProtocol.start St
+arting ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:07.637 INFO [main] org.apache.coyote.AbstractProtocol.start St
+arting ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:07.638 INFO [main] org.apache.catalina.startup.Catalina.start 
+Server startup in 1021 ms
+18-Jan-2018 00:52:36.513 INFO [Thread-3] org.apache.coyote.AbstractProtocol.paus
+e Pausing ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:36.566 INFO [Thread-3] org.apache.coyote.AbstractProtocol.paus
+e Pausing ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:36.617 INFO [Thread-3] org.apache.catalina.core.StandardServic
+e.stopInternal Stopping service Catalina
+18-Jan-2018 00:52:36.619 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop
+ Stopping ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:36.678 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop
+ Stopping ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:36.730 INFO [Thread-3] org.apache.coyote.AbstractProtocol.dest
+roy Destroying ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:36.731 INFO [Thread-3] org.apache.coyote.AbstractProtocol.dest
+roy Destroying ProtocolHandler ["ajp-apr-8009"]
+[7m--More--(66%)[27m18-Jan-2018 00:52:36.732 WARNING [Thread-3] org.apache.catalina.deploy.NamingRes
+ourcesImpl.cleanUp Failed to retrieve JNDI naming context for container [Standar
+dEngine[Catalina].StandardHost[localhost].StandardContext[/manager]] so no clean
+up was performed for that container
+ javax.naming.NamingException: No naming context bound to this class loader
+	at org.apache.naming.ContextBindings.getClassLoader(ContextBindings.java
+:258)
+	at org.apache.catalina.deploy.NamingResourcesImpl.cleanUp(NamingResource
+sImpl.java:992)
+	at org.apache.catalina.deploy.NamingResourcesImpl.stopInternal(NamingRes
+ourcesImpl.java:975)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext
+.java:5550)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:259
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+[7m--More--(68%)[27m[K	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardService.destroyInternal(StandardServ
+ice.java:604)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardServer.destroyInternal(StandardServe
+r.java:879)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.startup.Catalina.stop(Catalina.java:704)
+	at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalin
+a.java:804)
+
+18-Jan-2018 00:52:36.738 WARNING [Thread-3] org.apache.catalina.deploy.NamingRes
+ourcesImpl.cleanUp Failed to retrieve JNDI naming context for container [Standar
+dEngine[Catalina].StandardHost[localhost].StandardContext[]] so no cleanup was p
+erformed for that container
+ javax.naming.NamingException: No naming context bound to this class loader
+[7m--More--(70%)[27m[K	at org.apache.naming.ContextBindings.getClassLoader(ContextBindings.java
+:258)
+	at org.apache.catalina.deploy.NamingResourcesImpl.cleanUp(NamingResource
+sImpl.java:992)
+	at org.apache.catalina.deploy.NamingResourcesImpl.stopInternal(NamingRes
+ourcesImpl.java:975)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext
+.java:5550)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:259
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+[7m--More--(72%)[27m)[K
+	at org.apache.catalina.core.StandardService.destroyInternal(StandardServ
+ice.java:604)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardServer.destroyInternal(StandardServe
+r.java:879)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.startup.Catalina.stop(Catalina.java:704)
+	at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalin
+a.java:804)
+
+18-Jan-2018 00:52:36.741 WARNING [Thread-3] org.apache.catalina.deploy.NamingRes
+ourcesImpl.cleanUp Failed to retrieve JNDI naming context for container [Standar
+dEngine[Catalina].StandardHost[localhost].StandardContext[/docs]] so no cleanup 
+was performed for that container
+ javax.naming.NamingException: No naming context bound to this class loader
+	at org.apache.naming.ContextBindings.getClassLoader(ContextBindings.java
+:258)
+	at org.apache.catalina.deploy.NamingResourcesImpl.cleanUp(NamingResource
+sImpl.java:992)
+	at org.apache.catalina.deploy.NamingResourcesImpl.stopInternal(NamingRes
+[7m--More--(74%)[27mourcesImpl.java:975)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext
+.java:5550)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:259
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardService.destroyInternal(StandardServ
+ice.java:604)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+[7m--More--(76%)[27m[K	at org.apache.catalina.core.StandardServer.destroyInternal(StandardServe
+r.java:879)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.startup.Catalina.stop(Catalina.java:704)
+	at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalin
+a.java:804)
+
+18-Jan-2018 00:52:36.744 WARNING [Thread-3] org.apache.catalina.deploy.NamingRes
+ourcesImpl.cleanUp Failed to retrieve JNDI naming context for container [Standar
+dEngine[Catalina].StandardHost[localhost].StandardContext[/examples]] so no clea
+nup was performed for that container
+ javax.naming.NamingException: No naming context bound to this class loader
+	at org.apache.naming.ContextBindings.getClassLoader(ContextBindings.java
+:258)
+	at org.apache.catalina.deploy.NamingResourcesImpl.cleanUp(NamingResource
+sImpl.java:992)
+	at org.apache.catalina.deploy.NamingResourcesImpl.stopInternal(NamingRes
+ourcesImpl.java:975)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext
+.java:5550)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+[7m--More--(78%)[27m[K	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:259
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardService.destroyInternal(StandardServ
+ice.java:604)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardServer.destroyInternal(StandardServe
+r.java:879)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.startup.Catalina.stop(Catalina.java:704)
+[7m--More--(79%)[27m[K	at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalin
+a.java:804)
+
+18-Jan-2018 00:52:36.749 WARNING [Thread-3] org.apache.catalina.deploy.NamingRes
+ourcesImpl.cleanUp Failed to retrieve JNDI naming context for container [Standar
+dEngine[Catalina].StandardHost[localhost].StandardContext[/host-manager]] so no 
+cleanup was performed for that container
+ javax.naming.NamingException: No naming context bound to this class loader
+	at org.apache.naming.ContextBindings.getClassLoader(ContextBindings.java
+:258)
+	at org.apache.catalina.deploy.NamingResourcesImpl.cleanUp(NamingResource
+sImpl.java:992)
+	at org.apache.catalina.deploy.NamingResourcesImpl.stopInternal(NamingRes
+ourcesImpl.java:975)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext
+.java:5550)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:259
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+[7m--More--(81%)[27mjava:1040)[K
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java
+:860)
+	at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.
+java:1040)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardService.destroyInternal(StandardServ
+ice.java:604)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.core.StandardServer.destroyInternal(StandardServe
+r.java:879)
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:292
+)
+	at org.apache.catalina.startup.Catalina.stop(Catalina.java:704)
+	at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalin
+a.java:804)
+
+18-Jan-2018 00:52:37.915 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server version:        Apache Tomcat/8.0.48
+[7m--More--(83%)[27m18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server built:          Nov 30 2017 16:26:50 UTC
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Server number:         8.0.48.0
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log OS Name:               Linux
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log OS Version:            4.4.0-21-generic
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Architecture:          amd64
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Java Home:             /usr/lib/jvm/java-7-openjdk-amd64/jre
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Version:           1.7.0_151-b01
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log JVM Vendor:            Oracle Corporation
+18-Jan-2018 00:52:37.917 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_BASE:         /usr/local/tomcat
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log CATALINA_HOME:         /usr/local/tomcat
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tom
+cat/conf/logging.properties
+[7m--More--(86%)[27m18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.Cl
+assLoaderLogManager
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catali
+na.webresources
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dignore.endorsed.dirs=
+18-Jan-2018 00:52:37.918 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+18-Jan-2018 00:52:37.919 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+18-Jan-2018 00:52:37.919 INFO [main] org.apache.catalina.startup.VersionLoggerLi
+stener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+18-Jan-2018 00:52:37.919 INFO [main] org.apache.catalina.core.AprLifecycleListen
+er.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.2.16 using APR
+ version 1.5.1.
+18-Jan-2018 00:52:37.919 INFO [main] org.apache.catalina.core.AprLifecycleListen
+er.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters
+ [false], random [true].
+18-Jan-2018 00:52:37.921 INFO [main] org.apache.catalina.core.AprLifecycleListen
+[7m--More--(88%)[27mer.initializeSSL OpenSSL successfully initialized (OpenSSL 1.1.0f  25 May 2017)
+18-Jan-2018 00:52:38.011 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+tializing ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:38.020 INFO [main] org.apache.coyote.AbstractProtocol.init Ini
+tializing ProtocolHandler ["ajp-apr-8009"]
+18-Jan-2018 00:52:38.022 INFO [main] org.apache.catalina.startup.Catalina.load I
+nitialization processed in 601 ms
+18-Jan-2018 00:52:38.059 INFO [main] org.apache.catalina.core.StandardService.st
+artInternal Starting service Catalina
+18-Jan-2018 00:52:38.059 INFO [main] org.apache.catalina.core.StandardEngine.sta
+rtInternal Starting Servlet Engine: Apache Tomcat/8.0.48
+18-Jan-2018 00:52:38.091 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployWAR Deploying web application archive /usr/local/tomcat/webap
+ps/jiblWebappTest-0.0.7-SNAPSHOT.war
+18-Jan-2018 00:52:38.732 SEVERE [localhost-startStop-1] org.apache.catalina.core
+.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngi
+ne[Catalina].StandardHost[localhost].StandardContext[/jiblWebappTest-0.0.7-SNAPS
+HOT]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+.java:753)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+[7m--More--(91%)[27m9)[K
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:974)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:
+1850)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.UnsupportedClassVersionError: org/mariadb/jdbc/Driver : Uns
+upported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:14
+2)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+[7m--More--(93%)[27m[K	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createConnectionFactory(
+BasicDataSource.java:2123)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.createDataSource(BasicDa
+taSource.java:2032)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSource.getLogWriter(BasicDataSo
+urce.java:1587)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.createDataSource(
+BasicDataSourceFactory.java:594)
+	at org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory.getObjectInstance
+(BasicDataSourceFactory.java:274)
+	at org.apache.naming.factory.FactoryBase.getObjectInstance(FactoryBase.j
+ava:94)
+	at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:3
+21)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:847)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:158)
+	at org.apache.naming.NamingContext.lookup(NamingContext.java:835)
+[7m--More--(95%)[27m[K	at org.apache.naming.NamingContext.lookup(NamingContext.java:172)
+	at org.apache.catalina.core.NamingContextListener.addResource(NamingCont
+extListener.java:1091)
+	at org.apache.catalina.core.NamingContextListener.createNamingContext(Na
+mingContextListener.java:670)
+	at org.apache.catalina.core.NamingContextListener.lifecycleEvent(NamingC
+ontextListener.java:258)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(Lifecycl
+eSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBa
+se.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContex
+t.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 10 more
+
+18-Jan-2018 00:52:38.733 SEVERE [localhost-startStop-1] org.apache.catalina.star
+tup.HostConfig.deployWAR Error deploying web application archive /usr/local/tomc
+at/webapps/jiblWebappTest-0.0.7-SNAPSHOT.war
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.cata
+lina.LifecycleException: Failed to start component [StandardEngine[Catalina].Sta
+ndardHost[localhost].StandardContext[/jiblWebappTest-0.0.7-SNAPSHOT]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase
+[7m--More--(97%)[27m.java:757)[K
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:72
+9)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:974)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:
+1850)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:47
+3)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.
+java:1152)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor
+.java:622)
+	at java.lang.Thread.run(Thread.java:748)
+
+18-Jan-2018 00:52:38.743 INFO [localhost-startStop-1] org.apache.catalina.startu
+p.HostConfig.deployWAR Deployment of web application archive /usr/local/tomcat/w
+ebapps/jiblWebappTest-0.0.7-SNAPSHOT.war has finished in 651 ms
+18-Jan-2018 00:52:38.744 INFO [main] org.apache.coyote.AbstractProtocol.start St
+arting ProtocolHandler ["http-apr-8080"]
+18-Jan-2018 00:52:38.752 INFO [main] org.apache.coyote.AbstractProtocol.start St
+arting ProtocolHandler ["ajp-apr-8009"]
+[7m--More--(99%)[27m18-Jan-2018 00:52:38.754 INFO [main] org.apache.catalina.startup.Catalina.start 
+Server startup in 731 ms

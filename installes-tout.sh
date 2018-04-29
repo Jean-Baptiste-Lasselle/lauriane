@@ -5,7 +5,7 @@
 ############################################################
 ############################################################
 
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # [Pour Comparer votre version d'OS à
 #  celles mentionnées ci-dessous]
 # 
@@ -16,17 +16,17 @@
 # 		cat /etc/redhat-release
 # 
 # 
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # testé pour:
 # 
 # 
 # 
 # 
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # (Ubuntu)
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # 
 # ¤ [TEST-OK]
 #
@@ -40,53 +40,21 @@
 # 
 # 
 # 
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # (CentOS)
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # 
 # 
 # 
 # ...
-# ----------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-############################################################
-############################################################
-#					exécution des opérations			   #
-############################################################
-############################################################
-
-# installation docker
-apt-get remove -y apt-transport-https ca-certificates curl software-properties-common
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg|apt-key add -
-
-# config repo ubuntu contenant les dépendances docker
-apt-key fingerprint 0EBFCD88 >> ./VERIF-EMPREINTE-CLE-REPO.lauriane
-# le fichier "./VERIF-EMPREINTE-CLE-REPO.lauriane" doit contenir:
-# 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
-
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-
-
-apt-get update -y
-
-apt-get install -y docker-ce
-
-usermod -aG docker $USER
-
-systemctl enable docker
-systemctl start docker
-
-
-clear
-##########################################################
-##### MONTEE INFRASTRUCTURE CIBLE DE DEPLOIEMENT #########
-##########################################################
-
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
+#															Environnement						   
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # 
 # 
 # >>>> ENV. SETUP.
@@ -117,25 +85,65 @@ MARIADB_DB_MGMT_USER_PWD=$DB_MGMT_USER_PWD
 MARIADB_DB_APP_USER_NAME=$DB_APP_USER_NAME
 MARIADB_DB_APP_USER_PWD=$DB_APP_USER_PWD
 
-# 		¤ 
+
 VERSION_MARIADB=10.1
 CONTEXTE_DU_BUILD_DOCKER=$MAISON/lauriane
 export NOM_IMAGE_DOCKER_SGBDR=organis-action/sgbdr:v1
 NO_PORT_EXTERIEUR_MARIADB=$NUMERO_PORT_SGBDR
 NOM_CONTENEUR_MARIADB=$NOM_CONTENEUR_SGBDR
 REPERTOIRE_HOTE_BCKUP_CONF_MARIADB=$MAISON/mariadb-conf/bckup
-rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
-mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+
 # >>>>>>>>>>>> [$CONF_MARIADB_A_APPLIQUER] >>> DOIT EXISTER
 # CONF_MARIADB_A_APPLIQUER=$MAISON/conf.mariadb
 CONF_MARIADB_A_APPLIQUER=$MAISON/my.cnf
 
-############################################################
-############################################################
-#					déclarations fonctions				   #
-############################################################
-############################################################
-# ----------------------------------------------------------
+# cette version de connecteur MariaDB / JDBC n'est comptatible qu'avec Java 8 et Java 9, pas Java 7, or c'est Java 7 qui est installé dans le conteneur docker
+# VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
+VERSION_CONNECTEUR_JDBC_MARIADB=1.7.1
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
+#															Fonctions						   
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# 
+# Cette fonction permet d'attendre que le conteneur soit dans l'état healthy
+# Cette fonction prend un argument, nécessaire sinon une erreur est générée (TODO: à implémenter avec exit code)
+checkHealth () {
+	export ETATCOURANTCONTENEUR=starting
+	export ETATCONTENEURPRET=healthy
+	export NOM_DU_CONTENEUR_INSPECTE=$1
+	
+	while  $(echo "+provision+girofle+ $NOM_DU_CONTENEUR_INSPECTE - HEALTHCHECK: [$ETATCOURANTCONTENEUR]">> $NOMFICHIERLOG); do
+	
+	ETATCOURANTCONTENEUR=$(sudo docker inspect -f '{{json .State.Health.Status}}' $NOM_DU_CONTENEUR_INSPECTE)
+	if [ $ETATCOURANTCONTENEUR == "\"healthy\"" ]
+	then
+		echo "+provision+girofle+ $NOM_DU_CONTENEUR_INSPECTE est prêt - HEALTHCHECK: [$ETATCOURANTCONTENEUR]">> $NOMFICHIERLOG
+		break;
+	else
+		echo "+provision+girofle+ $NOM_DU_CONTENEUR_INSPECTE n'est pas prêt - HEALTHCHECK: [$ETATCOURANTCONTENEUR] - attente d'une seconde avant prochain HealthCheck - ">> $NOMFICHIERLOG
+		sleep 1s
+	fi
+	done
+	
+	# DEBUG LOGS
+	echo " provision-girofle-  ------------------------------------------------------------------------------ " >> $NOMFICHIERLOG
+	echo " provision-girofle-  - Contenu du répertoire [/etc/gitlab] dans le conteneur [$NOM_DU_CONTENEUR_INSPECTE]:" >> $NOMFICHIERLOG
+	echo " provision-girofle-  - " >> $NOMFICHIERLOG
+	sudo docker exec -it $NOM_DU_CONTENEUR_INSPECTE /bin/bash -c "ls -all /etc/gitlab" >> $NOMFICHIERLOG
+	echo " provision-girofle-  ------------------------------------------------------------------------------ " >> $NOMFICHIERLOG
+	echo " provision-girofle-  - Existence du fichier [/etc/gitlab/gitlab.rb] dans le conteneur  [$NOM_DU_CONTENEUR_INSPECTE]:" >> $NOMFICHIERLOG
+	echo " provision-girofle-  - " >> $NOMFICHIERLOG
+	sudo docker exec -it $NOM_DU_CONTENEUR_INSPECTE /bin/bash -c "ls -all /etc/gitlab/gitlab.rb" >> $NOMFICHIERLOG
+	echo " provision-girofle-  - " >> $NOMFICHIERLOG
+	echo " provision-girofle-  ------------------------------------------------------------------------------ " >> $NOMFICHIERLOG
+}
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ces fichiers générés sont des dépendaces du
 # build de l'image mariadb.
 generer_fichiers () {
@@ -178,7 +186,39 @@ generer_fichiers () {
 	rm -f $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
 	echo "mysql -u root -p$MARIADB_MDP_ROOT_PASSWORD < ./configurer-utilisateur-mgmt.sql" >> $CONTEXTE_DU_BUILD_DOCKER/configurer-utilisateur-mgmt.sh
 }
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
+#															Opérations						   
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
+
+##########################################################
+##### 			INSTALLATION DOCKER				 #########
+##########################################################
+apt-get remove -y apt-transport-https ca-certificates curl software-properties-common
+apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg|apt-key add -
+# config repo ubuntu contenant les dépendances docker
+apt-key fingerprint 0EBFCD88 >> ./VERIF-EMPREINTE-CLE-REPO.lauriane
+# le fichier "./VERIF-EMPREINTE-CLE-REPO.lauriane" doit contenir:
+# 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update -y
+apt-get install -y docker-ce
+usermod -aG docker $USER
+systemctl enable docker
+systemctl start docker
+
+
+##########################################################
+##### 		MONTEE CIBLE DE DEPLOIEMENT			 #########
+##########################################################
+
+
+
+rm -rf $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
+mkdir -p $REPERTOIRE_HOTE_BCKUP_CONF_MARIADB
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # >>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<
 # > construction du conteneur SERVEUR JEE  <
@@ -315,11 +355,21 @@ echo "     à une bdd nommée \"$NOM_BDD_APPLI\", et ont les "
 echo "     droits pour y créer / détruire une table."
 echo " --------------------------------------------------------  "
 echo " ---------------------------------------------------------------------------------------------------- "
+
+
+
+
+
 # 
 # avec 20 secondes d'attente, c'est bon, en général, l'exécution passe, le serveur est démarré
 #
-sleep 20s
+# sleep 20s
 # sleep 15s => testé, ce n'est pas assez.
+
+
+# --- >>>> La bonne solution est donc le checkhealth fournit par la distribution MariaDB
+checkHealth $NOM_CONTENEUR_MARIADB
+
 sudo ./configurer-user-et-bdd-sql.sh
 echo " >>>>>>>>>>>>>>>>>>>>>>>>>>>>   seconde tentative [ configurer-user-et-bdd-sql.sh ] "
 sudo ./configurer-user-et-bdd-sql.sh
@@ -416,10 +466,6 @@ sudo docker exec -it $NOM_CONTENEUR_MARIADB /bin/bash -c "mysql -u root -p$MARIA
 # # installation du dbcp.jar
 # déjà installé de base avec tomcat 8.0
 # # installation de la bonne version du connecteur jdbc, en fonction de la version de MariaDB
-
- # cette versiond e connecteur MariaDB / JDBC n'est comptatible qu'avec Java 8 et Java 9, pas Java 7, or c'esty Java 7 qui est installé dans le conteneur docker
-# VERSION_CONNECTEUR_JDBC_MARIADB=2.2.1
-VERSION_CONNECTEUR_JDBC_MARIADB=1.7.1
 wget https://downloads.mariadb.com/Connectors/java/connector-java-$VERSION_CONNECTEUR_JDBC_MARIADB/mariadb-java-client-$VERSION_CONNECTEUR_JDBC_MARIADB.jar
 
 # TODO: remplcaer automatiquement dans le fichier $MAISON/lauriane/context.xml, la valeur du nom du driver, l'adresse IP etc....
